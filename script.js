@@ -39,12 +39,13 @@ const restaurant = {
 ///////////////////////////////////////////////////////
 
 //topic de-constructuring THE  array...
+//cut it down into pices to use someof them better than call all the object or array everytime.
 /*
 // let [first, second] = restaurant.categories;
 //console.log(first, second);
 
 // note if i need the third option leave only the , ,
-// const [first, ,second] = restaurant.categories;
+// let [first, ,second] = restaurant.categories;
 // console.log(first, second);
 
 // note switching the first with second ?we used before the temp
@@ -69,6 +70,7 @@ const restaurant = {
 */
 
 /////////////////////////////////////////////////////////
+
 //topic what about destructuring the object?V96
 // how to destruct the object
 // by using the object name...
@@ -118,29 +120,37 @@ const restaurant = {
 */
 
 /////////////////////////////////////////////////////////
+
 //topic the spread opertor on array using (...) ?V97 used for iterable iteration(array , set , map , string ....etc)
-//to unpack the array into elements
+//to unpack the array into elements and copy it completely
 /*
 //bad habits : if we have array and we want to add the begining of it numbers?
-//ex:
+// ex:
 //  const arr = [7,8,9];
 //  const newArreay = [1,2,arr[0],arr[0],arr[1],arr[2]];
 //  console.log(newArreay);
 
 // note now we have new way using the spread operator
 // we use the ...arr the name to expand it where we want.
-//ex:
+// ex:
 // const arr = [7, 8, 9];
+// const arrNew = [...arr]; // copy the array  completely
+
+// note  Dont use this ==> const newarr = arr ; becuse it doesnt make new copy it give a referance to main one if we mofdifiy it
 // const newGoodArr = [1, 2, ...arr];
 // console.log(newGoodArr); // [ 1, 2, 7, 8, 9 ]
-//and if we use it in consol.log it will expand it out of the array:
-//ex
+// and if we use it in consol.log it will expand it out of the array:
+// ex
 // console.log(...newGoodArr); //1 2 7 8 9
 
-// note we can create new varaiables from object and add new items, Ex:
+// note  // note dont dont use this it make a shell copy affect on the main one if we push for example arr.push(5);
+// const arr = restaurant.mainMenu;
+// console.log(arr);
 
+// note we can create new varaiables from object and add new items,
+// ex:
 // const newMenu = [...restaurant.mainMenu, 'potatoes'];
-// console.log(newMenu); //Array(4) [ "Pizza", "Pasta", "Risotto", "potatoes" ]
+// console.log(newMenu); //Array(4) [ "Pizza", "Pasta", "Risotto", "potatoes"]
 // console.log(...newMenu); //Pizza Pasta Risotto potatoes
 
 // note creat new copy array:
@@ -158,13 +168,48 @@ const restaurant = {
 // console.log(...newstr); //k e n a n <empty string> s
 // console.log(typeof restaurant); // object
 
-// note but be noted that is work on copy the object only in the following way:
-
+// note noted we can make a completely copy for an object in the following way :
 // const newRestaurantObject = {...restaurant};
 // console.log(newRestaurantObject);
+console.log(restaurant);
+// ex:
+// const arr = [1, 2, 3, 4];
+// const obj = restaurant; //took the referance
+// obj.arr = arr;
+// console.table(obj); //the array exist
+// console.table(restaurant); //the array exist
+
+// ex: 
+// const arr = [1, 2, 3, 4];
+// const obj = {...restaurant ,arr} // add the arr in {} or spreately obj.arr = arr ;
+// console.table(obj);
+// console.table(restaurant); 
+
+// note read this:
+// 1. Using the Spread Operator (const one = [...restaurant.mainMenu]):
+
+//     This creates a shallow copy of the restaurant.mainMenu array.
+//     If you modify the one array, it will not affect the original restaurant.mainMenu array because it's a separate copy.
+//     Example:
+//     const one = [...restaurant.mainMenu];
+//     one.push('newItem'); // Only 'one' changes, 'restaurant.mainMenu' stays the same.
+
+// 2. Direct Assignment (const two = restaurant.mainMenu):
+
+//     This is a reference to the original restaurant.mainMenu array.
+//     Any change made to two will also affect restaurant.mainMenu because they both point to the same memory location.
+//     Example:
+
+//     const two = restaurant.mainMenu;
+//     two.push('newItem'); // Both 'two' and 'restaurant.mainMenu' will change.
+
+// Which is better?
+
+//     Use the spread operator (const one = [...restaurant.mainMenu])
 */
 
 /////////////////////////////////////////////////////////
+
 //topic rest pattern: use to collect multiply elements and condense into an array:
 // rest pattern to pack element into Array
 // spread operator to Un pack elements from array
@@ -203,7 +248,7 @@ const restaurant = {
 // output: Array(2) [ 2, 3 ]
 // Array(4) [ 5, 3, 7, 2 ]
 // Array(7) [ 8, 2, 5, 3, 2, 1, 4 ]
-
+ 
 // note ex:
 // const add = function (...numbers) {
 //   let sum = 0;
@@ -220,9 +265,10 @@ const restaurant = {
 // ex:
 // restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
 // restaurant.orderPizza('mushrooms');
- */
+*/
 
 ////////////////////////////////////////////////////////////////
+
 //topic Short circuting && ||
 // it use any datatype , return  any datatype, short circuting
 // here we can see there is no boolean value
@@ -241,8 +287,9 @@ const restaurant = {
 
 // in another way:
 
-// const guests2 = restaurant.numGuests || 10;
-// console.log(guests2);
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
 
 // note the && operator it takes the first value if its 0
 // if the first is 1 then it continue to second to check it  and it true it take it
@@ -263,13 +310,14 @@ const restaurant = {
 */
 
 /////////////////////////////////////////////////
+
 //topic Nullish Coalescing Operator (??)
 /* 
 // it work in way that it takes these false values (0 and "") and stop at these false(undefine, null), ex:
 
-// restaurant.numGuests = 0 ;
-// restaurant.numtest ;
-// // console.table(restaurant);
+// restaurant.numGuests = "";
+// restaurant.numtest;
+// console.table(restaurant);
 // const guests2 = restaurant.numGuests ?? 10;
 // console.log(guests2);
 // const guests3 = restaurant.numtest ?? 10;
@@ -277,6 +325,7 @@ const restaurant = {
 */
 
 /////////////////////////////////////////////////////
+
 //topic logical assignment ??= ||=  &&= operators:
 /* 
 // example for what we have learned before:if we have two object ..
@@ -314,6 +363,7 @@ const restaurant = {
 */
 
 //////////////////////////////////////////////////////////
+
 //topic  #CHALLENGE 1 :
 /* 
 {
@@ -389,6 +439,7 @@ team2 < team1 && console.log(`the team2 most likely to win`);
 */
 
 //////////////////////////////////////////////
+
 //topic Looping Arrays: The for-of Loop
 /*
 // note you still can use continue and break
@@ -405,6 +456,7 @@ for (const [i, el] of menu.entries()) {
 */
 
 ///////////////////////////////////////////////
+
 //topic Enhanced Object Literals : ES6 introduce 3 diffrent way to do the Object :
 /*
 // note WAY1:  if we have the same object and we took out the openingHours out to a spreate object :
@@ -429,7 +481,7 @@ for (const [i, el] of menu.entries()) {
 //   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
 //   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-//   //note1 we can just add it names and the jsvascript will automatically add it
+//   // note 1 we can just add it names and the jsvascript will automatically add it
 //   openingHours,
 //   //note2 removing the function and : keyword
 //   order(index1, index2) {
@@ -447,7 +499,7 @@ for (const [i, el] of menu.entries()) {
 // we can use :
 // order(index1, index2) { return [this.starterMenu[index1], this.mainMenu[index2]];
 
-// note WAY3 : we couls use array and use it to name the properities:
+// note WAY3 : we could use array and use it to name the properities:
 const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 const openingHours = {
   [days[3]]: {
@@ -474,4 +526,5 @@ console.log(openingHours);
 */
 
 ////////////////////////////////////////////////
+
 //topic
