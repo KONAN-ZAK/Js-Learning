@@ -11,8 +11,11 @@ const restaurant = {
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
   categories: ['Italian', 'Pizzeria', 'Vegetarian', 'Organic'],
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
-  mainMenu: ['Pizza', 'Pasta', 'Risotto'],
-
+  mainMenu: ['Pizza', ['Pasta', 'Risotto']],
+  testNested: [
+    { name: 'Bob', age: 25 },
+    { name: 'Charlie', age: 30 },
+  ],
   openingHours: {
     thu: {
       open: 7,
@@ -27,7 +30,6 @@ const restaurant = {
       close: 24,
     },
   },
-
   order: function (index1, index2) {
     return [this.starterMenu[index1], this.mainMenu[index2]];
   },
@@ -36,59 +38,58 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
-///////////////////////////////////////////////////////
 
-//topic de-constructuring THE  array...
-//cut it down into pices to use someof them better than call all the object or array everytime.
+///////////////////////////////////////////////////////
+// main idea we look what we want to de-struct and start with it {} or []...
+
+//topic 🤖 de-constructuring THE array.
 /*
-// let [first, second] = restaurant.categories;
+//cut it down into pices to use some part better in new variables.
+//note💎1: get the first and second value from array
+//we start with [] becaue restaurant.categories is an array
+//let [first, second] = restaurant.categories;
 //console.log(first, second);
 
-// note if i need the third option leave only the , ,
+//note💎2: if you need the third option leave only the , ,
 // let [first, ,second] = restaurant.categories;
 // console.log(first, second);
 
-// note switching the first with second ?we used before the temp
+//note💎3: switching the first with second ?we used before the temp
 // [first, second] = [second, first];
 // console.log(first, second);
 
-// note nice way to return from function a multipe values in array and destructuring it later
+//note💎4: what if we have nested arraies:
+// const [one,[two,three]] = restaurant.mainMenu;
+// console.log(one,two,three);
+
+//note💎5: now we can init the values of decostructing values to avoid mistakes and undefined
+// const [a = 1, b = 1, c = 1] = [10, 11];
+// console.log(a, b, c);    // 10 , 11 , 1
+
+//note💎6: nice way to return from function a multipe values in array and destructuring it later
 // const [starter, mainMale] = restaurant.order(0, 1);
 // console.log(`the starter: ${starter} and mainMeal: ${mainMale}`);
 
-// note what if we have nested arraies:
- // const [a, b, c] = [10, 11, [12, 13]];
- // console.log(a, b, c);
- // but what if i want to deconstruct as well the inner array?
+//note💎7: nested 
+const [{ name: name1, age: age1 }, { name: name2, age: age2 }] =
+  restaurant.testNested;
+  */
 
-// const [a, b, [c, d]] = [10, 11, [12, 13]];
-// console.log (a, b, c, d);
-
-// note now we can init the values of decostructing values to avoid mistakes and undefined
-// const [a = 1, b = 1, c = 1] = [10, 11];
-// console.log(a, b, c);    // 10 , 11 , 1
-*/
-
-/////////////////////////////////////////////////////////
-
-//topic what about destructuring the object?V96
-// how to destruct the object
-// by using the object name...
+//topic 🤖 de-constructuring THE object.Video96
 /*
-// const {name , categories , openingHours }= restaurant ;
-// console.log(name , categories , openingHours);
+//note💎0: how to destruct the object 1)by using the object keys...
+// const {name , categories , openingHours:{thu ,fri , sat} }= restaurant ;
+// console.log(name , categories , thu, fri , sat);
 
-//note what if i want to give it another names to easy use from API :
+//note💎1: const {Name} = restaurant;
+// console.log(Name);
 
-//const {
-//   name: restaurantName,
-//   categories: food,
-//   openingHours: hour,
-// } = restaurant;
+//note💎2: give it another names to easy use from API :
+// const { name: restaurantName,  categories: food, openingHours: hour, } = restaurant;
 // console.log(restaurantName, food, hour);
 
-// note what if we want to set default value if the value not exist in API: by =[]
-// useful if the dont have the object and we are getting it from somewhere else...
+//note💎3: set default value if value not exist in API: by =[]
+// useful if the dont have the object and we are getting it from somewhere else.
 // const {
 //   name: restaurantName = [],
 //   categories: food = [],
@@ -97,95 +98,92 @@ const restaurant = {
 // } = restaurant;
 // console.log(restaurantName, food, hour, menufood);
 
-// note what if i want to get the nested object (fri object) :
+//note💎4: the nested object:
 // const { fri } = restaurant.openingHours;
 // console.log(fri); // shows the fri object
 
-//get the values inside the nested object
-// const {
-//   fri: { open, close },
-// } = restaurant.openingHours;
-// console.log(open, close); // 8  23
-
-// even we can give a new name variable :
-// const {
-//   fri: { open: o, close: c },
-// } = restaurant.openingHours;
+//note💎5: new name to use:
+// const {fri: { open: o, close: c }} = restaurant.openingHours;
 // console.log(o, c);
 
-// note creating the func manually and pass the object to function
-//as an rguments and function will de-constructing that object...
+//note💎6: object nested array:
+// const {Name ,categories:[one, two]} = restaurant;
+// console.log(Name ,one, two);
 
-////i didnt understant the end of //note video 96.
+//note💎7: array nested object:
+// const [{ name: firstName, age: firstAge }, { name: secondName, age: secondAge }] = restaurant.testNested ;
+
+//note💎8: creating the func manually and pass the object to function
+//as an rguments and function will de-constructing that object...
 */
 
-/////////////////////////////////////////////////////////
-
-//topic the spread opertor on array using (...) ?V97 used for iterable iteration(array , set , map , string ....etc)
-//to unpack the array into elements and copy it completely
+//topic 🤖 spread opertor on array exepction for object
 /*
-//bad habits : if we have array and we want to add the begining of it numbers?
-// ex:
+//using (...)used for iterable iteration(array , set , map , string ....etc)
+//to unpack the array into elements and copy it completely
+//ex:📢 bad habits :
 //  const arr = [7,8,9];
-//  const newArreay = [1,2,arr[0],arr[0],arr[1],arr[2]];
+//  const newArreay = [1,2,arr[0],arr[0],arr[1],arr[2]];  
 //  console.log(newArreay);
 
-// note now we have new way using the spread operator
-// we use the ...arr the name to expand it where we want.
-// ex:
+//note💎1: create new way using spread operator
+//ex:📢
 // const arr = [7, 8, 9];
-// const arrNew = [...arr]; // copy the array  completely
+// const arrNew = [...arr]; // copy the array completely
 
-// note  Dont use this ==> const newarr = arr ; becuse it doesnt make new copy it give a referance to main one if we mofdifiy it
+//note💎2: Dont use this ==> const newarr = arr ; becuse it doesnt make new copy it give a referance to main one if we mofdifiy it
 // const newGoodArr = [1, 2, ...arr];
 // console.log(newGoodArr); // [ 1, 2, 7, 8, 9 ]
 // and if we use it in consol.log it will expand it out of the array:
-// ex
+//ex:📢
 // console.log(...newGoodArr); //1 2 7 8 9
 
-// note  // note dont dont use this it make a shell copy affect on the main one if we push for example arr.push(5);
+//note💎  //note💎 dont dont use this it make a shell copy affect on the main one if we push for example arr.push(5);
 // const arr = restaurant.mainMenu;
 // console.log(arr);
 
-// note we can create new varaiables from object and add new items,
-// ex:
+//note💎3: we can add new items
+//ex:📢
 // const newMenu = [...restaurant.mainMenu, 'potatoes'];
-// console.log(newMenu); //Array(4) [ "Pizza", "Pasta", "Risotto", "potatoes"]
-// console.log(...newMenu); //Pizza Pasta Risotto potatoes
+// console.log(newMenu); //Array(3) [ "Pizza", ["Pasta", "Risotto"], "potatoes"]
+// console.log(...newMenu); //Pizza [Pasta Risotto] potatoes
 
-// note creat new copy array:
+//note💎4: creat new copy array:
 // const newCopyarr = [...restaurant.mainMenu];
 
-// note marge two or more array:
+//note💎5: marge two or more array:
 // const newMergearr = [...restaurant.mainMenu , ...restaurant.starterMenu];
 // console.log(newMergearr);
 
-// note (...) can work on iterable : arrays ,strings ,maps ,sets , not opjects
+//note💎6: (...) can work on iterable : arrays ,strings ,maps ,sets , not opjects
 //as we know the string is an array so :
 // const str = 'kenan';
 // const newstr = [...str, '', 's'];
 // console.log(newstr); //Array(7) [ "k", "e", "n", "a", "n", "", "s" ]
 // console.log(...newstr); //k e n a n <empty string> s
-// console.log(typeof restaurant); // object
 
-// note noted we can make a completely copy for an object in the following way :
+//note💎7: noted we can make a completely copy for an object in the following way :
 // const newRestaurantObject = {...restaurant};
 // console.log(newRestaurantObject);
-console.log(restaurant);
-// ex:
+
+//note💎8: add new property to it :
+// const newRestaurantObject1 = {...restaurant , age:26};
+// console.log(newRestaurantObject1);
+
+//ex:📢
 // const arr = [1, 2, 3, 4];
 // const obj = restaurant; //took the referance
 // obj.arr = arr;
 // console.table(obj); //the array exist
 // console.table(restaurant); //the array exist
 
-// ex: 
+//ex:📢 
 // const arr = [1, 2, 3, 4];
 // const obj = {...restaurant ,arr} // add the arr in {} or spreately obj.arr = arr ;
 // console.table(obj);
 // console.table(restaurant); 
 
-// note read this:
+//note💎 read this:
 // 1. Using the Spread Operator (const one = [...restaurant.mainMenu]):
 
 //     This creates a shallow copy of the restaurant.mainMenu array.
@@ -208,23 +206,21 @@ console.log(restaurant);
 //     Use the spread operator (const one = [...restaurant.mainMenu])
 */
 
-/////////////////////////////////////////////////////////
-
-//topic rest pattern: use to collect multiply elements and condense into an array:
-// rest pattern to pack element into Array
-// spread operator to Un pack elements from array
-// opposite of spread operator
+//topic 🤖 rest operator ... in nested destructuring to gather the remaining elements or properties.
 /*
-// note compearing the :
-// spread: ... after the =
-// const arr= [1,2,...[3,4,5]];  //[1,2,3,4,5]
+// rest pattern to pack element into Array or object
+// spread operator to Un pack elements from array 
+// opposite of spread operator
 
-// rest: ... before the =
+//note💎 
+//const nestedArr = [1, [2, 3, 4], 5];
+const [a, [b, ...rest], d] = nestedArr;
+//ex:📢
 // const [a, b, ...others] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 // console.log(others);
 // console.log(a, b, others);
 
-// Ex:
+//ex:📢
 //  deconstruct and there is pack up to array the rest = pack the elements into array
 // const [pizza , , risotto, ...otherFood] = [
 //   ...restaurant.mainMenu,
@@ -232,13 +228,16 @@ console.log(restaurant);
 // ];
 // console.log(pizza, risotto, otherFood); //Pizza Risotto Array(4) [ "Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad" ]
 
-// note in Objects
+//note💎 in Objects:
+// const {Name , ...rest} =restaurant
+// console.log(Name ,rest);
+
 // const { sat, ...weekdays } = restaurant.openingHours;
 // console.log(weekdays);
 
-// note in Functions
+//note💎 in Functions:
 
-// ex:
+//ex:📢
 // const add = function (...numbers) {
 //   console.log(numbers);
 // }
@@ -249,7 +248,7 @@ console.log(restaurant);
 // Array(4) [ 5, 3, 7, 2 ]
 // Array(7) [ 8, 2, 5, 3, 2, 1, 4 ]
  
-// note ex:
+//note💎 ex:
 // const add = function (...numbers) {
 //   let sum = 0;
 //   for (let i = 0; i < numbers.length; i++) sum += numbers[i];
@@ -262,18 +261,16 @@ console.log(restaurant);
 // const x = [23, 5, 7];
 // add(...x); // spread operator
 
-// ex:
+//ex:📢
 // restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
 // restaurant.orderPizza('mushrooms');
 */
 
-////////////////////////////////////////////////////////////////
-
-//topic Short circuting && ||
+//topic 🤖 Short circuting && ||
+/*
 // it use any datatype , return  any datatype, short circuting
 // here we can see there is no boolean value
 // so bewacuse its OR operator it will take the first if its true and the "kenan " not evaluated at all
-/*
 // console.log(3 || "kenan"); //output:  3
 // console.log('' || 'Jonas');   // jonas
 // console.log(true || 0); // true
@@ -281,7 +278,7 @@ console.log(restaurant);
 
 // console.log(undefined || 0 || '' || 'Hello' || 23 || null); //Hello cause at least one operator is true to take it
 
-// note the following way is more easier to set a default values away from if else or ternay operator
+//note💎 the following way is more easier to set a default values away from if else or ternay operator
 // const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
 // console.log(guests1); //10
 
@@ -291,10 +288,10 @@ console.log(restaurant);
 const guests2 = restaurant.numGuests || 10;
 console.log(guests2);
 
-// note the && operator it takes the first value if its 0
+//note💎 the && operator it takes the first value if its 0
 // if the first is 1 then it continue to second to check it  and it true it take it
 
-// ex:
+//ex:📢
 // console.log(0 && "ward"); //0
 // console.log(1 && "ward"); //ward
 
@@ -305,13 +302,11 @@ console.log(guests2);
 // // same as we can do :
 // restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 
-// note we can use the OR operator to set a default values
+//note💎 we can use the OR operator to set a default values
 // while the AND to execute a code in the second operand..
 */
 
-/////////////////////////////////////////////////
-
-//topic Nullish Coalescing Operator (??)
+//topic 🤖 Nullish Coalescing Operator (??)
 /* 
 // it work in way that it takes these false values (0 and "") and stop at these false(undefine, null), ex:
 
@@ -324,9 +319,7 @@ console.log(guests2);
 // console.log(guests3);
 */
 
-/////////////////////////////////////////////////////
-
-//topic logical assignment ??= ||=  &&= operators:
+//topic 🤖 logical assignment ??= ||=  &&= operators:
 /* 
 // example for what we have learned before:if we have two object ..
 // const test1 = {
@@ -343,28 +336,26 @@ console.log(guests2);
 // console.table(test1);
 // console.table(test2);
 
-// note lets write it in logical operator in new way:
+//note💎 lets write it in logical operator in new way:
 
 // test1.numGuest ||= 1;
 // test2.numGuest ||= 1; // becasue there is no numGuest we return the 1
 
-// note but yeah OR doesnt work with false if the value was 0 , so we can use ??
+//note💎 but yeah OR doesnt work with false if the value was 0 , so we can use ??
 // test1.driver = 0 ;
 // test1.driver ??= 1;
 // test2.driver ??= 1; // becasue there is no numGuest we return the 1
 // console.table(test1);
 // console.table(test2);
 
-// note see how as well work with &&:
+//note💎 see how as well work with &&:
 // test1.owner &&= "no such a thing!";
 // console.table(test1);  //becuse the first part false take the first part
 // test2.owner &&= "no such a thing!";
 // console.table(test2);  //becuse the first part true we go to run the second one
 */
 
-//////////////////////////////////////////////////////////
-
-//topic  #CHALLENGE 1 :
+//topic 🤖 #CHALLENGE 1 :
 /* 
 {
 const game = {
@@ -438,16 +429,14 @@ team2 < team1 && console.log(`the team2 most likely to win`);
 }
 */
 
-//////////////////////////////////////////////
-
-//topic Looping Arrays: The for-of Loop
+//topic 🤖 Looping Arrays: The for-of Loop (VERY IMPORTANT).
 /*
-// note you still can use continue and break
+//note💎 you still can use continue and break
 const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
-for (const item of menu)
-  console.log(item);
+for (const item of menu){
+  console.log(item);}
 
-// note what if we want to get the index too, but we can use here the normal for:
+//note💎 what if we want to get the index too, but we can use here the normal for:
 for (const [i, el] of menu.entries()) {
   console.log(`${i + 1}: ${el}`);
 }
@@ -455,11 +444,9 @@ for (const [i, el] of menu.entries()) {
  console.log([...menu.entries()]);
 */
 
-///////////////////////////////////////////////
-
-//topic Enhanced Object Literals : ES6 introduce 3 diffrent way to do the Object :
+//topic 🤖 Enhanced Object Literals : ES6 introduce 3 diffrent way to do the Object :
 /*
-// note WAY1:  if we have the same object and we took out the openingHours out to a spreate object :
+//note💎 WAY1:  if we have the same object and we took out the openingHours out to a spreate object :
 //const openingHours = {
 //   thu: {
 //     open: 7,
@@ -481,7 +468,7 @@ for (const [i, el] of menu.entries()) {
 //   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
 //   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-//   // note 1 we can just add it names and the jsvascript will automatically add it
+//   //note💎 1 we can just add it names and the jsvascript will automatically add it
 //   openingHours,
 //   //note2 removing the function and : keyword
 //   order(index1, index2) {
@@ -493,13 +480,13 @@ for (const [i, el] of menu.entries()) {
 //   },
 // };
 
-// note WAY2: no longer need to do properities and add to functoin in es6, by removing the function and : keyword
+//note💎 WAY2: no longer need to do properities and add to functoin in es6, by removing the function and : keyword
 //  instead of this :
 // order: function (index1, index2) { return [this.starterMenu[index1], this.mainMenu[index2]];
 // we can use :
 // order(index1, index2) { return [this.starterMenu[index1], this.mainMenu[index2]];
 
-// note WAY3 : we could use array and use it to name the properities:
+//note💎 WAY3 : we could use array and use it to name the properities:
 const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 const openingHours = {
   [days[3]]: {
@@ -525,6 +512,171 @@ console.log(openingHours);
 // thu: Object { open: 7, close: 22 }
 */
 
-////////////////////////////////////////////////
+//topic 🤖 Optional Chaining (?.)
+/* 
+//if a certain optional doesnt exist return undefine immediately
+//note💎 let explain before start by saying if we want to know if the resturant open on monday ? we'll do the following:
+// if (restaurant.openingHours.mon) {   // if the mon exisit then show on screen the hour
+//   console.log(restaurant.openingHours.mon.open);
+// }
 
-//topic
+//note💎 we could do it in diffrent way as well:
+//  restaurant.openingHours.thu && console.log(restaurant.openingHours.thu.open);
+
+//note💎 now by using the chaining  ?.
+// console.log(restaurant.openingHours.mon?.open); //if the mon properitie exist then continue to .open or send undefined
+
+//ex:📢
+// const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// for(const day of days){
+//  const open = restaurant.openingHours[day]?.open || "closed" ;
+//  console.log(`the resturant on ${day}  ${open}`);
+// }
+
+//note💎 works with methods:
+
+//ex:📢 console.log(restaurant.order?.(0,0) ?? "exist");
+//ex:📢 console.log(restaurant.OrderLOL?.(0,0) ?? "not exist");
+
+//note💎 works with array:
+//ex:📢
+// const kenan = [{ name: 'kenan', age: 26, work: false }];
+// const check1 = kenan[0]?.name ?? 'user array empty';
+// console.log(check1);
+*/
+
+//topic 🤖 how to iterable in infromal way in object using for :
+/* 
+//note💎 to get property Names ONLY of object: we use Object.keys() ;
+// console.log(Object.keys(restaurant));
+//Array(8)["Name","location","categories","starterMenu","mainMenu","openingHours","order","orderPizza" ]
+//it gives back an array❗
+
+//ex:📢
+// const prop = Object.keys(restaurant.openingHours);
+// let openStr = `we have ${prop.length} : `;
+// for (const i of prop) {
+//   openStr += `${i}, `;
+// }
+// console.log(openStr);
+
+//note💎 to get property values ONLY of object we use Object.values() ;
+//it gives back an array❗
+//ex:📢
+// const values = Object.values(restaurant.openingHours);
+// console.log(values);
+// outPut:
+// 0: Object { open: 7, close: 22 }
+// 1: Object { open: 8, close: 23 }
+// 2: Object { open: 9, close: 24 }
+
+//note💎 to get property Names AND values of object, we use :Object.entires();
+//it gives back an array❗
+//normally there is no iteration in object we deal with it in this way: it change every {} to []
+//ex:📢
+// const entire = Object.entries(restaurant);
+// console.log(entire);
+//output for each property will give me the following: array and has it info nd name.
+// 0: Array [ "Name", "Classico Italiano" ]
+// 0: "Name"
+// 1: "Classico Italiano"
+
+//ex:📢
+// const entire = Object.entries(restaurant.openingHours);
+// console.log(entire);
+// Output:
+// Array(3) [ (2) […], (2) […], (2) […] ]
+// 0: Array [ "thu", {…} ]
+// 1: Array [ "fri", {…} ]
+// 2: Array [ "sat", {…} ]
+
+//it will give array remember
+// for (const x of entire) {
+//   console.log(x);
+// }
+// //let de-Construct it 😊
+// for (const [name, { open, close }] of entire) {
+//   console.log(`day:${name} openAt:${open} closeAt:${close}`);
+// }
+
+//ex:📢
+const  a  = [restaurant.mainMenu[0] , ...restaurant.mainMenu[1] ];
+console.log(a);
+for (const [name,value] of Object.entries(a)) {
+  console.log(name, value);
+}
+
+
+*/
+
+//topic 🤖 Challenge#2:
+/*
+ const game = {
+  team1: 'Bayern Munich',
+  team2: 'Borrussia Dortmund',
+  players: [
+    [
+      'Neuer',
+      'Pavard',
+      'Martinez',
+      'Alaba',
+      'Davies',
+      'Kimmich',
+      'Goretzka',
+      'Coman',
+      'Muller',
+      'Gnarby',
+      'Lewandowski',
+    ],
+    [
+      'Burki',
+      'Schulz',
+      'Hummels',
+      'Akanji',
+      'Hakimi',
+      'Weigl',
+      'Witsel',
+      'Hazard',
+      'Brandt',
+      'Sancho',
+      'Gotze',
+    ],
+  ],
+  score: '4:0',
+  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
+  date: 'Nov 9th, 2037',
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+//note💎1:
+//   const scored = Object.entries(game.scored);
+// for( const [num , name] of scored){
+// console.log(`goal ${Number(num)+1} = ${name}`);
+// }
+//note💎2:
+/////////////////1
+// const avg1 = (game.odds.team1 + game.odds.team2 + game.odds.x) / 3;
+// console.log(`avg1: ${avg1}`);
+/////////////////2
+// const { team1, x, team2 } = game.odds;
+// const avg2 = (team1 + team2 + x) / 3;
+// console.log(`avg2: ${avg2}`);
+/////////////////3
+// let count = 0;
+// const odd = Object.values(game.odds);
+// for (const value of odd) {
+//   count += value;
+// }
+// console.log(`avg3: ${count / odd.length}`);
+// console.log(odd);
+//note💎3:
+
+// for (let [team , result] of Object.entries(game.odds)) {
+
+//   const teamName = team ==="x" ? team = "draw" : game[`${team}`];
+//   console.log(teamName , result);
+//  }
+*/
