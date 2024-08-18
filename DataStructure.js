@@ -841,5 +841,4 @@ console.log(resta);
 //2 Use when you need keys that are not strings
 */
 
-
 //topic 🤖 #Coding Challenge 3
