@@ -38,6 +38,7 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
+//
 
 ///////////////////////////////////////////////////////
 // main idea we look what we want to de-struct and start with it {} or []...
@@ -222,18 +223,16 @@ const [a, [b, ...rest], d] = nestedArr;
 
 //ex:📢
 //  deconstruct and there is pack up to array the rest = pack the elements into array
-// const [pizza , , risotto, ...otherFood] = [
-//   ...restaurant.mainMenu,
-//   ...restaurant.starterMenu,
-// ];
+
+// const [pizza , , risotto, ...otherFood] = [...restaurant.mainMenu, ...restaurant.starterMenu,];
 // console.log(pizza, risotto, otherFood); //Pizza Risotto Array(4) [ "Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad" ]
 
 //note💎 in Objects:
 // const {Name , ...rest} =restaurant
 // console.log(Name ,rest);
 
-// const { sat, ...weekdays } = restaurant.openingHours;
-// console.log(weekdays);
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
 
 //note💎 in Functions:
 
@@ -680,3 +679,167 @@ for (const [name,value] of Object.entries(a)) {
 //   console.log(teamName , result);
 //  }
 */
+
+//topic 🤖 set : return an arr
+/* 
+// collection of unique values, it never allowed duplicate values and has NO index
+// still set diffrent then array because it get aa unique values
+//note💎1:
+const orderSet = new Set(['pasta','pizza','rezota','makrone','pizza','pizza',]);
+console.log(orderSet); //TheOutPut: Set(4) [ "pasta", "pizza", "rezota", "makrone" ]
+
+//note💎2: string
+// console.log(new Set('kenan')); //Set(4) [ "k", "e", "n", "a" ]
+
+//note💎3: size  array:(lenght)
+// console.log(orderSet.size); //4
+
+//note💎4: has  array:(include)
+// console.log(orderSet.has('pizza')); //true
+
+//note💎5: add  array:(push)
+// console.log(orderSet.add('garlic')); //Set(5) [ "pasta", "pizza", "rezota", "makrone" , garlic ]
+
+//note💎5: delete(name)  array:(pop() with no value)
+// console.log(orderSet.delete('rezota'));
+// console.log(orderSet); //Set(4) [ "pasta", "pizza", "makrone", "garlic" ]
+
+//note💎5: .clear() delete all sets values BY  
+// orderSet.clear();
+// console.log(orderSet); //Set []
+
+//note💎7: notice that set has no index so orderSet[0] doesnt work
+//but we still can iterate it by for loop
+// for(const x of orderSet){
+//   console.log(x);
+// }
+
+//note💎8:
+// let say we have our restaurant staff:
+// const arr = ["waiter","waiter","chef","manager"];
+// i want to know the main staff level we have it, so :
+// const staffPosition = new Set(arr); // but remember here we did ref.
+// const staffPosition = [...new Set(arr)]; //whole copy by spread operator...
+// console.log(staffPosition); //[ "waiter", "chef", "manager" ]
+*/
+
+//topic 🤖 Map : return array with two places(key , values)  (:
+/* 
+// keys or values could be string or number or anytihng ...remember keys are strings in object
+//note💎1: initilize empty map:
+const resta = new Map();
+
+//note💎2:  Map.set() key with values
+// resta.set('name', 'kenan');
+// resta.set('age', 1998);
+
+//note💎 if we cl at any point, it will give the whole resta acuse set it return directly
+// console.log(resta.set("sd",878)); // Map(3) { " name" → "kenan", age → 1998, sd → 878 }
+
+//note💎 we can write array in value area:
+// resta.set('love',["dogs",'vicky','cats']);
+// console.log(resta);
+// OUTPUT:
+// 0: " name" → "kenan"
+// 1: age → 1998
+// 2: sd → 878
+// 3: love → Array(3) [ "dogs", "vicky", "cats" ]
+
+//note💎 we can add multiple sets :
+resta
+  .set('love', ['dogs', 'vicky', 'cats'])
+  .set('sex', 11)
+  .set(1, 2)
+  .set(true, "we're open")
+  .set(false, "we're close");
+console.log(resta);
+
+// Map(5) { " name" → "kenan", age → 1998, love → (3) […], sex → 11, 1 → 2 ,eat → 2  ,true → "we're open, false → "we're close""}
+
+//note//note💎 3: Map.get() to re get data from map : becuase it has no index to access
+
+// console.log(resta.get('name')); // "kenan" be careful the space is matter in string(' name') diffrent than ('name')
+// console.log(resta.get(1)); // 2
+// console.log(resta.get(true)); // "we're open"
+
+//note💎 4: has:
+// console.log(resta.has('sex')); //true
+
+//note💎 5: delete:
+// console.log(resta.delete(1));
+// console.log(resta.delete('eat'));
+// console.log(resta);
+
+//note💎 6: size:
+// console.log(resta.size);  //6
+
+//note💎 7: clear:
+// console.log(resta.clear());  //Map(0)
+// console.log(resta );
+*/
+
+//topic 🤖 Map : array inside Map
+/* 
+// set it kinda painful if we have many elements to set
+//there is another way easier:
+
+// const question = new Map([
+//   ['question', 'what is the best ProgressEvent. laguages?'],
+//   [1, 'c'],
+//   [2, 'java'],
+//   [3, 'javascript'],
+//   ['correct', 3],
+//   [true, 'correct🪄'],
+//   [false, 'try again!'],
+// ]);
+// console.log(question);
+//note💎 remember that object.entires(restaurant.OpeningHours) has same structure of Map([key],[value])
+//thats mean we can return from object,enteries to map
+//ex:📢
+// console.log(Object.entries(restaurant.openingHours));
+// const HoursMap = new Map(Object.entries(restaurant.openingHours));
+// console.log(HoursMap);
+
+
+//note💎 can use for loop( nice game)
+
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') {
+//     console.log(key, value);
+//   }
+// }
+// const answear = Number(prompt('Enter the value:'));
+// const finalAnswear = question.get(answear === question.get('correct'));
+// console.log(finalAnswear);
+
+//note💎 sometimes we need to un pack the map to array again:
+// const newArr = [...question];
+// console.log(newArr);
+
+//note💎 we have as well : NOT imPORTWANT JUST KNOWS THAT THE ARE EXISTS
+// console.log(question.keys());
+// console.log(question.values());
+*/
+
+//topic 🤖 which one to use :
+/* 
+// need simple list values :           we use  array or set
+// need the key/value pair as well :   we use  object or map
+
+//array: Use when you need ordered list of values (might contain duplicates)
+//set: Use when you need to work with unique values, Use when high-performance is really important, Use to remove duplicates from arrays.
+////////////////////////////////////
+//object: More “traditional” key/value store (“abused” objects) Easier to write and access values with . and []
+
+//1 Use when you need to include functions (methods)
+//2 Use when working with JSON (can convert to map)
+////////////////////////////////////
+//Map:
+// Better performance, Keys can have any data type, Easy to iterate, Easy to compute size
+
+//1 Use when you simply need to map key to values
+//2 Use when you need keys that are not strings
+*/
+
+
+//topic 🤖 #Coding Challenge 3
