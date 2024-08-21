@@ -1,11 +1,5 @@
 'use strict';
 
-// // Data needed for a later exercise
-const flights =
-  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
-
-// Data needed for first part of the section
-
 const restaurant = {
   Name: 'Classico Italiano',
   location: 'Via Angelo Tavanti 23, Firenze, Italy',
@@ -38,7 +32,6 @@ const restaurant = {
     console.log(otherIngredients);
   },
 };
-//
 
 ///////////////////////////////////////////////////////
 // main idea we look what we want to de-struct and start with it {} or []...
@@ -1101,13 +1094,201 @@ console.log( airline.slice(0 ,-1));  //fly syri ....start from index 0 and end i
 //write a function to check if the Seat in the Middle of the plane:
 const middleSeat = function (seat) {
   //if the seat E or B it is in middle.
-  const checkSeat = seat.slice(-1)==="B" || seat.slice(-1)==="E" ? `it is in middle`:`it is not in middle`; 
+  const checkSeat =
+    seat.slice(-1) === 'B' || seat.slice(-1) === 'E'
+      ? `it is in middle`
+      : `it is not in middle`;
   console.log(checkSeat);
-}
+};
 middleSeat('11B');
 middleSeat('28C');
 middleSeat('05E');
- */
+*/
 
 //topic 🤖 Strings part2....
+/*
+// const plane = 'Turkish Air Line';
+//note💎 methods
 
+//8:  tranform to toUpperCase() or toowerCase():
+// console.log(plane.toUpperCase()); //TURKISH AIR LINE
+// console.log(plane.toLowerCase()); //turkish air line
+
+//ex:📢  fix the customer name. lets say user Entered: kEnAn we should shange it to Kenan
+// const Name = 'kEnAn';
+// const toLower = Name.toLowerCase(); //kenan
+// const correct = toLower[0].toUpperCase() + toLower.slice(1);
+// console.log(correct);
+
+//note💎 trim(): to remove the white space from both sides..
+//ex:📢  comperaing Emails:
+
+// const registeredEmail = 'kenanalzakout@gmail.com';
+// const logedInEmail = '  KenanAlzakout@gmail.com \n';
+// const correction = logedInEmail => {
+//   const fixed = logedInEmail.toLowerCase().trim();
+//   if (fixed === registeredEmail) {
+//     return `correct , ${fixed}`;
+//   }
+// };
+// console.log(correction(logedInEmail));
+
+
+//note💎 replace(,) replaceAll(,) :
+
+// const annocument = 'all pasenger hed to door 21, door 21 immedietly!';
+// console.log(annocument.replace('door', 'Gate')); //all pasenger hed to Gate 21, door 21 immedietly!
+// console.log(annocument.replaceAll('door', 'Gate')); //all pasenger hed to Gate 21, Gate 21 immedietly!
+
+
+//ex:📢 change the currance payment:
+// const paymentDollar = '20,5 $';
+// const paymentTL =paymentDollar.replace("$","TL").replace(",",".");
+// console.log(paymentTL); //20.5 TL
+
+
+//note💎: 3 methods can return Booleans:include() startstWith()   endWith()
+//1: include
+// console.log(plane.includes('Turkish')); //true
+// console.log(plane.includes('Tur')); //true , it doesnt matter the whole word
+
+//2: startsWith()
+// console.log(plane.startsWith('Air')); //false
+// console.log(plane.startsWith('Tur')); //true
+
+//3: endWith()
+// console.log(plane.endsWith('Line')); //false
+// console.log(plane.endsWith('ne')); //true
+ 
+
+//ex:📢
+// const checkBaggage = function (items) {
+//   //FIRST convert everything to small latters
+//   items = items.toLowerCase();
+//   console.log(items);
+//   if (items.includes('gun') || items.includes('knief')) {
+//     console.log('you are not allowed abroad !');
+//   } else {
+//     console.log('welcome abroad ');
+//   }
+// };
+
+// checkBaggage('I have Gun , Water , 2 baggages');
+// checkBaggage('we Have Camera and socks');
+// checkBaggage('knief and belts');
+*/
+
+//topic 🤖 Strings part3....
+/* 
+
+//note💎 split() :gives array....inside the (" ") we can use space or ---- or anything to split it
+
+// console.log('welcome+new+life+here'.split('+')); //Array(4) [ "welcome", "new", "life", "here" ]
+// console.log('kenan alazkout'.split(' ')); //Array [ "kenan", "alzakout" ]
+
+///////so we can use it in this way:////////////////
+// const [name, lastName] = 'kenan alzakout'.split(' ');
+
+
+//note💎 join() :from array to string again...inside the(" ") we can use space OR ---- or anything to join it
+// const newName = ['Mr.', name, lastName.toUpperCase()].join(' ');
+// console.log(newName); //Mr. kenan ALZKOUT
+
+
+//ex:📢WAY1: now how to capitilize the first letter of ech word:
+// const capitil = function (string) {
+//   const modify = string.split(" ");
+//   console.log(modify);   // [ "my", "name", "is", "kenan", "alzakout" ]
+//   const newString =[];
+// for (const X of modify) {
+//   newString.push(X[0].toUpperCase()+X.slice(1));
+// }
+// console.log(newString.join(" "));  //My Name Is Kenan Alzakout
+// };
+// capitil('my name is kenan alzakout');
+
+
+//ex:📢WAY2:
+const capitil = function (string) {
+  const strArr = string.split(' '); //Array(5) [ "my", "name", "is", "kenan", "alzakout" ]
+  let newstr = '';
+  for (const word of strArr) {
+    newstr += `${word.replace(word[0], word[0].toUpperCase())} `;
+  }
+  console.log(newstr);
+};
+capitil('my name is kenan alzakout');
+
+
+
+//note💎 padding : padStart( , )  padEnd( , )
+
+//padStart(TotalNumberOfCharecter,theCharecter) .......padEnd(TotalNumberOfCharecter , theCharecter)
+
+// const message = 'Hello Love';
+// console.log(message.padStart(20, '+')); //++++++++++Hello Love  = total 20 char
+// console.log('kenanSex'.padStart(20, '+').padEnd(30, '!')); //++++++++++++kenanSex!!!!!!!!!!
+
+//ex:📢 if you add your creditCard info to a website you can see last 4 Digit and rest are *****
+//how to do it ??
+
+// const maskCreditNumnber = function (number) {
+//   const str = String(number);
+//   const lastFourLetters = str.slice(-4);
+//   return lastFourLetters.padStart(str.length, '*');
+// };
+
+// console.log(maskCreditNumnber(4887881245568100)); //************8100
+// console.log(maskCreditNumnber(48878812)); //****8812
+
+//note💎 repeat ();
+// const message2 ="all departures delayed!";
+// console.log(`${message2.repeat(5) }`);
+*/
+
+//topic 🤖 #Coding Challenge 4
+/** 
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+
+//note💎 way 1:
+//1: connect DOM to TextArea And Click:
+document.querySelector('button').addEventListener('click', function () {
+  let userInput = document.querySelector('textarea').value;
+  let i = 0;
+  //2: split the poem
+  userInput = userInput.split('\n');
+  //3: loop on each sentance
+  for (let word of userInput) {
+    //4: to lower case and trim the white space
+    //5: split on "_"
+    let [first, second] = word.toLowerCase().trim().split('_');
+    //6: replace the first letter to Capital
+    const new_Word = `${first}${second.replace(second[0], second[0].toUpperCase())}`;
+
+    console.log(`${new_Word.padEnd(20)}${'✅'.repeat(++i)}`);
+  }
+});
+*/
+
+//topic 🤖 practice string
+/* 
+const flights =
+  '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
+
+// 🔴 Delayed Departure from FAO to TXL (11h25)
+//              Arrival from BRU to FAO (11h45)
+//   🔴 Delayed Arrival from HEL to FAO (12h05)
+//            Departure from FAO to LIS (12h30)
+for (const flight of flights.split('+_')) {
+  const [status, fromm, too, time] = flight.split(';'); // [ "_Delayed_Departure", "fao93766109", "txl2133758440", "11:25" ]
+
+  const outPut = `${status.replaceAll('_', ' ')} ${fromm
+    .slice(0, 3)
+    .toUpperCase()} ${too.slice(0, 3).toUpperCase()} ${time.replace(':', 'h')}`;
+
+  console.log(outPut.padStart(60, ' '));
+}
+  */
+
+////////////////////////////END///////////////////////////////////
