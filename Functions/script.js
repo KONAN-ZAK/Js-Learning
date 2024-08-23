@@ -18,9 +18,9 @@ console.log(calc(1998));
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//topic 🤖 default Parameters:
+//Topic 🤖 default Parameters:
 
-//note💎 notice here we add the parameters and by default if not assigned any value it will be undefined
+//Note💎 notice here we add the parameters and by default if not assigned any value it will be undefined
 /**
 const totBooking = [];
 const creatFightBook = function (flightNo, passangerNo, price) {
@@ -35,7 +35,7 @@ const creatFightBook = function (flightNo, passangerNo, price) {
 console.log(creatFightBook('Ar235'));
  */
 
-//note💎before ES6 we were using || to avoid the undefine..
+//Note💎before ES6 we were using || to avoid the undefine..
 /** 
 const totBooking = [];
 const creatFightBook = function (flightNo, passangerNo, price) {
@@ -52,7 +52,7 @@ const creatFightBook = function (flightNo, passangerNo, price) {
 console.log(creatFightBook('Ar235'));//Object { flightNo: "Ar235", passangerNo: 1, price: 1 }
 */
 
-//note💎 in ES6 we can assign in paramters the default values
+//Note💎 in ES6 we can assign in paramters the default values
 /** 
 const totBooking = [];
 const creatFightBook = function (flightNo = 'UnKnown',passangerNo = 'UnKonwn',price = 0) {
@@ -67,7 +67,7 @@ console.log(creatFightBook('Ar235')); //Object { flightNo: "Ar235", passangerNo:
 console.log(creatFightBook('Ar235',58 , "223$")); //Object { flightNo: "Ar235", passangerNo: 58, price: "223$" }
 */
 
-//note💎 the parameters can hold expression , can use the previous declared parameters in order:
+//Note💎 the parameters can hold expression , can use the previous declared parameters in order:
 /** 
 const totBooking = [];
 const creatFightBook = function (flightNo = 'UnKnown',passangerNo = 'UnKonwn',price = passangerNo * 2) {
@@ -81,7 +81,7 @@ const creatFightBook = function (flightNo = 'UnKnown',passangerNo = 'UnKonwn',pr
 console.log(creatFightBook('Ar235', 50)); //{ flightNo: "Ar235", passangerNo: 50, price: 100 }
 */
 
-//note💎 if i want to call the function and jump one parameters
+//Note💎 if i want to call the function and jump one parameters
 /** 
 const totBooking = [];
 const creatFightBook = function (flightNo = 'UnKnown',passangerNo = 'UnKonwn',price = passangerNo * 2) {
@@ -96,7 +96,7 @@ const creatFightBook = function (flightNo = 'UnKnown',passangerNo = 'UnKonwn',pr
 console.log(creatFightBook('Ar235',undefined ,50)); //{ flightNo: "Ar235", passangerNo: "UnKonwn", price: 50 }
 */
 
-//topic 🤖 passing the argument as an value or object..
+//Topic 🤖 passing the argument as an value or object..
 //passing an object to function as Ref.
 //passing a value to function as a value.
 //Final NOTE: there is no passing by ref in JS all pass by value, BUT exeption for Object
@@ -129,4 +129,44 @@ console.log(flight); //1//'AR145'
 console.log(details);//2//{ passportNo: "N01450045", name: "Mr Kenan" }
 */
 
-//topic 🤖 Higher order function
+//Topic 🤖 Higher order function JS use callback all the time
+// helpful especially if we want to hide some function we will take it in OOP
+/*
+//Note💎
+//func1 lower level of obstruction func
+const oneWord = function (str) {
+  return str.replaceAll(' ', '').toLowerCase();
+};
+//func2  lower level of obstruction func
+const upperFirstWord = function (str) {
+  const [fir, ...other] = str.split(' ');
+  const first = fir.toUpperCase();
+  return [first, ...other].join(' ');
+};
+
+//func3 Higher Order FUNCTION works as a controller for func1 and func2
+const transformer = function (str, fn) {
+  console.log(`Orginal String: ${str}`);
+  console.log(`result: ${fn(str)}`);
+  console.log(`transformed By: ${fn.name} function😁`); // we used a method here .name tp get the parameter name
+};
+//calling the methods: notice i didnt activate the upperFirstWord with ()
+transformer('Kenan Alzakout', upperFirstWord);
+transformer('Kenan Alzakout', oneWord);
+
+//Note💎
+// that when we call the function here ('Kenan Alzakout', upperFirstWord)
+// it is as same as
+document.addEventListener('click', high5); //notice it is without ()
+
+//EX 😎
+const high5 = function () {
+  console.log('😎');
+};
+['ward', 'kenan', 'ahmad'].forEach(high5);
+ */
+
+//Topic 🤖 Function returning Function
+ /* */
+// really useful if we wanna use functional Programming
+

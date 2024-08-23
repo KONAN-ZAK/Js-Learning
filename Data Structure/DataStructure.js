@@ -36,81 +36,81 @@ const restaurant = {
 ///////////////////////////////////////////////////////
 // main idea we look what we want to de-struct and start with it {} or []...
 
-//topic 🤖  Destructuring Arrays – Extracting elements into variables
+//Topic 🤖  Destructuring Arrays – Extracting elements into variables
 /* 
 // Destructuring arrays allows you to unpack values into separate variables.
 
- //note💎 1: Extract the first and second values from an array
+ //Note💎 1: Extract the first and second values from an array
 // Example:
 let [first, second] = restaurant.categories;
 console.log(first, second); // Logs the first and second categories
 
 
-//note💎 2: Skip values in the array by leaving commas
+//Note💎 2: Skip values in the array by leaving commas
 // If you want to skip the second value and get the first and third:
 // Example:
 let [first, , third] = restaurant.categories;
 console.log(first, third); // Logs the first and third categories
 
 
-//note💎 3: Swap two values using destructuring
+//Note💎 3: Swap two values using destructuring
 // Traditional swapping would use a temporary variable; destructuring is cleaner:
 // Example:
 [first, second] = [second, first];
 console.log(first, second); // Swapped values
 
 
-//note💎 4: Destructuring nested arrays
+//Note💎 4: Destructuring nested arrays
 // When you have arrays within arrays, you can destructure them as well:
 // Example:
 const [one, [two, three]] = restaurant.mainMenu;
 console.log(one, two, three); // Logs values from nested arrays
 
 
-//note💎 5: Initialize variables with default values
+//Note💎 5: Initialize variables with default values
 // This avoids undefined values if the array has fewer elements than expected:
 // Example:
 const [a = 1, b = 1, c = 1] = [10, 11];
 console.log(a, b, c); // Logs 10, 11, 1 (default value for c)
 
 
-//note💎 6: Returning multiple values from a function and destructuring
+//Note💎 6: Returning multiple values from a function and destructuring
 // You can return an array from a function and destructure it upon receiving:
 // Example:
 const [starter, mainMeal] = restaurant.order(0, 1);
 console.log(`The starter: ${starter}, and main meal: ${mainMeal}`);
 
 
-//note💎 7: Destructuring nested objects within arrays
+//Note💎 7: Destructuring nested objects within arrays
 // If you have an array of objects, you can destructure the objects and their properties:
 // Example:
 const [{ name: name1, age: age1 }, { name: name2, age: age2 }] = restaurant.testNested;
 console.log(name1, age1, name2, age2); // Logs properties from the nested objects
 */
 
-//topic 🤖 Destructuring Objects – Extracting properties into variables
+//Topic 🤖 Destructuring Objects – Extracting properties into variables
 /* 
 // Destructuring objects allows you to unpack values into separate variables.
 
-//note💎 0: Basic object destructuring
+//Note💎 0: Basic object destructuring
 // Extract properties directly by using the object keys:
 const { name, categories, openingHours: { thu, fri, sat } } = restaurant;
 console.log(name, categories, thu, fri, sat); // Logs values from the object
 
 
-//note💎 1: Destructuring with a single property
+//Note💎 1: Destructuring with a single property
 // Example:
 const { Name } = restaurant;
 console.log(Name); // Logs the value of 'Name' property
 
 
-//note💎 2: Renaming properties during destructuring
+//Note💎 2: Renaming properties during destructuring
 // You can assign new variable names to properties:
 const { name: restaurantName, categories: food, openingHours: hour } = restaurant;
 console.log(restaurantName, food, hour); // Logs with new variable names
 
 
-//note💎 3: Setting default values
+//Note💎 3: Setting default values
 // Set default values if a property is not present in the object:
 const {
   name: restaurantName = [],
@@ -121,31 +121,31 @@ const {
 console.log(restaurantName, food, hour, menufood); // Logs values with defaults
 
 
-//note💎 4: Destructuring nested objects
+//Note💎 4: Destructuring nested objects
 // Access nested properties directly:
 const { fri } = restaurant.openingHours;
 console.log(fri); // Shows the 'fri' object
 
 
-//note💎 5: Renaming nested properties
+//Note💎 5: Renaming nested properties
 // Assign new variable names to nested properties:
 const { fri: { open: o, close: c } } = restaurant.openingHours;
 console.log(o, c); // Logs open and close times with new variable names
 
 
-//note💎 6: Destructuring arrays within objects
+//Note💎 6: Destructuring arrays within objects
 // Access array elements nested within an object:
 const { name, categories: [one, two] } = restaurant;
 console.log(name, one, two); // Logs values from the array within the object
 
 
-//note💎 7: Destructuring arrays of objects
+//Note💎 7: Destructuring arrays of objects
 // When you have an array of objects, you can destructure both arrays and objects:
 const [{ name: firstName, age: firstAge }, { name: secondName, age: secondAge }] = restaurant.testNested;
 console.log(firstName, firstAge, secondName, secondAge); // Logs values from nested array of objects
 
 
-//note💎 8: Passing an object to a function and destructuring it within the function
+//Note💎 8: Passing an object to a function and destructuring it within the function
 // You can destructure an object directly within a function's parameters:
 function printRestaurantInfo({ name, categories }) {
   console.log(name, categories);
@@ -153,18 +153,18 @@ function printRestaurantInfo({ name, categories }) {
 printRestaurantInfo(restaurant); // Calls function with destructured object
 */
 
-//topic 🤖 Spread Operator in Arrays and (not completely works for Objects)
+//Topic 🤖 Spread Operator in Arrays and (not completely works for Objects)
 /* 
 // The spread operator (...) is used to unpack elements from arrays, sets, maps, and strings into individual elements, or to copy and merge arrays. It does not work directly with objects, but you can use a similar syntax to create shallow copies of objects.
 
-//note💎 1: Copying an Array with Spread Operator
+//Note💎 1: Copying an Array with Spread Operator
 // Instead of manually copying elements, use the spread operator to create a new array:
 const arr = [7, 8, 9];
 const arrNew = [...arr]; // Creates a new array with the same elements as 'arr'
 console.log(arrNew); // [7, 8, 9]
 
 
-//note💎 2: Avoid Direct Assignment for Copying Arrays
+//Note💎 2: Avoid Direct Assignment for Copying Arrays
 // Direct assignment does not create a new copy; it creates a reference to the same array:
 const newArr = arr; // Points to the same array as 'arr'
 newArr.push(10); // Modifies both 'arr' and 'newArr'
@@ -172,53 +172,53 @@ console.log(arr); // [7, 8, 9, 10]
 console.log(newArr); // [7, 8, 9, 10]
 
 
-//note💎 3: Adding New Items to an Array
+//Note💎 3: Adding New Items to an Array
 // You can add new items to an array using the spread operator:
 const newMenu = [...restaurant.mainMenu, 'potatoes'];
 console.log(newMenu); // ["Pizza", ["Pasta", "Risotto"], "potatoes"]
 
 
-//note💎 4: Creating a New Copy of an Array
+//Note💎 4: Creating a New Copy of an Array
 // Use the spread operator to create a new copy of an array:
 const newCopyArr = [...restaurant.mainMenu];
 console.log(newCopyArr); // Creates a new array identical to 'restaurant.mainMenu'
 
 
-//note💎 5: Merging Multiple Arrays
+//Note💎 5: Merging Multiple Arrays
 // Combine two or more arrays using the spread operator:
 const newMergeArr = [...restaurant.mainMenu, ...restaurant.starterMenu];
 console.log(newMergeArr); // Merges 'mainMenu' and 'starterMenu' arrays
 
 
-//note💎 6: Using Spread Operator with Iterables
+//Note💎 6: Using Spread Operator with Iterables
 // The spread operator works with iterables such as arrays, strings, maps, and sets, but not objects:
-//ex:📢 with string:
+//EX 😎 with string:
 const str = 'kenan';
 const newStr = [...str, '', 's'];
 console.log(newStr); // ["k", "e", "n", "a", "n", "", "s"]
 
 
-//note💎 7: Creating a Shallow Copy of an Object
+//Note💎 7: Creating a Shallow Copy of an Object
 // Use the spread operator to create a shallow copy of an object:
 const newRestaurantObject = { ...restaurant };
 console.log(newRestaurantObject); // Copies 'restaurant' into a new object
 
 
-//note💎 8: Adding New Properties to an Object
+//Note💎 8: Adding New Properties to an Object
 // Add new properties to an object while copying it:
 const newRestaurantObject1 = { ...restaurant, age: 26 };
 console.log(newRestaurantObject1); // Includes all properties of 'restaurant' plus 'age'
 
 
-//note💎 9: Examples of Modifying Arrays in Objects
-///ex:📢 Adding an array to an object:
+//Note💎 9: Examples of Modifying Arrays in Objects
+///EX 😎 Adding an array to an object:
 const arr = [1, 2, 3, 4];
 const obj = { ...restaurant, arr }; // Adds 'arr' to a new object created from 'restaurant'
 console.table(obj); // Shows 'arr' added to the new object
 console.table(restaurant); // Original 'restaurant' remains unchanged
 
 
-//note💎 10: Differences Between Spread Operator and Direct Assignment
+//Note💎 10: Differences Between Spread Operator and Direct Assignment
 // 1. Spread Operator (e.g., const one = [...restaurant.mainMenu]):
 // Creates a shallow copy; modifications to 'one' do not affect 'restaurant.mainMenu'.
 
@@ -228,12 +228,12 @@ console.table(restaurant); // Original 'restaurant' remains unchanged
 // Use the spread operator when you need a new array or object that is independent of the original.
 */
 
-//topic 🤖 Rest Operator - Gathering Remaining Elements or Properties
+//Topic 🤖 Rest Operator - Gathering Remaining Elements or Properties
 /* 
 // The rest operator (...) is used to gather the remaining elements or properties into an array or object.
 // It is the opposite of the spread operator, which is used to unpack elements from arrays or objects.
 
-//note💎 1: Rest Operator in Array Destructuring
+//Note💎 1: Rest Operator in Array Destructuring
 // Gather remaining elements into an array:
 const nestedArr = [1, [2, 3, 4], 5];
 const [a, [b, ...rest], d] = nestedArr;
@@ -243,21 +243,21 @@ console.log(rest); // [3, 4]
 console.log(d); // 5
 
 
-//ex:📢 with a flat array:
+//EX 😎 with a flat array:
 const [a, b, ...others] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 console.log(a); // 1
 console.log(b); // 2
 console.log(others); // [3, 4, 5, 6, 7, 8, 9]
 
 
-//ex:📢 with combined arrays:
+//EX 😎 with combined arrays:
 const [pizza, , risotto, ...otherFood] = [...restaurant.mainMenu, ...restaurant.starterMenu];
 console.log(pizza); // Pizza
 console.log(risotto); // Risotto
 console.log(otherFood); // ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"]
 
 
-//note💎 2: Rest Operator in Object Destructuring
+//Note💎 2: Rest Operator in Object Destructuring
 // Gather remaining properties into a new object:
 const { Name, ...rest } = restaurant;
 console.log(Name); // Restaurant's name
@@ -267,7 +267,7 @@ const { sat, ...weekdays } = restaurant.openingHours;
 console.log(weekdays); // Object with all weekdays except Saturday
 
 
-//note💎 3: Rest Operator in Functions
+//Note💎 3: Rest Operator in Functions
 // Gather function arguments into an array:
 const add = function (...numbers) {
   console.log(numbers); // Array of arguments
@@ -277,7 +277,7 @@ add(5, 3, 7, 2); // [5, 3, 7, 2]
 add(8, 2, 5, 3, 2, 1, 4); // [8, 2, 5, 3, 2, 1, 4]
 
 
-//ex:📢 of summing the arguments:
+//EX 😎 of summing the arguments:
 const add = function (...numbers) {
   let sum = 0;
   for (let i = 0; i < numbers.length; i++) sum += numbers[i];
@@ -292,17 +292,17 @@ const x = [23, 5, 7];
 add(...x); // Equivalent to add(23, 5, 7)
 
 
-//ex:📢 with function calls:
+//EX 😎 with function calls:
 restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
 restaurant.orderPizza('mushrooms');
 */
 
-//topic 🤖 Short-Circuiting with `&&` and `||` Operators
+//Topic 🤖 Short-Circuiting with `&&` and `||` Operators
 /*
 // Short-circuiting refers to the behavior of logical operators where the second operand is not evaluated if the result can be determined from the first operand alone.
 
 
-//note💎 || (OR) Operator
+//Note💎 || (OR) Operator
 // Returns the first truthy value or the last value if none are truthy.
 
 // Ex:
@@ -323,7 +323,7 @@ const guests2 = restaurant.numGuests || 10;
 console.log(guests2); // Output depends on restaurant.numGuests
 
 
-//note💎 && (AND) Operator
+//Note💎 && (AND) Operator
 // Returns the first falsy value or the last value if none are falsy.
 
 // Ex:
@@ -341,7 +341,7 @@ restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 // - OR operator (||) is useful for setting default values or returning the first truthy value.
 // - AND operator (&&) is useful for executing code conditionally based on the truthiness of the first operand:
 
-//topic 🤖 logical assignment ??= ||=  &&= operators:
+//Topic 🤖 logical assignment ??= ||=  &&= operators:
 /* 
 // example for what we have learned before:if we have two object ..
 // const test1 = {
@@ -358,30 +358,30 @@ restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 // console.table(test1);
 // console.table(test2);
 
-//note💎 lets write it in logical operator in new way:
+//Note💎 lets write it in logical operator in new way:
 
 // test1.numGuest ||= 1;
 // test2.numGuest ||= 1; // becasue there is no numGuest we return the 1
 
-//note💎 but yeah OR doesnt work with false if the value was 0 , so we can use ??
+//Note💎 but yeah OR doesnt work with false if the value was 0 , so we can use ??
 // test1.driver = 0 ;
 // test1.driver ??= 1;
 // test2.driver ??= 1; // becasue there is no numGuest we return the 1
 // console.table(test1);
 // console.table(test2);
 
-//note💎 see how as well work with &&:
+//Note💎 see how as well work with &&:
 // test1.owner &&= "no such a thing!";
 // console.table(test1);  //becuse the first part false take the first part
 // test2.owner &&= "no such a thing!";
 // console.table(test2);  //becuse the first part true we go to run the second one
 */
 
-//topic 🤖 Nullish Coalescing Operator (??)
+//Topic 🤖 Nullish Coalescing Operator (??)
 /* 
 // The Nullish Coalescing Operator (??) is used to provide default values for variables that are null or undefined. It does not consider other falsy values (such as 0 or "") as nullish.
 
-//ex:📢
+//EX 😎
 // Consider the following setup:
 restaurant.numGuests = "";  // Assigns an empty string to numGuests
 restaurant.numtest;         // numtest is undefined
@@ -402,7 +402,7 @@ console.log(guests3); // Output: 10 (numtest is undefined, so default value 10 i
 // - Other falsy values (0, "", false) are not treated as nullish and are used as they are.
 */
 
-//topic 🤖 #CHALLENGE 1 :
+//Topic 🤖 #CHALLENGE 1 :
 /* 
 {
 const game = {
@@ -476,26 +476,26 @@ team2 < team1 && console.log(`the team2 most likely to win`);
 }
 */
 
-//topic 🤖 Looping Arrays: The for-of Loop (VERY IMPORTANT)
+//Topic 🤖 Looping Arrays: The for-of Loop (VERY IMPORTANT)
 /*
 //The `for-of` loop is a modern and convenient way to iterate over iterable objects such as arrays. It allows you to access each element directly without needing an index.
 
-//ex:📢 1: Basic usage of for-of loop
+//EX 😎 1: Basic usage of for-of loop
 const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
 for (const item of menu) {
   console.log(item); // Logs each item in the menu array
 }
 
 
-//note💎: You can still use `continue` and `break` within a `for-of` loop to control the flow
-//ex:📢
+//Note💎: You can still use `continue` and `break` within a `for-of` loop to control the flow
+//EX 😎
 for (const item of menu) {
   if (item === 'Pizza') continue; // Skip 'Pizza'
   if (item === 'Pasta') break; // Stop loop when 'Pasta' is encountered
   console.log(item);
 }
 
-//ex:📢 2: Getting the index along with each element
+//EX 😎 2: Getting the index along with each element
 // The `for-of` loop does not provide the index directly, but you can use `entries()` to get both index and element
 for (const [i, el] of menu.entries()) {
   console.log(`${i + 1}: ${el}`); // Logs the index (1-based) and element
@@ -505,9 +505,9 @@ for (const [i, el] of menu.entries()) {
 console.log([...menu.entries()]); // Converts the entries iterator into an array of [index, element] pairs
 */
 
-//topic 🤖 Enhanced Object Literals : ES6 introduce 3 diffrent way to do the Object :
+//Topic 🤖 Enhanced Object Literals : ES6 introduce 3 diffrent way to do the Object :
 /*
-//note💎 WAY1:  if we have the same object and we took out the openingHours out to a spreate object :
+//Note💎 WAY1:  if we have the same object and we took out the openingHours out to a spreate object :
 //const openingHours = {
 //   thu: {
 //     open: 7,
@@ -529,7 +529,7 @@ console.log([...menu.entries()]); // Converts the entries iterator into an array
 //   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
 //   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
 
-//   //note💎 1 we can just add it names and the jsvascript will automatically add it
+//   //Note💎 1 we can just add it names and the jsvascript will automatically add it
 //   openingHours,
 //   //note2 removing the function and : keyword
 //   order(index1, index2) {
@@ -541,13 +541,13 @@ console.log([...menu.entries()]); // Converts the entries iterator into an array
 //   },
 // };
 
-//note💎 WAY2: no longer need to do properities and add to functoin in es6, by removing the function and : keyword
+//Note💎 WAY2: no longer need to do properities and add to functoin in es6, by removing the function and : keyword
 //  instead of this :
 // order: function (index1, index2) { return [this.starterMenu[index1], this.mainMenu[index2]];
 // we can use :
 // order(index1, index2) { return [this.starterMenu[index1], this.mainMenu[index2]];
 
-//note💎 WAY3 : we could use array and use it to name the properities:
+//Note💎 WAY3 : we could use array and use it to name the properities:
 const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 const openingHours = {
   [days[3]]: {
@@ -573,47 +573,47 @@ console.log(openingHours);
 // thu: Object { open: 7, close: 22 }
 */
 
-//topic 🤖 Optional Chaining (?.)
+//Topic 🤖 Optional Chaining (?.)
 /* 
 //if a certain optional doesnt exist return undefine immediately
-//note💎 let explain before start by saying if we want to know if the resturant open on monday ? we'll do the following:
+//Note💎 let explain before start by saying if we want to know if the resturant open on monday ? we'll do the following:
 // if (restaurant.openingHours.mon) {   // if the mon exisit then show on screen the hour
 //   console.log(restaurant.openingHours.mon.open);
 // }
 
-//note💎 we could do it in diffrent way as well:
+//Note💎 we could do it in diffrent way as well:
 //  restaurant.openingHours.thu && console.log(restaurant.openingHours.thu.open);
 
-//note💎 now by using the chaining  ?.
+//Note💎 now by using the chaining  ?.
 // console.log(restaurant.openingHours.mon?.open); //if the mon properitie exist then continue to .open or send undefined
 
-//ex:📢
+//EX 😎
 // const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 // for(const day of days){
 //  const open = restaurant.openingHours[day]?.open || "closed" ;
 //  console.log(`the resturant on ${day}  ${open}`);
 // }
 
-//note💎 works with methods:
+//Note💎 works with methods:
 
-//ex:📢 console.log(restaurant.order?.(0,0) ?? "exist");
-//ex:📢 console.log(restaurant.OrderLOL?.(0,0) ?? "not exist");
+//EX 😎 console.log(restaurant.order?.(0,0) ?? "exist");
+//EX 😎 console.log(restaurant.OrderLOL?.(0,0) ?? "not exist");
 
-//note💎 works with array:
-//ex:📢
+//Note💎 works with array:
+//EX 😎
 // const kenan = [{ name: 'kenan', age: 26, work: false }];
 // const check1 = kenan[0]?.name ?? 'user array empty';
 // console.log(check1);
 */
 
-//topic 🤖 how to iterable in infromal way in object using for : Object.keys() Object.values() Object.entires()
+//Topic 🤖 how to iterable in infromal way in object using for : Object.keys() Object.values() Object.entires()
 /* 
-//note💎 to get property Names ONLY of object: we use Object.keys() ;
+//Note💎 to get property Names ONLY of object: we use Object.keys() ;
 // console.log(Object.keys(restaurant));
 //Array(8)["Name","location","categories","starterMenu","mainMenu","openingHours","order","orderPizza" ]
 //it gives back an array❗
 
-//ex:📢
+//EX 😎
 // const prop = Object.keys(restaurant.openingHours);
 // let openStr = `we have ${prop.length} : `;
 // for (const i of prop) {
@@ -621,9 +621,9 @@ console.log(openingHours);
 // }
 // console.log(openStr);
 
-//note💎 to get property values ONLY of object we use Object.values() ;
+//Note💎 to get property values ONLY of object we use Object.values() ;
 //it gives back an array❗
-//ex:📢
+//EX 😎
 // const values = Object.values(restaurant.openingHours);
 // console.log(values);
 // outPut: [ {…}, {…}, {…} ]
@@ -637,10 +637,10 @@ console.log(openingHours);
 //   const { open, close } = values[i]; // Destructure open and close
 //   console.log(`Day ${i + 1}: Open at ${open}, Close at ${close}`);
 
-//note💎 to get property Names AND values of object, we use :Object.entires();
+//Note💎 to get property Names AND values of object, we use :Object.entires();
 //it gives back an array❗
 //normally there is no iteration in object we deal with it in this way: it change every {} to []
-//ex:📢
+//EX 😎
 // const entire = Object.entries(restaurant);
 // console.log(entire);
 //output for each property will give me the following: array and has it info nd name.
@@ -648,7 +648,7 @@ console.log(openingHours);
 // 0: "Name"
 // 1: "Classico Italiano"
 
-//ex:📢
+//EX 😎
 // const entire = Object.entries(restaurant.openingHours);
 // console.log(entire);
 // Output:
@@ -666,7 +666,7 @@ console.log(openingHours);
 //   console.log(`day:${name} openAt:${open} closeAt:${close}`);
 // }
 
-//ex:📢
+//EX 😎
 // const  a  = [restaurant.mainMenu[0] , ...restaurant.mainMenu[1] ];
 // console.log(a);
 // for (const [name,value] of Object.entries(a)) {
@@ -674,7 +674,7 @@ console.log(openingHours);
 // }
 */
 
-//topic 🤖 Challenge#2:
+//Topic 🤖 Challenge#2:
 /*
  const game = {
   team1: 'Bayern Munich',
@@ -716,12 +716,12 @@ console.log(openingHours);
     team2: 6.5,
   },
 };
-//note💎1:
+//Note💎1:
 //   const scored = Object.entries(game.scored);
 // for( const [num , name] of scored){
 // console.log(`goal ${Number(num)+1} = ${name}`);
 // }
-//note💎2:
+//Note💎2:
 /////////////////1
 // const avg1 = (game.odds.team1 + game.odds.team2 + game.odds.x) / 3;
 // console.log(`avg1: ${avg1}`);
@@ -737,7 +737,7 @@ console.log(openingHours);
 // }
 // console.log(`avg3: ${count / odd.length}`);
 // console.log(odd);
-//note💎3:
+//Note💎3:
 
 // for (let [team , result] of Object.entries(game.odds)) {
 
@@ -746,55 +746,55 @@ console.log(openingHours);
 //  }
 */
 
-//topic 🤖 Set – Collection of unique values, returns an array-like structure
+//Topic 🤖 Set – Collection of unique values, returns an array-like structure
 /*
-//note💎 Sets are collections of unique values, which means no duplicate values are allowed.
+//Note💎 Sets are collections of unique values, which means no duplicate values are allowed.
 //    Sets also have no index, so you cannot access elements like arrays (e.g., set[0] doesn’t work).
 
 
-//note💎 1: Initialize a Set with unique values
+//Note💎 1: Initialize a Set with unique values
 const orderSet = new Set(['pasta', 'pizza', 'rezota', 'makrone', 'pizza', 'pizza']);
 console.log(orderSet); 
 // Output: Set(4) [ "pasta", "pizza", "rezota", "makrone" ]
 
 
-//note💎 2: Create a Set from a string
+//Note💎 2: Create a Set from a string
 console.log(new Set('kenan')); 
 // Output: Set(4) [ "k", "e", "n", "a" ]
 
 
-//note💎 3: Use Set.size to get the number of unique values (similar to array.length)
+//Note💎 3: Use Set.size to get the number of unique values (similar to array.length)
 console.log(orderSet.size); 
 // Output: 4
 
 
-//note💎 4: Use Set.has(value) to check if a value exists (similar to array.includes())
+//Note💎 4: Use Set.has(value) to check if a value exists (similar to array.includes())
 console.log(orderSet.has('pizza')); 
 // Output: true
 
-//note💎 5: Use Set.add(value) to add new values (similar to array.push())
+//Note💎 5: Use Set.add(value) to add new values (similar to array.push())
 console.log(orderSet.add('garlic')); 
 // Output: Set(5) [ "pasta", "pizza", "rezota", "makrone", "garlic" ]
 
 
-//note💎 6: Use Set.delete(value) to remove a value (like array.pop() but you specify the value)
+//Note💎 6: Use Set.delete(value) to remove a value (like array.pop() but you specify the value)
 console.log(orderSet.delete('rezota'));
 console.log(orderSet); 
 // Output: Set(4) [ "pasta", "pizza", "makrone", "garlic" ]
 
 
-//note💎 7: Use Set.clear() to delete all values from the Set
+//Note💎 7: Use Set.clear() to delete all values from the Set
 orderSet.clear();
 console.log(orderSet); 
 // Output: Set []
 
-//note💎 8: Set has no index, so orderSet[0] doesn't work, but you can still iterate through it:
+//Note💎 8: Set has no index, so orderSet[0] doesn't work, but you can still iterate through it:
 for (const x of orderSet) {
   console.log(x);
 }
 
 
-//note💎 9: Example: Dealing with duplicate entries in an array
+//Note💎 9: Example: Dealing with duplicate entries in an array
 // Let's say we have a restaurant staff list:
 const arr = ['waiter', 'waiter', 'chef', 'manager'];
 // We want to know the unique staff positions, so:
@@ -804,27 +804,27 @@ console.log(staffPositionArray);
 // Output: [ "waiter", "chef", "manager" ]
  */
 
-//topic 🤖 Map – Returns array with two elements (key, value) (:
+//Topic 🤖 Map – Returns array with two elements (key, value) (:
 /* 
-//note💎 Keys or values can be strings, numbers, or any data type.
+//Note💎 Keys or values can be strings, numbers, or any data type.
 //    Note: In objects, keys are always strings.
 
 
-//note💎 1: Initialize an empty Map:
+//Note💎 1: Initialize an empty Map:
 const resta = new Map();
 
 
-//note💎 2: Use Map.set() to add key-value pairs:
+//Note💎 2: Use Map.set() to add key-value pairs:
 // Example:
 // resta.set('name', 'kenan');
 // resta.set('age', 1998);
 
-//note💎 Note: Map.set() returns the entire Map, so you can chain multiple .set() calls.
+//Note💎 Note: Map.set() returns the entire Map, so you can chain multiple .set() calls.
 // Example:
 console.log(resta.set("sd", 878)); // Map(3) { "name" → "kenan", "age" → 1998, "sd" → 878 }
 
 
-//note💎 You can also store arrays as values:
+//Note💎 You can also store arrays as values:
 // resta.set('love', ['dogs', 'vicky', 'cats']);
 // console.log(resta);
 // OUTPUT:
@@ -834,7 +834,7 @@ console.log(resta.set("sd", 878)); // Map(3) { "name" → "kenan", "age" → 199
 // 3: "love" → Array(3) [ "dogs", "vicky", "cats" ]
 
 
-//note💎 You can chain multiple sets in a single call:
+//Note💎 You can chain multiple sets in a single call:
 resta
   .set('love', ['dogs', 'vicky', 'cats'])
   .set('sex', 11)
@@ -854,40 +854,40 @@ console.log(resta);
 // }
 
 
-//note💎 3: Use Map.get(key) to retrieve values (since Map has no index like arrays):
+//Note💎 3: Use Map.get(key) to retrieve values (since Map has no index like arrays):
 console.log(resta.get('name'));  // "kenan" (remember: ' name' != 'name', spaces matter!)
 console.log(resta.get(1));       // 2
 console.log(resta.get(true));    // "we're open"
 
 
-//note💎 4: Use Map.has(key) to check if a key exists:
+//Note💎 4: Use Map.has(key) to check if a key exists:
 console.log(resta.has('sex'));   // true
 
 
-//note💎 5: Use Map.delete(key) to delete a key-value pair:
+//Note💎 5: Use Map.delete(key) to delete a key-value pair:
 console.log(resta.delete(1));    // true (1 → 2 is deleted)
 console.log(resta.delete('eat')); // false (if key doesn’t exist)
 console.log(resta);               // Map after deletion
 
 
-//note💎 6: Use Map.size to get the number of key-value pairs in the Map:
+//Note💎 6: Use Map.size to get the number of key-value pairs in the Map:
 console.log(resta.size);  // Outputs the number of entries (size)
 
 
-//note💎 7: Use Map.clear() to remove all key-value pairs:
+//Note💎 7: Use Map.clear() to remove all key-value pairs:
 resta.clear();            // Empties the Map
 console.log(resta);       // Outputs Map(0)
 
-//note💎 mapArr.keys()   .......  mapArr.values()
+//Note💎 mapArr.keys()   .......  mapArr.values()
 // console.log(question.keys());
 // console.log(question.values());
 
 */
 
-//topic 🤖 Map with (array or object.entires):
+//Topic 🤖 Map with (array or object.entires):
 /* 
 
-//note💎 Object.entries() returns the same structure as Map, i.e., [ [key, value], [key, value] ]
+//Note💎 Object.entries() returns the same structure as Map, i.e., [ [key, value], [key, value] ]
 // Example: 
 // const marr = Object.entries(restaurant.openingHours);
 // console.log(marr);
@@ -896,14 +896,14 @@ console.log(resta);       // Outputs Map(0)
 // }
 
 
-//note💎 Error Handling
+//Note💎 Error Handling
 // It will result in an error because Map expects an iterable (like an array of key-value pairs), not a plain object.
 // Example of incorrect usage:
 // const marr = new Map(restaurant.openingHours);
 // console.log(marr);
 
 
-//note💎 Object.entries(restaurant.openingHours) has the same structure as Map([key], [value])
+//Note💎 Object.entries(restaurant.openingHours) has the same structure as Map([key], [value])
 // This means we can convert from Object.entries back to Map.
 // Example: 
 // console.log(Object.entries(restaurant.openingHours));
@@ -911,7 +911,7 @@ console.log(resta);       // Outputs Map(0)
 // console.log(HoursMap);
 
 
-//note💎 Using for loop (Example for a simple game logic)
+//Note💎 Using for loop (Example for a simple game logic)
 // for (const [key, value] of question) {
 //   if (typeof key === 'number') {
 //     console.log(key, value);
@@ -922,13 +922,13 @@ console.log(resta);       // Outputs Map(0)
 // console.log(finalAnswer);
 
 
-//note💎 Sometimes we need to unpack the Map into an array again
+//Note💎 Sometimes we need to unpack the Map into an array again
 // Example: 
 // const newArr = [...question];
 // console.log(newArr);
 
 
-//note💎 Key Differences Between Object and Map:
+//Note💎 Key Differences Between Object and Map:
 // 1. Object.entries(object) method:
 // Example: 
 // const obj = { name: 'Kenan', surname: 'Zak' };
@@ -941,7 +941,7 @@ console.log(resta);       // Outputs Map(0)
 // console.log(marr);  // Output: Map(2) { 'name' => 'Kenan', 'surname' => 'Zak' }
 
 
-//note💎 Note: 2nd way of initializing a Map
+//Note💎 Note: 2nd way of initializing a Map
 // const question = new Map([
 //   ['question', 'What is the best programming language?'],
 //   [1, 'C'],
@@ -961,7 +961,7 @@ console.log(resta);       // Outputs Map(0)
 // - Maps provide special methods like .set(), .get(), .has(), and .delete().
 */
 
-//topic 🤖 which one to use :
+//Topic 🤖 which one to use :
 /* 
 // need simple list values :           we use  array or set
 // need the key/value pair as well :   we use  object or map
@@ -981,7 +981,7 @@ console.log(resta);       // Outputs Map(0)
 //2 Use when you need keys that are not strings
 */
 
-//topic 🤖 #Coding Challenge 3
+//Topic 🤖 #Coding Challenge 3
 /* 
 
 const gameEvents = new Map([
@@ -1000,12 +1000,12 @@ const gameEvents = new Map([
 
 console.log(gameEvents); //see the values
 
-//note💎 sol.1:
+//Note💎 sol.1:
 // const events = new Set([...gameEvents.values()]);
 // console.log(events);
 
 
-//note💎 sol.2:
+//Note💎 sol.2:
 // for (const [key, value] of gameEvents) {
 
 //   if(key >= 64 && value==='Yellow card'){
@@ -1018,12 +1018,12 @@ gameEvents.delete(64);
 
 
 
-//note💎 sol.3:
+//Note💎 sol.3:
 // const avrage = `An Events avg happened eveery ${92/gameEvents.size}`;
 // console.log(avrage);
 
 
-//note💎 sol.4:
+//Note💎 sol.4:
 
 // for (const [key, value] of gameEvents) {
 //   if (key <= 45) {
@@ -1040,9 +1040,9 @@ gameEvents.delete(64);
 // }
 */
 /////////////////////////////////////////////////////////////////////
-//topic 🤖 Strings part1....
+//Topic 🤖 Strings part1....
 /*
-//note💎  string works as array
+//Note💎  string works as array
 const airline = 'fly syria';
 const plane = 'B37B33B';
 
@@ -1051,12 +1051,12 @@ console.log(plane[0]); //B
 console.log('Directly from console'[2]); //r
 
 
-//note💎 read the length:
+//Note💎 read the length:
 console.log(plane.length); //7
 console.log('Directly from console'.length); //21
 
 
-//note💎 Methods:
+//Note💎 Methods:
 //1: the first index :::  indexOf()
 console.log(plane.indexOf('B')); //index is: 0
 
@@ -1090,7 +1090,7 @@ console.log( airline.slice(-1)); //a start counting from the END..
 console.log( airline.slice(0 ,-1));  //fly syri ....start from index 0 and end in counting from back index -1
 
 
-//ex:📢1: practice:
+//EX 😎1: practice:
 //write a function to check if the Seat in the Middle of the plane:
 const middleSeat = function (seat) {
   //if the seat E or B it is in middle.
@@ -1105,23 +1105,23 @@ middleSeat('28C');
 middleSeat('05E');
 */
 
-//topic 🤖 Strings part2....
+//Topic 🤖 Strings part2....
 /*
 // const plane = 'Turkish Air Line';
-//note💎 methods
+//Note💎 methods
 
 //8:  tranform to toUpperCase() or toowerCase():
 // console.log(plane.toUpperCase()); //TURKISH AIR LINE
 // console.log(plane.toLowerCase()); //turkish air line
 
-//ex:📢  fix the customer name. lets say user Entered: kEnAn we should shange it to Kenan
+//EX 😎  fix the customer name. lets say user Entered: kEnAn we should shange it to Kenan
 // const Name = 'kEnAn';
 // const toLower = Name.toLowerCase(); //kenan
 // const correct = toLower[0].toUpperCase() + toLower.slice(1);
 // console.log(correct);
 
-//note💎 trim(): to remove the white space from both sides..
-//ex:📢  comperaing Emails:
+//Note💎 trim(): to remove the white space from both sides..
+//EX 😎  comperaing Emails:
 
 // const registeredEmail = 'kenanalzakout@gmail.com';
 // const logedInEmail = '  KenanAlzakout@gmail.com \n';
@@ -1134,20 +1134,20 @@ middleSeat('05E');
 // console.log(correction(logedInEmail));
 
 
-//note💎 replace(,) replaceAll(,) :
+//Note💎 replace(,) replaceAll(,) :
 
 // const annocument = 'all pasenger hed to door 21, door 21 immedietly!';
 // console.log(annocument.replace('door', 'Gate')); //all pasenger hed to Gate 21, door 21 immedietly!
 // console.log(annocument.replaceAll('door', 'Gate')); //all pasenger hed to Gate 21, Gate 21 immedietly!
 
 
-//ex:📢 change the currance payment:
+//EX 😎 change the currance payment:
 // const paymentDollar = '20,5 $';
 // const paymentTL =paymentDollar.replace("$","TL").replace(",",".");
 // console.log(paymentTL); //20.5 TL
 
 
-//note💎: 3 methods can return Booleans:include() startstWith()   endWith()
+//Note💎: 3 methods can return Booleans:include() startstWith()   endWith()
 //1: include
 // console.log(plane.includes('Turkish')); //true
 // console.log(plane.includes('Tur')); //true , it doesnt matter the whole word
@@ -1161,7 +1161,7 @@ middleSeat('05E');
 // console.log(plane.endsWith('ne')); //true
  
 
-//ex:📢
+//EX 😎
 // const checkBaggage = function (items) {
 //   //FIRST convert everything to small latters
 //   items = items.toLowerCase();
@@ -1178,10 +1178,10 @@ middleSeat('05E');
 // checkBaggage('knief and belts');
 */
 
-//topic 🤖 Strings part3....
+//Topic 🤖 Strings part3....
 /* 
 
-//note💎 split() :gives array....inside the (" ") we can use space or ---- or anything to split it
+//Note💎 split() :gives array....inside the (" ") we can use space or ---- or anything to split it
 
 // console.log('welcome+new+life+here'.split('+')); //Array(4) [ "welcome", "new", "life", "here" ]
 // console.log('kenan alazkout'.split(' ')); //Array [ "kenan", "alzakout" ]
@@ -1190,12 +1190,12 @@ middleSeat('05E');
 // const [name, lastName] = 'kenan alzakout'.split(' ');
 
 
-//note💎 join() :from array to string again...inside the(" ") we can use space OR ---- or anything to join it
+//Note💎 join() :from array to string again...inside the(" ") we can use space OR ---- or anything to join it
 // const newName = ['Mr.', name, lastName.toUpperCase()].join(' ');
 // console.log(newName); //Mr. kenan ALZKOUT
 
 
-//ex:📢WAY1: now how to capitilize the first letter of ech word:
+//EX 😎WAY1: now how to capitilize the first letter of ech word:
 // const capitil = function (string) {
 //   const modify = string.split(" ");
 //   console.log(modify);   // [ "my", "name", "is", "kenan", "alzakout" ]
@@ -1208,7 +1208,7 @@ middleSeat('05E');
 // capitil('my name is kenan alzakout');
 
 
-//ex:📢WAY2:
+//EX 😎WAY2:
 const capitil = function (string) {
   const strArr = string.split(' '); //Array(5) [ "my", "name", "is", "kenan", "alzakout" ]
   let newstr = '';
@@ -1221,7 +1221,7 @@ capitil('my name is kenan alzakout');
 
 
 
-//note💎 padding : padStart( , )  padEnd( , )
+//Note💎 padding : padStart( , )  padEnd( , )
 
 //padStart(TotalNumberOfCharecter,theCharecter) .......padEnd(TotalNumberOfCharecter , theCharecter)
 
@@ -1229,7 +1229,7 @@ capitil('my name is kenan alzakout');
 // console.log(message.padStart(20, '+')); //++++++++++Hello Love  = total 20 char
 // console.log('kenanSex'.padStart(20, '+').padEnd(30, '!')); //++++++++++++kenanSex!!!!!!!!!!
 
-//ex:📢 if you add your creditCard info to a website you can see last 4 Digit and rest are *****
+//EX 😎 if you add your creditCard info to a website you can see last 4 Digit and rest are *****
 //how to do it ??
 
 // const maskCreditNumnber = function (number) {
@@ -1241,17 +1241,17 @@ capitil('my name is kenan alzakout');
 // console.log(maskCreditNumnber(4887881245568100)); //************8100
 // console.log(maskCreditNumnber(48878812)); //****8812
 
-//note💎 repeat ();
+//Note💎 repeat ();
 // const message2 ="all departures delayed!";
 // console.log(`${message2.repeat(5) }`);
 */
 
-//topic 🤖 #Coding Challenge 4
+//Topic 🤖 #Coding Challenge 4
 /** 
 document.body.append(document.createElement('textarea'));
 document.body.append(document.createElement('button'));
 
-//note💎 way 1:
+//Note💎 way 1:
 //1: connect DOM to TextArea And Click:
 document.querySelector('button').addEventListener('click', function () {
   let userInput = document.querySelector('textarea').value;
@@ -1271,7 +1271,7 @@ document.querySelector('button').addEventListener('click', function () {
 });
 */
 
-//topic 🤖 practice string
+//Topic 🤖 practice string
 /* 
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
