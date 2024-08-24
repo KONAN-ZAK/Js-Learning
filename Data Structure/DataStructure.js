@@ -192,7 +192,7 @@ console.log(newMergeArr); // Merges 'mainMenu' and 'starterMenu' arrays
 
 //Note💎 6: Using Spread Operator with Iterables
 // The spread operator works with iterables such as arrays, strings, maps, and sets, but not objects:
-//EX 😎 with string:
+//EX 📢 with string:
 const str = 'kenan';
 const newStr = [...str, '', 's'];
 console.log(newStr); // ["k", "e", "n", "a", "n", "", "s"]
@@ -211,7 +211,7 @@ console.log(newRestaurantObject1); // Includes all properties of 'restaurant' pl
 
 
 //Note💎 9: Examples of Modifying Arrays in Objects
-///EX 😎 Adding an array to an object:
+///EX 📢 Adding an array to an object:
 const arr = [1, 2, 3, 4];
 const obj = { ...restaurant, arr }; // Adds 'arr' to a new object created from 'restaurant'
 console.table(obj); // Shows 'arr' added to the new object
@@ -243,14 +243,14 @@ console.log(rest); // [3, 4]
 console.log(d); // 5
 
 
-//EX 😎 with a flat array:
+//EX 📢 with a flat array:
 const [a, b, ...others] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 console.log(a); // 1
 console.log(b); // 2
 console.log(others); // [3, 4, 5, 6, 7, 8, 9]
 
 
-//EX 😎 with combined arrays:
+//EX 📢 with combined arrays:
 const [pizza, , risotto, ...otherFood] = [...restaurant.mainMenu, ...restaurant.starterMenu];
 console.log(pizza); // Pizza
 console.log(risotto); // Risotto
@@ -277,7 +277,7 @@ add(5, 3, 7, 2); // [5, 3, 7, 2]
 add(8, 2, 5, 3, 2, 1, 4); // [8, 2, 5, 3, 2, 1, 4]
 
 
-//EX 😎 of summing the arguments:
+//EX 📢 of summing the arguments:
 const add = function (...numbers) {
   let sum = 0;
   for (let i = 0; i < numbers.length; i++) sum += numbers[i];
@@ -292,7 +292,7 @@ const x = [23, 5, 7];
 add(...x); // Equivalent to add(23, 5, 7)
 
 
-//EX 😎 with function calls:
+//EX 📢 with function calls:
 restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
 restaurant.orderPizza('mushrooms');
 */
@@ -381,7 +381,7 @@ restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 /* 
 // The Nullish Coalescing Operator (??) is used to provide default values for variables that are null or undefined. It does not consider other falsy values (such as 0 or "") as nullish.
 
-//EX 😎
+//EX 📢
 // Consider the following setup:
 restaurant.numGuests = "";  // Assigns an empty string to numGuests
 restaurant.numtest;         // numtest is undefined
@@ -480,7 +480,7 @@ team2 < team1 && console.log(`the team2 most likely to win`);
 /*
 //The `for-of` loop is a modern and convenient way to iterate over iterable objects such as arrays. It allows you to access each element directly without needing an index.
 
-//EX 😎 1: Basic usage of for-of loop
+//EX 📢 1: Basic usage of for-of loop
 const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
 for (const item of menu) {
   console.log(item); // Logs each item in the menu array
@@ -488,14 +488,14 @@ for (const item of menu) {
 
 
 //Note💎: You can still use `continue` and `break` within a `for-of` loop to control the flow
-//EX 😎
+//EX 📢
 for (const item of menu) {
   if (item === 'Pizza') continue; // Skip 'Pizza'
   if (item === 'Pasta') break; // Stop loop when 'Pasta' is encountered
   console.log(item);
 }
 
-//EX 😎 2: Getting the index along with each element
+//EX 📢 2: Getting the index along with each element
 // The `for-of` loop does not provide the index directly, but you can use `entries()` to get both index and element
 for (const [i, el] of menu.entries()) {
   console.log(`${i + 1}: ${el}`); // Logs the index (1-based) and element
@@ -587,7 +587,7 @@ console.log(openingHours);
 //Note💎 now by using the chaining  ?.
 // console.log(restaurant.openingHours.mon?.open); //if the mon properitie exist then continue to .open or send undefined
 
-//EX 😎
+//EX 📢
 // const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
 // for(const day of days){
 //  const open = restaurant.openingHours[day]?.open || "closed" ;
@@ -596,11 +596,11 @@ console.log(openingHours);
 
 //Note💎 works with methods:
 
-//EX 😎 console.log(restaurant.order?.(0,0) ?? "exist");
-//EX 😎 console.log(restaurant.OrderLOL?.(0,0) ?? "not exist");
+//EX 📢 console.log(restaurant.order?.(0,0) ?? "exist");
+//EX 📢 console.log(restaurant.OrderLOL?.(0,0) ?? "not exist");
 
 //Note💎 works with array:
-//EX 😎
+//EX 📢
 // const kenan = [{ name: 'kenan', age: 26, work: false }];
 // const check1 = kenan[0]?.name ?? 'user array empty';
 // console.log(check1);
@@ -613,7 +613,7 @@ console.log(openingHours);
 //Array(8)["Name","location","categories","starterMenu","mainMenu","openingHours","order","orderPizza" ]
 //it gives back an array❗
 
-//EX 😎
+//EX 📢
 // const prop = Object.keys(restaurant.openingHours);
 // let openStr = `we have ${prop.length} : `;
 // for (const i of prop) {
@@ -623,7 +623,7 @@ console.log(openingHours);
 
 //Note💎 to get property values ONLY of object we use Object.values() ;
 //it gives back an array❗
-//EX 😎
+//EX 📢
 // const values = Object.values(restaurant.openingHours);
 // console.log(values);
 // outPut: [ {…}, {…}, {…} ]
@@ -640,7 +640,7 @@ console.log(openingHours);
 //Note💎 to get property Names AND values of object, we use :Object.entires();
 //it gives back an array❗
 //normally there is no iteration in object we deal with it in this way: it change every {} to []
-//EX 😎
+//EX 📢
 // const entire = Object.entries(restaurant);
 // console.log(entire);
 //output for each property will give me the following: array and has it info nd name.
@@ -648,7 +648,7 @@ console.log(openingHours);
 // 0: "Name"
 // 1: "Classico Italiano"
 
-//EX 😎
+//EX 📢
 // const entire = Object.entries(restaurant.openingHours);
 // console.log(entire);
 // Output:
@@ -666,7 +666,7 @@ console.log(openingHours);
 //   console.log(`day:${name} openAt:${open} closeAt:${close}`);
 // }
 
-//EX 😎
+//EX 📢
 // const  a  = [restaurant.mainMenu[0] , ...restaurant.mainMenu[1] ];
 // console.log(a);
 // for (const [name,value] of Object.entries(a)) {
@@ -1090,7 +1090,7 @@ console.log( airline.slice(-1)); //a start counting from the END..
 console.log( airline.slice(0 ,-1));  //fly syri ....start from index 0 and end in counting from back index -1
 
 
-//EX 😎1: practice:
+//EX 📢1: practice:
 //write a function to check if the Seat in the Middle of the plane:
 const middleSeat = function (seat) {
   //if the seat E or B it is in middle.
@@ -1114,14 +1114,14 @@ middleSeat('05E');
 // console.log(plane.toUpperCase()); //TURKISH AIR LINE
 // console.log(plane.toLowerCase()); //turkish air line
 
-//EX 😎  fix the customer name. lets say user Entered: kEnAn we should shange it to Kenan
+//EX 📢  fix the customer name. lets say user Entered: kEnAn we should shange it to Kenan
 // const Name = 'kEnAn';
 // const toLower = Name.toLowerCase(); //kenan
 // const correct = toLower[0].toUpperCase() + toLower.slice(1);
 // console.log(correct);
 
 //Note💎 trim(): to remove the white space from both sides..
-//EX 😎  comperaing Emails:
+//EX 📢  comperaing Emails:
 
 // const registeredEmail = 'kenanalzakout@gmail.com';
 // const logedInEmail = '  KenanAlzakout@gmail.com \n';
@@ -1141,7 +1141,7 @@ middleSeat('05E');
 // console.log(annocument.replaceAll('door', 'Gate')); //all pasenger hed to Gate 21, Gate 21 immedietly!
 
 
-//EX 😎 change the currance payment:
+//EX 📢 change the currance payment:
 // const paymentDollar = '20,5 $';
 // const paymentTL =paymentDollar.replace("$","TL").replace(",",".");
 // console.log(paymentTL); //20.5 TL
@@ -1161,7 +1161,7 @@ middleSeat('05E');
 // console.log(plane.endsWith('ne')); //true
  
 
-//EX 😎
+//EX 📢
 // const checkBaggage = function (items) {
 //   //FIRST convert everything to small latters
 //   items = items.toLowerCase();
@@ -1195,7 +1195,7 @@ middleSeat('05E');
 // console.log(newName); //Mr. kenan ALZKOUT
 
 
-//EX 😎WAY1: now how to capitilize the first letter of ech word:
+//EX 📢WAY1: now how to capitilize the first letter of ech word:
 // const capitil = function (string) {
 //   const modify = string.split(" ");
 //   console.log(modify);   // [ "my", "name", "is", "kenan", "alzakout" ]
@@ -1208,7 +1208,7 @@ middleSeat('05E');
 // capitil('my name is kenan alzakout');
 
 
-//EX 😎WAY2:
+//EX 📢WAY2:
 const capitil = function (string) {
   const strArr = string.split(' '); //Array(5) [ "my", "name", "is", "kenan", "alzakout" ]
   let newstr = '';
@@ -1229,7 +1229,7 @@ capitil('my name is kenan alzakout');
 // console.log(message.padStart(20, '+')); //++++++++++Hello Love  = total 20 char
 // console.log('kenanSex'.padStart(20, '+').padEnd(30, '!')); //++++++++++++kenanSex!!!!!!!!!!
 
-//EX 😎 if you add your creditCard info to a website you can see last 4 Digit and rest are *****
+//EX 📢 if you add your creditCard info to a website you can see last 4 Digit and rest are *****
 //how to do it ??
 
 // const maskCreditNumnber = function (number) {

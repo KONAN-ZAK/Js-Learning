@@ -158,13 +158,13 @@ transformer('Kenan Alzakout', oneWord);
 // that when we call the function here ('Kenan Alzakout', upperFirstWord)
 // it is as same as
 document.addEventListener('click', high5); //notice it is without ()
-
-//EX 😎
+ 
+//EX 📢
 const high5 = function () {
   console.log('😎');
 };
 ['ward', 'kenan', 'ahmad'].forEach(high5);
- */
+*/
 
 //Topic 🤖 Function returning Function
  /* */
