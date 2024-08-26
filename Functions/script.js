@@ -78,7 +78,7 @@ const creatFightBook = function (flightNo = 'UnKnown',passangerNo = 'UnKonwn',pr
 console.log(creatFightBook('Ar235', 50)); //{ flightNo: "Ar235", passangerNo: 50, price: 100 }
 */
 //Note💎 if i want to call the function and jump one parameters
-/**
+/** 
 const totBooking = [];
 const creatFightBook = function (
   flightNo = 'UnKnown',
@@ -94,8 +94,7 @@ const creatFightBook = function (
 };
 //cause the undefined is the first set when the vakue unkown
 console.log(creatFightBook('Ar235', undefined, 50)); //{ flightNo: "Ar235", passangerNo: "UnKonwn", price: 50 }
-console.log(creatFightBook('Ar235', null, 50)); //{ flightNo: "Ar235", passangerNo: NaN, price: 50 }
- */
+*/
 
 //Topic 🤖 passing the argument as an value or object..
 //passing an object to function as Ref.
@@ -106,7 +105,7 @@ console.log(creatFightBook('Ar235', null, 50)); //{ flightNo: "Ar235", passanger
 
 const flight = 'AR145';
 const details = {
-  passportNo: "N01450045",
+  passportNo: "N00014545",
   name: 'Kenan',
 };
 const checkIn = function(flightNo, passanger) {
@@ -134,11 +133,11 @@ console.log(details);//2//{ passportNo: "N01450045", name: "Mr Kenan" }
 // helpful especially if we want to hide some function we will talk about it in OOP
 /*
 //Note💎
-//func1 lower level of obstruction func
+//func1: lower level of obstruction func
 const oneWord = function (str) {
   return str.replaceAll(' ', '').toLowerCase();
 };
-//func2  lower level of obstruction func
+//func2: lower level of obstruction func
 const upperFirstWord = function (str) {
   const [fir, ...other] = str.split(' ');
   const first = fir.toUpperCase();
@@ -183,59 +182,61 @@ greeterHey('Ahmad');
 const greets = greetings => names => console.log(`${greetings} ${names}`);
 greets('Hey')('Ken');
 greets('Hey')('Vicky');
-
- */
+*/
 
 //Topic 🤖 using This keyword in functions
-/**
+
 //Note💎 what have we learnt before :
-const TurkishAir = {
-  airline: 'turkishAir',
-  airCode: 'TR',
+
+const AirCanada = {
+  airline: 'AirCanada',
+  airCode: 'CA',
   booking: [],
-  book(name, flightNum) {
+  bookTicket(name, flightNo) {
     console.log(
-      `${name} has booked a seat on ${this.airline} flight ${this.airCode}${flightNum}`
+      `${name} Has Booked at ${this.airline} Ticket: ${this.airCode}${flightNo}`
     );
-    this.booking.push({ flight: `${this.airCode}${flightNum}`, name: name });
+    this.booking.push({ name: name, flight: `${this.airCode}${flightNo}` });
+    console.log(this.booking);
   },
 };
-// TurkishAir.book("kenan",324);
-// console.log(TurkishAir.booking);
+// AirCanada.bookTicket("kenan",278);
 
-//Note💎
-//lets build a new airline system  but i donot want to repeat the book function..
 
-// if we did the follow :
-const book = TurkishAir.book;
-// book("kk",23); //TypeError: can't access property "airline", this keyword is undefined
+
+//Note💎lets build a new airline system  but i donot want to repeat the book function..
+/* 
+if we did the follow :
+const book = AirCanada.bookTicket;
+book("kk",23); //TypeError: can't access property "airline", this keyword is undefined
+Here, book is just a reference to the bookTicket function. 
+It’s not bound to any specific object, so when you call book(), this inside the function is not tied to AirCanada.
+*/
 ///////////////////////////////////////////////////////////////////////////////////
 
-//Note💎 1) method function.call(whatThisShouldPointTo , rest parameters..)
-const SyriaAir = {
-  airline: 'SyriaAir',
-  airCode: 'SY',
+//Note💎 1) method function.call(whatThisShouldPointTo , arg1, arg2, ...)
+//usage: It allows you to specify what this should point to when the function is executed.
+//it does call the function directly !!!!
+const AirSwiss = {
+  airline: 'AirSwiss',
+  airCode: 'SW',
   booking: [],
 };
-book.call(SyriaAir, 'Ward', 444); //Ward has booked a seat on SyriaAir flight SY444
-// console.log(SyriaAir); //booking: Array [ {…} ]: [{ flight: "SY444", Name: "Ward" }]
+AirCanada.bookTicket.call(AirSwiss, 'ahmad', 211);
 
-//Note💎 2) apply method: function.apply(whatThisShouldPointTo , rest parameters..)
+//Note💎 2) apply method: function.apply(whatThisShouldPointTo , arg1, arg2, ...)
 // not used anymore in modren ES6
-// the diffrances that apply takes array of data.
-const swissAir = {
-  airline: 'swissAir',
-  airCode: 'SY',
-  booking: [],
-};
+// the diffrances that apply takes array of data..!!
+
 const flightData = ['jonas', 455];
-book.apply(swissAir, flightData);
-// console.log(swissAir);
+AirCanada.bookTicket.apply(AirSwiss, flightData);
 
 //Note💎 what we are using in modren ES6
-book.call(swissAir, ...flightData);
-// console.log(swissAir);
 
+AirCanada.bookTicket.call(AirSwiss, ...flightData);
+console.log(swissAir);
+
+/**  
 //Note💎 bind method: it doesnt immedietly call the function instead it will return new function
 //where this keyword bind......
 
@@ -293,9 +294,7 @@ const addTaxSy1 = function(rate){
 }
 const test = addTaxSy1(0.23);    //or  console.log(addTaxSy1(0.23)(100));
 console.log(test(100));
-
- */
-
+*/
 //Topic 🤖 exercise :
 /** 
 const poll = {
@@ -334,4 +333,6 @@ document
   poll.displayResults.call({answers:[5, 2, 3]},"string")
   */
 
-//Topic 🤖 
+//Topic 🤖
+
+
