@@ -16,6 +16,7 @@ const calc = birth => {
 console.log(calc(1998));
 */
 
+// there are (null and undefine) in js ONLY!!!!!
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Topic 🤖 default Parameters:
@@ -185,7 +186,7 @@ greets('Hey')('Vicky');
 */
 
 //Topic 🤖 using This keyword in functions
-
+/*
 //Note💎 what have we learnt before :
 
 const AirCanada = {
@@ -200,18 +201,16 @@ const AirCanada = {
     console.log(this.booking);
   },
 };
-// AirCanada.bookTicket("kenan",278);
-
-
+AirCanada.bookTicket('kenan', 278);
 
 //Note💎lets build a new airline system  but i donot want to repeat the book function..
-/* 
-if we did the follow :
-const book = AirCanada.bookTicket;
-book("kk",23); //TypeError: can't access property "airline", this keyword is undefined
-Here, book is just a reference to the bookTicket function. 
-It’s not bound to any specific object, so when you call book(), this inside the function is not tied to AirCanada.
-*/
+
+// if we did the follow :
+// const book = AirCanada.bookTicket;
+// book("kk",23); //TypeError: can't access property "airline", this keyword is undefined
+// Here, book is just a reference to the bookTicket function. 
+// It’s not bound to any specific object, so when you call book(), this inside the function is not tied to AirCanada.
+
 ///////////////////////////////////////////////////////////////////////////////////
 
 //Note💎 1) method function.call(whatThisShouldPointTo , arg1, arg2, ...)
@@ -228,73 +227,81 @@ AirCanada.bookTicket.call(AirSwiss, 'ahmad', 211);
 // not used anymore in modren ES6
 // the diffrances that apply takes array of data..!!
 
-const flightData = ['jonas', 455];
+const flightData = ['zahit', 455];
 AirCanada.bookTicket.apply(AirSwiss, flightData);
 
 //Note💎 what we are using in modren ES6
 
-AirCanada.bookTicket.call(AirSwiss, ...flightData);
-console.log(swissAir);
 
-/**  
 //Note💎 bind method: it doesnt immedietly call the function instead it will return new function
 //where this keyword bind......
 
-// book.call(Syria, 'Ward', 444);
-//we can define all function for bind and use them later on...
-const swissBook = book.bind(swissAir);
-const BookSY = book.bind(SyriaAir);
-swissBook('ward', 222);
-BookSY('zain', 888);
+AirCanada.bookTicket.call(AirSwiss, 'ahmad', 211);
+// we can define all function for bind and use them later on...
+const swissBook1 = AirCanada.bookTicket.bind(AirSwiss);
+swissBook1('zain', 222);
 
 // we can also give it a fixed parameter :
-const BookSY21 = book.bind(SyriaAir, 'nahi');
-// BookSY21(878);
-
-//Note💎 function with event Listeners
+ const swissBook2 = AirCanada.bookTicket.bind(AirSwiss, 'nahi');
+swissBook2(878);  
+*/
+/////////////////////////////////////////////////////////////////
+//Topic 🤖 Thid with function with event Listeners
+/** 
 // let say we need to add another porperity
-TurkishAir.planes = 300;
-TurkishAir.buyPlane = function () {
+const AirCanada = {
+  airline: 'AirCanada',
+  airCode: 'CA',
+  booking: [],
+  bookTicket(name, flightNo) {
+    console.log(
+      `${name} Has Booked at ${this.airline} Ticket: ${this.airCode}${flightNo}`
+    );
+    this.booking.push({ name: name, flight: `${this.airCode}${flightNo}` });
+    console.log(this.booking);
+  },
+};
+
+
+AirCanada.planes = 300;
+AirCanada.buyPlane = function () {  //this poin to AirCanada
   console.log(this);
   this.planes++;
   console.log(this.planes);
 };
-//add event Listener :
-document
-  .querySelector('.buy')
-  .addEventListener('click', TurkishAir.buyPlane.bind(TurkishAir));
+// console.log(AirCanada.buyPlane()); //call the function to execute it! 
 
-//Note💎 if we didnt do bind it will point to the element not the object
-// TurkishAir.planes = 300;
-// TurkishAir.buyPlane = function(){
-//   console.log(this);
-//   this.planes++ ;
-//   console.log(this.planes);
-// }
-// //add event Listener :
-// document.querySelector(".buy").addEventListener("click",TurkishAir.buyPlane)
+//Let us write the Event: this it will point to Element if we dont add bind()
+document.querySelector('.buy').addEventListener('click', AirCanada.buyPlane.bind(AirCanada));
+*/
 
-
-//Note💎 partical application: we can pre set parameter
-
+//Topic 🤖 partical application: we can pre set parameter
+/** 
 const addTax = (rate, value) => value + value * rate;
 console.log(addTax(0.1, 200));
 
-// let say we want aonter functoin for syria with constant rate..
+// let say we want aonter functoin for syria with constant rate.. and i dont want to duplicate the function again
+//make a call snd wait .bind() of the function with our customization..
+
 const addTaxSy = addTax.bind(null, 0.23);
 // same as addTaxSy = value => value + value*0.23 ;
-console.log(addTaxSy(100));  //123
+console.log(addTaxSy(100)); //123
 
 //Note💎 change it to return function:
 
-const addTaxSy1 = function(rate){
-  return function(value){
+const addTaxSy1 = function (rate) {
+  return function (value) {
     return value + value * rate;
-  }
-}
-const test = addTaxSy1(0.23);    //or  console.log(addTaxSy1(0.23)(100));
+  };
+};
+const test = addTaxSy1(0.23); //or  console.log(addTaxSy1(0.23)(100));
 console.log(test(100));
+///arrow functioon versoin
+const addTaxSy2 = rate => value => value + value * rate;
+const test2 = addTaxSy2(0.23)(100);
+console.log(test2);
 */
+
 //Topic 🤖 exercise :
 /** 
 const poll = {
@@ -334,5 +341,3 @@ document
   */
 
 //Topic 🤖
-
-
