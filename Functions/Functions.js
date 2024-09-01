@@ -231,12 +231,12 @@ const flightData = ['zahit', 455];
 AirCanada.bookTicket.apply(AirSwiss, flightData);
 
 //Note💎 what we are using in modren ES6
-
+const flightData1 = ['Zaza', 455];
+AirCanada.bookTicket.call(AirSwiss, ...flightData1);
 
 //Note💎 bind method: it doesnt immedietly call the function instead it will return new function
 //where this keyword bind......
 
-AirCanada.bookTicket.call(AirSwiss, 'ahmad', 211);
 // we can define all function for bind and use them later on...
 const swissBook1 = AirCanada.bookTicket.bind(AirSwiss);
 swissBook1('zain', 222);
@@ -245,9 +245,10 @@ swissBook1('zain', 222);
  const swissBook2 = AirCanada.bookTicket.bind(AirSwiss, 'nahi');
 swissBook2(878);  
 */
-/////////////////////////////////////////////////////////////////
-//Topic 🤖 Thid with function with event Listeners
-/** 
+
+//Topic 🤖 bind the function with event Listeners
+/* 
+
 // let say we need to add another porperity
 const AirCanada = {
   airline: 'AirCanada',
@@ -264,7 +265,7 @@ const AirCanada = {
 
 
 AirCanada.planes = 300;
-AirCanada.buyPlane = function () {  //this poin to AirCanada
+AirCanada.buyPlane = function () {  //add function that this poin to AirCanada
   console.log(this);
   this.planes++;
   console.log(this.planes);
@@ -276,12 +277,13 @@ document.querySelector('.buy').addEventListener('click', AirCanada.buyPlane.bind
 */
 
 //Topic 🤖 partical application: we can pre set parameter
-/** 
+/* 
+
 const addTax = (rate, value) => value + value * rate;
 console.log(addTax(0.1, 200));
 
 // let say we want aonter functoin for syria with constant rate.. and i dont want to duplicate the function again
-//make a call snd wait .bind() of the function with our customization..
+//make a call and wait .bind() of the function with our customization..
 
 const addTaxSy = addTax.bind(null, 0.23);
 // same as addTaxSy = value => value + value*0.23 ;
@@ -303,7 +305,7 @@ console.log(test2);
 */
 
 //Topic 🤖 exercise :
-/** 
+/*
 const poll = {
   question: 'What is your favourite programming language?',
   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
@@ -311,33 +313,191 @@ const poll = {
   answers: new Array(4).fill(0),
 
   registerNewAnswer() {
-    const option = Number(
-      prompt(`${this.question}\n${this.options.join('\n')}`)
+    const userInput = Number(
+      prompt(`${this.question}\n${this.options.join('\n')}
+(Write option number)`)
     );
-    // console.log(option);
-    typeof option === 'number' &&
-      option >= 0 &&
-      option < this.answers.length &&
-      this.answers[option]++;
+    userInput >= 0 && userInput < this.answers.length
+      ? this.answers[userInput]++
+      : alert('Wrong inPut');
 
     this.displayResults();
-    this.displayResults("string");
   },
 
   displayResults(type = 'array') {
     if (type === 'array') {
       console.log(this.answers);
     } else if (type === 'string') {
-      console.log(`Poll results are ${this.answers.join(', ')}`);
+      console.log(`Poll results are: ${this.answers.join(', ')}`);
     }
   },
 };
+
 document
   .querySelector('.poll')
   .addEventListener('click', poll.registerNewAnswer.bind(poll));
 
+poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
+poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
+*/
 
-  poll.displayResults.call({answers:[5, 2, 3]},"string")
-  */
+//Topic 🤖 IIFE Imediately invoke function expressions
+/*
+// when we need a function to execute once right after the run
+// we will use it sync and wait later on !!
 
-//Topic 🤖
+// notice there is no name for the function
+// to do it : wrap the function by () and at the end we call it by ()
+//Note💎 in normal function
+(function () {
+  console.log('this will run once !!');
+  const isPrivate = 10;
+})();
+
+//Note💎 in arrow function: no func name , wrap it by ()and call it by ()
+(() => console.log('this will ALSO run once !!'))();
+
+
+//this method is extremly useful when we are want to hide and encapsulate the data
+//so now cl(isPrivate)  is not accessable by other function even in global scope..
+*/
+
+//Topic 🤖 Clousers: is a properity of functions created automatically as backbag hold the vatiables even when the fucntion is poped from stack
+// we dont create it, it happened automatically in certain situation, what is the situations? follow the examples...
+/* 
+//EX 📢
+const secureBook = function () {
+  let passangerCount = 0;
+
+  return function () {
+    passangerCount++;
+    console.log(`passanger : ${passangerCount}`);
+  };
+};
+const book = secureBook();
+// what happned at this moment :
+// in global Enviroment has : secureBook=fn , book
+//the book call secureBook and return a function which will be stored in book
+//pop up the secureBook from CallBack stack :: cause it is finish
+
+// in global Enviroment has now: secureBook=fn , book=fn
+book(); //passanger : 1
+book(); //passanger : 2
+
+
+// the question how could the book access the function again secureBook where it has aleady poped out from stack?????
+//how book can again Access the function and find passangerCount = 0 and count it??
+
+/////A function has always access to the variable Enviroment of the execution context where it is created...
+//even after this exectuion is gone out of the CallStack
+
+// definition very formal :A closure is the closed-over variable environment of the execution context in which
+// a function was created, even after that execution context is gone;
+
+// definition less formal : A closure gives a function access to all the variables of its parent function,
+// even after that parent function has returned.
+// The function keeps a reference to its outer scope, which preserves the scope chain throughout time.
+
+// definition less formal : A closure makes sure that a function doesn’t loose connection to variables
+// that existed at the function’s birth place;
+
+// definition less formal :human is the function ... backpack the clouser
+// A closure is like a backpack that a function carries around wherever it goes.
+// This backpack has all the variables that were present in the environment where the function was created.
+
+
+
+//EX 📢 more example about clouser:
+
+let f;
+const g = function () {
+  const a = 10;
+  f = function () {
+    console.log(a * 50);
+  };
+};
+
+g();
+f(); // the f has access to the variables where its present in the enviroment  500
+console.dir(f);  // to see what does f can access
+
+const h = function () {
+  const b = 20;
+  f = function () {
+    console.log(b * 100);
+  };
+};
+h();
+f();  // will re-assign a new function to it.. 2000
+console.dir(f);  // to see what does f can access
+
+ //EX 📢:
+
+ const boardPassengers = function (n, wait) {
+  //perGroup declare it here inside the function 
+  const perGroup = n / 3;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+// declare it in global level.. (will not be use by the function)
+const perGroup = 1000;  
+boardPassengers(180, 3);
+
+
+// notice that however the perGroup is declared in Global level but still the function close over the function
+// variable enviroment and give it the priority to use it ///////
+
+//if there was no inside the function the perGroup the the function will use perGroup in global level
+
+//EX 📢
+
+const boardPassengerss = function (n, wait) {
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${perGroups} passengers`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds`);
+};
+// declare it in global level.. (will be use by function)
+const perGroups = 1000;  
+boardPassengerss(180, 3);
+
+*/
+
+//Topic 🤖 #Chalenge :
+/* 
+1. Take the IIFE below and at the end of the function, attach an event listener that 
+changes the color of the selected h1 element ('header') to blue, each time 
+the body element is clicked. Do not select the h1 element again!
+
+//EX 📢 1
+let header;
+(function () {
+  header = document.querySelector('h1');
+  header.style.color = 'red';
+})();
+
+header.addEventListener('click', function () {
+  header.style.color = 'blue';
+});
+
+//////
+//EX 📢 2
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+
+    header.addEventListener('click', function () {
+         header.style.color = 'blue';
+       });
+  }
+)();
+
+*/

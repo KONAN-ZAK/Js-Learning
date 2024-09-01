@@ -167,7 +167,7 @@ console.log(arrNew); // [7, 8, 9]
 //Note💎 2: Avoid Direct Assignment for Copying Arrays
 // Direct assignment does not create a new copy; it creates a reference to the same array:
 const newArr = arr; // Points to the same array as 'arr'
-newArr.push(10); // Modifies both 'arr' and 'newArr'
+newArr.push(10); // Modifies 'newArr' which is 'arr'  
 console.log(arr); // [7, 8, 9, 10]
 console.log(newArr); // [7, 8, 9, 10]
 
@@ -303,7 +303,7 @@ restaurant.orderPizza('mushrooms');
 
 
 //Note💎 || (OR) Operator
-// Returns the first truthy value or the last value if none are truthy.
+// (Returns the first truthy value or the last value if none are truthy.)
 
 // Ex:
 console.log(3 || "kenan");   // Output: 3 (3 is truthy, so "kenan" is not evaluated)
@@ -324,7 +324,7 @@ console.log(guests2); // Output depends on restaurant.numGuests
 
 
 //Note💎 && (AND) Operator
-// Returns the first falsy value or the last value if none are falsy.
+// (Returns the first falsy value or the last value if none are falsy.)
 
 // Ex:
 console.log(0 && "ward");  // Output: 0 (0 is falsy, so "ward" is not evaluated)
@@ -340,6 +340,7 @@ restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 // Usage Summary:
 // - OR operator (||) is useful for setting default values or returning the first truthy value.
 // - AND operator (&&) is useful for executing code conditionally based on the truthiness of the first operand:
+*/
 
 //Topic 🤖 logical assignment ??= ||=  &&= operators:
 /* 
@@ -379,7 +380,22 @@ restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 
 //Topic 🤖 Nullish Coalescing Operator (??)
 /* 
-// The Nullish Coalescing Operator (??) is used to provide default values for variables that are null or undefined. It does not consider other falsy values (such as 0 or "") as nullish.
+//// `??` takes 0 and "" as a true values  ....... false values are undefine and  null
+
+let user;
+console.log(user ?? "Guest"); // "Guest"
+
+user = null;
+console.log(user ?? "Guest"); // "Guest"
+
+user = undefined;
+console.log(user ?? "Guest"); // "Guest"
+
+user = ""; 
+console.log(user ?? "Guest"); // "" (empty string, not nullish)
+
+user = 0;
+console.log(user ?? "Guest"); // 0 (not nullish)
 
 //EX 📢
 // Consider the following setup:
@@ -398,8 +414,8 @@ const guests3 = restaurant.numtest ?? 10;
 console.log(guests3); // Output: 10 (numtest is undefined, so default value 10 is used)
 
 // Summary:
-// - `??` provides default values only when the left operand is null or undefined.
-// - Other falsy values (0, "", false) are not treated as nullish and are used as they are.
+// - `??` takes 0 and "" as a true values  ....... false values are undefine and  null
+
 */
 
 //Topic 🤖 #CHALLENGE 1 :
@@ -501,8 +517,8 @@ for (const [i, el] of menu.entries()) {
   console.log(`${i + 1}: ${el}`); // Logs the index (1-based) and element
 }
 
-// Output entries as an array of arrays
 console.log([...menu.entries()]); // Converts the entries iterator into an array of [index, element] pairs
+// Output entries as an array of arrays
 */
 
 //Topic 🤖 Enhanced Object Literals : ES6 introduce 3 diffrent way to do the Object :
@@ -837,7 +853,7 @@ console.log(resta.set("sd", 878)); // Map(3) { "name" → "kenan", "age" → 199
 //Note💎 You can chain multiple sets in a single call:
 resta
   .set('love', ['dogs', 'vicky', 'cats'])
-  .set('sex', 11)
+  .set('sex', 12)
   .set(1, 2)
   .set(true, "we're open")
   .set(false, "we're closed");
