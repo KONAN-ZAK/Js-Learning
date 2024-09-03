@@ -623,7 +623,7 @@ console.log(openingHours);
 */
 
 //Topic 🤖 how to iterable in infromal way in object using for : Object.keys() Object.values() Object.entires()
-/* 
+/*
 //Note💎 to get property Names ONLY of object: we use Object.keys() ;
 // console.log(Object.keys(restaurant));
 //Array(8)["Name","location","categories","starterMenu","mainMenu","openingHours","order","orderPizza" ]
@@ -659,10 +659,10 @@ console.log(openingHours);
 //EX 📢
 // const entire = Object.entries(restaurant);
 // console.log(entire);
-//output for each property will give me the following: array and has it info nd name.
-// 0: Array [ "Name", "Classico Italiano" ]
-// 0: "Name"
-// 1: "Classico Italiano"
+// output for each property will give me the following: array and has it info nd name.
+// [[ "Name", "Classico Italiano" ],
+//  [ 'location', 'Via Angelo Tavanti 23, Firenze, Italy' ], etc...
+//] 
 
 //EX 📢
 // const entire = Object.entries(restaurant.openingHours);
@@ -688,7 +688,7 @@ console.log(openingHours);
 // for (const [name,value] of Object.entries(a)) {
 //   console.log(name, value);
 // }
-*/
+   */
 
 //Topic 🤖 Challenge#2:
 /*
