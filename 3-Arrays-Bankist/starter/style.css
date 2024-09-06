@@ -3,8 +3,8 @@
  * in case you're wondering how I built the UI.
  * Have fun! 😁
  */
-
-* {
+/* <!--- nice way to start our project ---> */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: inherit;
@@ -22,7 +22,7 @@ body {
   height: 100vh;
   padding: 2rem;
 }
-
+/* <!--- End General setting ---> */
 nav {
   display: flex;
   justify-content: space-between;
