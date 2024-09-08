@@ -8,7 +8,6 @@
 *::before,
 *::after {
   margin: 0;
-  padding: 0;
   box-sizing: inherit;
 }
 
@@ -22,9 +21,11 @@ body {
   color: #444;
   background-color: #f3f3f3;
   height: 100vh;
-  padding: 2rem;
+  padding: 2rem 5rem;
 }
 /* <!--- End General setting ---> */
+
+/* <!--- start nav bar ---> */
 nav {
   display: flex;
   justify-content: space-between;
@@ -32,21 +33,20 @@ nav {
   padding: 0 2rem;
 }
 
-.welcome {
+nav .welcome {
   font-size: 1.9rem;
   font-weight: 500;
 }
 
-.logo {
+nav .logo {
   height: 5.25rem;
 }
 
-.login {
+nav .login {
   display: flex;
 }
 
 .login__input {
-  border: none;
   padding: 0.5rem 2rem;
   font-size: 1.6rem;
   font-family: inherit;
@@ -84,28 +84,31 @@ nav {
   outline: none;
   color: #777;
 }
+/* <!--- End nav bar ---> */
 
-/* MAIN */
+/* <!--- start Main ---> */
 .app {
   position: relative;
-  max-width: 100rem;
+  width: 100%;
   margin: 4rem auto;
   display: grid;
-  grid-template-columns: 4fr 3fr;
+  grid-template-columns: 5fr 3fr;
   grid-template-rows: auto repeat(3, 15rem) auto;
   gap: 2rem;
 
   /* NOTE This creates the fade in/out anumation */
-  opacity: 0;
+
+  /* opacity: 0; */
   transition: all 1s;
 }
-
+/* <!--- start balance ---> */
 .balance {
   grid-column: 1 / span 2;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   margin-bottom: 2rem;
+  height: 100%;
 }
 
 .balance__label {
@@ -123,8 +126,9 @@ nav {
   font-size: 4.5rem;
   font-weight: 400;
 }
+/* <!--- End balance ---> */
 
-/* MOVEMENTS */
+/* <!--- start Movments ---> */
 .movements {
   grid-row: 2 / span 3;
   background-color: #fff;
@@ -156,6 +160,11 @@ nav {
   color: #666;
 }
 
+.movements__value {
+  font-size: 1.7rem;
+  margin-left: auto;
+}
+
 .movements__type--deposit {
   background-image: linear-gradient(to top left, #39b385, #9be15d);
 }
@@ -163,13 +172,9 @@ nav {
 .movements__type--withdrawal {
   background-image: linear-gradient(to top left, #e52a5a, #ff585f);
 }
+/* <!--- End Movments ---> */
 
-.movements__value {
-  font-size: 1.7rem;
-  margin-left: auto;
-}
-
-/* SUMMARY */
+/* <!--- start SUMMARY ---> */
 .summary {
   grid-row: 5 / 6;
   display: flex;
@@ -198,6 +203,7 @@ nav {
 .summary__value--out {
   color: #f5465d;
 }
+/* <!--- End SUMMARY ---> */
 
 .btn--sort {
   margin-left: auto;

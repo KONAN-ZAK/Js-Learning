@@ -1,3 +1,16 @@
+'use strict';
+
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
+
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+
 //Topic 🤖 method: slice() method : it return new array without effecting on the orgin one !
 // it work in string butttt the strings are array at the end !
 /* 
@@ -173,12 +186,65 @@ map.forEach((value, key, EntieredMap) => {
 
 // for Set()
 
-const sett = new Set(['usd', 'euro', 'gbp', 'frank', 'yen', 'lira', 'euro', 'euro']);
+const sett = new Set([
+  'usd',
+  'euro',
+  'gbp',
+  'frank',
+  'yen',
+  'lira',
+  'euro',
+  'euro',
+]);
 
 sett.forEach((value) => {
   console.log(value);
 });
+*/
+//Topic 🤖 selector.insertAdjacentHTML(position, text);
+/*  
+it does take two strings:
+beforebegin, afterbegin, afterend , beforeend
 
- */
+<!-- beforebegin -->
+<p>
+  <!-- afterbegin -->
+  theContent
+  <!-- beforeend -->
+</p>
+<!-- afterend -->
+*/
+
+//Topic 🤖  innerHTML vs textContent
+// innerHTML : return the whole content plus the html itself
+// textContent : return only the text
+
+//Topic 🤖 Chalenge #1: (page 23)
+/* 
+const JuliaData1 = [9, 16, 6, 8, 3];
+const KateData1 = [10, 5, 6, 1, 4];
+
+// they are just interested in knowing whether a dog is an adult or a puppy.
+// A dog is an adult if it is at least 3 years old, and it's a puppy if it's less than 3 years
+// old.
+
+const checkDogs = function (dogsJulia, dogsKate) {
+  const copyJuliaData = [...dogsJulia];
+  const CorrectJuliaData = copyJuliaData.slice(1, -2);
+
+  //combine them
+  const combiningData = [...CorrectJuliaData, ...dogsKate];
+  console.log(combiningData);
+  // looping the values and check the dault and puppy..
+  combiningData.forEach(function (Value, number) {
+    const result =
+      Value >= 3
+        ? `Dog number ${number + 1} is an adult, and is ${Value} years old`
+        : `Dog number ${number + 1} is still a puppy`;
+    console.log(result);
+  });
+};
+checkDogs(JuliaData1, KateData1);
+*/
 
 //Topic 🤖
