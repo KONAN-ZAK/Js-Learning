@@ -11,9 +11,11 @@
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 
-//Topic 🤖 method: slice() method : it return new array without effecting on the orgin one !
-// it work in string butttt the strings are array at the end !
+//Topic 🤖 slice()
 /* 
+// method : it return new array without effecting on the orgin one !
+// it work in string butttt the strings are array at the end !
+
 let arr = ['a', 'b', 'c', 'd', 'f'];
 arr.slice(2);                           //[ "c", "d", "f" ]
 arr.slice(0, -1);                       //[ "a", "b", "c", "d" ] not take the last element
@@ -31,8 +33,9 @@ const newArr1 = arr.slice();
 
 */
 
-//Topic 🤖 method: splice()  it will give same resutl as slice but it will effect the orginal one..
+//Topic 🤖 splice()
 /*
+it will give same resutl as slice but it will effect the orginal one..
 let arr = ['a', 'b', 'c', 'd', 'f'];
 console.log(arr.splice(3));                  //[ "d", "f" ]
 console.log(arr);                            //[ "a", "b", "c" ] the left from the splice cutting
@@ -41,15 +44,16 @@ console.log(arr.splice(1, 1));               //[ "b" ]
 console.log(arr);                            //[ "a", "c" ] the left from the splice cutting
  */
 
-//Topic 🤖 method: reverse() and effect on the orginal one
+//Topic 🤖 reverse()
 /* 
+and effect on the orginal one
 let arr = ['a', 'b', 'c', 'd'];
 const arr2 = ['j', 'i', 'h', 'j', 'f'];
 
 console.log(arr2.reverse()); //[ "f", "j", "h", "i", "j" ]
 */
 
-//Topic 🤖 method: concat() -----> same as [...arr1, ...arr2];
+//Topic 🤖 concat() -----> same as [...arr1, ...arr2];
 /*
 // doesnt effect the orgianl one
 // FirstArr.concat(SecondInOrderArr);
@@ -89,10 +93,12 @@ console.log(nam?.at(0));  //k
 
  */
 
-//Topic 🤖 forEach method : forEach(callBack Func) higher order func tell it each iter what to do
+//Topic 🤖 forEach
+/*
+// forEach(callBack Func) higher order func tell it each iter what to do
 // 1 (continue and break doesnt work with it )
 // 2 when every foreachcall array , it get 3 arguments avaialable in order: value index arrayItSelf
-/*
+
 //Note💎 normal for loop:
 {
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
@@ -171,20 +177,20 @@ const map = new Map([
   ['yen', 'china'],
   ['lira', 'syria'],
 ]);
+____________for of method ___________________
 
-//for of method :
 for (const [f, x] of map) {
   console.log(x, f);
 }
 console.log(`-----------`);
 
-// forEach method
+____________forEach method___________________
+
 map.forEach((value, key, EntieredMap) => {
   //the Func. arguments(value after the key )
   console.log(value, key);
 });
-
-// for Set()
+_____________for Set()__________________
 
 const sett = new Set([
   'usd',
@@ -196,12 +202,15 @@ const sett = new Set([
   'euro',
   'euro',
 ]);
+______________forEach__________________
 
 sett.forEach((value) => {
   console.log(value);
 });
+
 */
-//Topic 🤖 selector.insertAdjacentHTML(position, text);
+
+//Topic 🤖 Document.insertAdjacentHTML(position, text);
 /*  
 it does take two strings:
 beforebegin, afterbegin, afterend , beforeend
@@ -213,11 +222,13 @@ beforebegin, afterbegin, afterend , beforeend
   <!-- beforeend -->
 </p>
 <!-- afterend -->
-*/
 
-//Topic 🤖  innerHTML vs textContent
+//  ____________innerHTML vs textContent_______________
+
 // innerHTML : return the whole content plus the html itself
 // textContent : return only the text
+
+*/
 
 //Topic 🤖 Chalenge #1: (page 23)
 /* 
@@ -245,6 +256,121 @@ const checkDogs = function (dogsJulia, dogsKate) {
   });
 };
 checkDogs(JuliaData1, KateData1);
+*/
+
+//_____(((if we want to return new array we use (Map) ..... if we jsut want to modifiy the orginal one use (forEach) one..)))_______
+
+//Topic 🤖 Most Imp: Map , filter , reduce
+/* 
+
+//______________________________________________
+// <---- Map ---->
+//______________________________________________
+
+//return new array ; thats why we assign it to new variable
+// const arr = [0, 1, 2, 3];
+
+// const newMap = arr.map(function (value, index) {
+//   return value + 10;
+// });
+
+//EX 📢 convert it to arrrow function which is one linne of code
+// const newMap = arr.map((value) => value + 10);
+
+// console.log(arr); //[0, 2, 3, 4, 5, 6, 7, 8, 9]
+// console.log(newMap); //[ 10, 12, 13, 14, 15, 16, 17, 18, 19 ]
+
+//EX 📢
+// const numbers = [10, 20, 30];
+// const withIndex = numbers.map((num, index) => `Index ${index}: ${num}`);
+// console.log(withIndex);  // Output: ['Index 0: 10', 'Index 1: 20', 'Index 2: 30']
+
+//EX 📢 i want to print kna
+
+// const createUserName = function (user) {
+//   const userName = user
+//     .toLowerCase()
+//     .split(' ')
+//     .map(function (value) {
+//       return value[0];
+//     })
+//     .join('');
+//   return userName;
+// };
+// console.log(createUserName('Kenan Nahi Alzakout'));
+
+// what if we make it arrow ?
+// const neName = Name.toLowerCase().split(' ').map(value=> value[0]).join('');
+// console.log(neName);
+
+//______________________________________________
+// <---- filter ---->
+//______________________________________________
+
+// will loop for each item and add cndition for it, Ex: item > 2
+// return new array
+// why not for Of ? because in normal for loop we need a new empty array and push to it in each time
+
+//EX 📢 here we want to get new array that have negative values :
+// const arr = [10, -12, 13, -14, -15, -16, 17, -18, 19];
+
+// const negativeArr = arr.filter(function (value) {
+//   return value < 0;
+// });
+// console.log(negativeArr); // [ -12, -14, -15, -16, -18 ]
+
+// //arraw mthod:
+// const negativeAr = arr.filter((value) => value < 0);
+
+//______________________________________________
+// <---- reduce ---->
+//______________________________________________
+
+//all array elements reduce to one single value.
+
+// const arr = [10, -12, 13, -14, 15, 16, 17, -18, 19];
+
+// const newArr = arr.reduce(function (accumilator, value, index, arrItSelf) {
+//   console.log(`accumilator: ${accumilator} value: ${value}`);
+//   return accumilator + value;
+// }, 0);
+//Note💎 why 0 becuase i want to start counting from 0 ..
+
+//Note💎 arrow function version
+// const newAr = arr.reduce((accumilator, value) => accumilator + value, 0);
+// console.log(newAr)
+*/
+
+//Topic 🤖 Chalenge #2 on map , reduce , filter method
+/* 
+const calcAverageHumanAge = (ages) => {
+  // ______________________________________
+  const calc = ages.map((age) => {
+    if (age <= 2) {
+      return age * 2;
+    } else {
+      return 16 + age * 4;
+    }
+  });
+  // ______________________________________
+  const ExcludeAges = calc.filter((age) => {
+    return age >= 18;
+  });
+  // ______________________________________
+
+  const avg = ExcludeAges.reduce((acc, age) => {
+    return acc + age;
+  }, 0)/ExcludeAges.length;
+  // ______________________________________
+
+  console.log(calc);
+  console.log(ExcludeAges);
+  return avg;
+};
+
+const ages = [5, 2, 4, 1, 15, 8, 3];
+console.log(`Human Avg Ages: ${calcAverageHumanAge(ages)}`);
+
 */
 
 //Topic 🤖

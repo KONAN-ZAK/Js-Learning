@@ -1,10 +1,9 @@
 'use strict';
-
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
-// BANKIST APP
+// BANK APP
 
-// Data
+// DATA:
 const account1 = {
   owner: 'Jonas Schmedtmann',
   movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
@@ -60,10 +59,12 @@ const inputTransferAmount = document.querySelector('.form__input--amount');
 const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
+//_____________________________________________________________________________
 
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
+//______________________________________________
+// <----- Display The Movment ---->
+//______________________________________________
+
 const displayMovments = function (movements) {
   containerMovements.innerHTML = '';
   movements.forEach((mov, i) => {
@@ -81,5 +82,42 @@ const displayMovments = function (movements) {
   });
 };
 displayMovments(account1.movements);
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
+
+//______________________________________________
+// <---- Calcualte The Balance Value ---->
+//______________________________________________
+
+const balanceCalc = function (movments) {
+  const balance = movments.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} £`;
+};
+balanceCalc(account1.movements);
+
+//______________________________________________
+// <---- Create the UserName Shortcut ---->
+//______________________________________________
+
+const createUserName = function (accs) {
+  accs.forEach(function (acc) {
+    acc.userName = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map((value) => value[0])
+      .join('');
+  });
+};
+console.log(createUserName(accounts));
+
+//______________________________________________
+// <---- find the max value ---->
+//______________________________________________
+
+const maxMov = account1.movements.reduce((acc, mov)=>{
+if (acc > mov) {
+  return acc ;
+} else {
+  return mov ; 
+}
+},account1.movements[0])
+
+console.log(maxMov) // 3000
