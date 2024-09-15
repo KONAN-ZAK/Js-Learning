@@ -81,7 +81,6 @@ const displayMovments = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-displayMovments(account1.movements);
 
 //______________________________________________
 // <---- Calcualte The Balance Value ---->
@@ -91,7 +90,34 @@ const balanceCalc = function (movments) {
   const balance = movments.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${balance} £`;
 };
-balanceCalc(account1.movements);
+
+//______________________________________________
+// <---- Calcualte the (In-Out-Intrest) Summary ---->
+//______________________________________________
+
+const calcSummary = (account) => {
+  // <---- Calcualte the In Summary ---->
+  const InSummary = account.movements
+    .filter((mov) => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${InSummary} £`;
+  console.log(`IN summary: ${InSummary}`);
+
+  // <---- Calcualte the Out Summary ---->
+  const OutSummary = account.movements
+    .filter((mov) => mov < 0)
+    .reduce((acc, mov) => mov + acc, 0);
+  labelSumOut.textContent = `${Math.abs(OutSummary)} £`;
+  console.log(`OUT summary: ${OutSummary}`);
+
+  // <---- Calcualte the Interset Summary ---->
+  const InterstSummary = account.movements
+    .filter((mov) => mov > 0)
+    .map((mov) => (mov * account.interestRate) / 100)
+    .reduce((acc, mov) => acc + mov, 0);
+  console.log(`Interst: ${InterstSummary} from ${account.interestRate}`);
+  labelSumInterest.textContent = `${InterstSummary} £`;
+};
 
 //______________________________________________
 // <---- Create the UserName Shortcut ---->
@@ -106,18 +132,55 @@ const createUserName = function (accs) {
       .join('');
   });
 };
-console.log(createUserName(accounts));
+createUserName(accounts);
 
 //______________________________________________
-// <---- find the max value ---->
+// <---- find the max value in the account movments ---->
 //______________________________________________
 
-const maxMov = account1.movements.reduce((acc, mov)=>{
-if (acc > mov) {
-  return acc ;
-} else {
-  return mov ; 
-}
-},account1.movements[0])
+// const maxMov = account1.movements.reduce((acc, mov) => {
+//   if (acc > mov) {
+//     return acc;
+//   } else {
+//     return mov;
+//   }
+// }, account1.movements[0]);
 
-console.log(maxMov) // 3000
+// console.log(`MaxValue: ${maxMov}`); // 3000
+
+
+//______________________________________________
+// <---- Login Func ---->
+//______________________________________________
+let currentAccount;
+btnLogin.addEventListener('click', (e) => {
+  // prevent default : usualy when click in button it submit the form therefore it will load the page again
+  // to stop it we use this function
+  e.preventDefault();
+
+  //____________find the Login User Data___________
+
+  currentAccount = accounts.find(
+    (acc) => acc.userName === inputLoginUsername.value
+  );
+  console.log(currentAccount);
+
+  //____________checking the Pin___________________
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    console.log('logged in');
+    //______Display UI & Message____
+    labelWelcome.textContent = `🟢Welcome Back, ${
+      currentAccount.owner.split(' ')[0]
+    } `;
+    containerApp.style.opacity = '100';
+    //______Display Movments________
+    displayMovments(currentAccount.movements);
+    //______Display Balance_________
+    balanceCalc(currentAccount.movements);
+    //______Display Summary_________
+    calcSummary(currentAccount);
+    //______Clear the Inputs________
+    inputLoginPin.value = inputLoginUsername.value = '';
+  }
+});

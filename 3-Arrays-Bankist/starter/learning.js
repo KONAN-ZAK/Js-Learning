@@ -1,12 +1,12 @@
 'use strict';
 
-// const currencies = new Map([
-//   ['USD', 'United States dollar'],
-//   ['EUR', 'Euro'],
-//   ['GBP', 'Pound sterling'],
-// ]);
+const currencies = new Map([
+  ['USD', 'United States dollar'],
+  ['EUR', 'Euro'],
+  ['GBP', 'Pound sterling'],
+]);
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const values = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -30,7 +30,6 @@ const newArr1 = arr.slice();
 // console.log(newArr, newArr1);
 
 // ----> which one to use ? all are same and its up to you..
-
 */
 
 //Topic 🤖 splice()
@@ -73,6 +72,7 @@ console.log([...arr, ...arr2]); //[ "a", "b", "c", "d", "j", "i", "h", "j", "f" 
 let arr = ['a', 'b', 'c', 'd'];
 console.log(arr.join('-')); //a-b-c-d
 */
+//___________________________________________________________________
 
 //Topic 🤖 arr.at(0)  similar to arr[0]   perfect for chaining ?.
 /*
@@ -98,59 +98,55 @@ console.log(nam?.at(0));  //k
 // forEach(callBack Func) higher order func tell it each iter what to do
 // 1 (continue and break doesnt work with it )
 // 2 when every foreachcall array , it get 3 arguments avaialable in order: value index arrayItSelf
+// 3 Pros: Clear and simple for looping over elements.
+// 4 Cons: Does not create or return a new array. It's just for iterating.
 
 //Note💎 normal for loop:
 {
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-for (let i = 0; i < movements.length; i++) {
-  movements.at(i) < 0 &&
-    console.log(`account withdrew ${Math.abs(movements.at(i))}`);
-  movements.at(i) > 0 && console.log(`account deposited ${movements.at(i)}`);
-}}
-
-//Note💎 for of method 
-
-{const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-for (let i of movements) {
-  i < 0 &&
-    console.log(`account withdrew ${Math.abs(i)}`);
-  i > 0 && console.log(`account deposited ${i}`);
-}}
-
-//Note💎 forEach 
-
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-movements.forEach(function (i) {
-  // loop on movments and let the function take each iter an i varaiable of the array
-  if (i < 0) {
-    console.log(`account withdrew ${Math.abs(i)}`);
-  } else {
-    console.log(`account deposited ${i}`);
+  const values = [200, 450, undefined, 3000, -650, -130, 70, 1300];
+  for (let i = 0; i < values.length; i++) {
+    values?.at(i) < 0 &&
+      console.log(`account withdrew ${Math.abs(values.at(i))}`);
+    values?.at(i) > 0 && console.log(`account deposited ${values.at(i)}`);
   }
-});
+}
+
+//Note💎 for of method
+
+{
+  const values = [200, 450, -400, 3000, -650, -130, 70, 1300];
+  for (let i of values) {
+    i < 0 && console.log(`account withdrew ${Math.abs(i)}`);
+    i > 0 && console.log(`account deposited ${i}`);
+  }
+}
 
 //Note💎 going back to for of loop when we need the index we used .Entires() or .keys()
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-for (const [i, val] of movements.entries()) {}
-
-//Note💎 how to find the index in foreach looper: keep the order of the parameters where  value --> index --> arrayItSelf
-
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-movements.forEach(function (value , index , arrayItSelf) {
-  if (value < 0) {
-    console.log(`No.${index} account withdrew ${Math.abs(value)}`);
-  } else {
-    console.log(`No.${index} account deposited ${value}`);
+{
+  const values = [200, 450, -400, 3000, -650, -130, 70, 1300];
+  for (const [i, val] of values.entries()) {
   }
-  console.log(arrayItSelf); //Array(8) [ 200, 450, -400, 3000, -650, -130, 70, 1300 ]  print it each time loop
-})
+}
+
+//Note💎 forEach:  
+// keep the order of parameters value --> index --> arrayItSelf
+{
+  const values = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+  values.forEach(function (value, index, arrayItSelf) {
+    if (value < 0) {
+      console.log(`No.${index} account withdrew ${Math.abs(value)}`);
+    } else {
+      console.log(`No.${index} account deposited ${value}`);
+    }
+    console.log(arrayItSelf); //Array(8) [ 200, 450, -400, 3000, -650, -130, 70, 1300 ]  print it each time loop
+  });
+}
 
 //Note💎 what if i have an object and i want to loop it
 
 const obj = { name: 'Kenan', age: 26, friends: 'ahmad' };
-console.log(Object.entries(obj));     //[['name', 'Kenan'], ['age', 26], ['friends', 'ahmad']]
+console.log(Object.entries(obj)); //[['name', 'Kenan'], ['age', 26], ['friends', 'ahmad']]
 for (const [f, x] of Object.entries(obj)) {
   console.log(f, x);
 }
@@ -164,7 +160,6 @@ Object.entries(obj).forEach(function ([key, value]) {
 // Object.entries(obj) returns an array of key-value pairs.
 // forEach(([key, value]) => {  }) destructures each pair and passes the key and value
 // directly into the callback function.
-
 */
 
 //Topic 🤖 forEach works on map and set as well:
@@ -177,20 +172,21 @@ const map = new Map([
   ['yen', 'china'],
   ['lira', 'syria'],
 ]);
-____________for of method ___________________
+// ____________for of method ___________________
 
 for (const [f, x] of map) {
   console.log(x, f);
 }
 console.log(`-----------`);
 
-____________forEach method___________________
+// ____________forEach method___________________
 
 map.forEach((value, key, EntieredMap) => {
   //the Func. arguments(value after the key )
   console.log(value, key);
 });
-_____________for Set()__________________
+
+// _____________for Set()__________________
 
 const sett = new Set([
   'usd',
@@ -202,12 +198,11 @@ const sett = new Set([
   'euro',
   'euro',
 ]);
-______________forEach__________________
+// ______________forEach__________________
 
 sett.forEach((value) => {
   console.log(value);
 });
-
 */
 
 //Topic 🤖 Document.insertAdjacentHTML(position, text);
@@ -260,16 +255,16 @@ checkDogs(JuliaData1, KateData1);
 
 //_____(((if we want to return new array we use (Map) ..... if we jsut want to modifiy the orginal one use (forEach) one..)))_______
 
-//Topic 🤖 Most Imp: Map , filter , reduce
+//Topic 🤖 Map , filter , reduce
 /* 
-
 //______________________________________________
 // <---- Map ---->
 //______________________________________________
 
-//return new array ; thats why we assign it to new variable
-// const arr = [0, 1, 2, 3];
+// 1 Pros: Ideal for transforming data.
+// 2 Cons: Returns a new array, even if you don't need it (use forEach() for side-effects without returning).
 
+// const arr = [0, 1, 2, 3];
 // const newMap = arr.map(function (value, index) {
 //   return value + 10;
 // });
@@ -309,7 +304,7 @@ checkDogs(JuliaData1, KateData1);
 
 // will loop for each item and add cndition for it, Ex: item > 2
 // return new array
-// why not for Of ? because in normal for loop we need a new empty array and push to it in each time
+// why not for Of or forEach ? because in normal for loop we need a new empty array and push to it in each time
 
 //EX 📢 here we want to get new array that have negative values :
 // const arr = [10, -12, 13, -14, -15, -16, 17, -18, 19];
@@ -339,6 +334,18 @@ checkDogs(JuliaData1, KateData1);
 //Note💎 arrow function version
 // const newAr = arr.reduce((accumilator, value) => accumilator + value, 0);
 // console.log(newAr)
+
+//______________________________________________
+// <---- Combining them, lets do calculator the currance ---->
+//______________________________________________
+// const usdToGbp = 1.5;
+// const moenyFromUsdToGbp = values
+//   .filter((mov, i , arr) => {
+//     i === 0 && console.log(arr); // good way to know what does the filter does in our work
+//     return mov > 0;
+//   })
+//   .map((mov) => mov * usdToGbp);
+// console.log(moenyFromUsdToGbp);
 */
 
 //Topic 🤖 Chalenge #2 on map , reduce , filter method
@@ -371,6 +378,40 @@ const calcAverageHumanAge = (ages) => {
 const ages = [5, 2, 4, 1, 15, 8, 3];
 console.log(`Human Avg Ages: ${calcAverageHumanAge(ages)}`);
 
+
+// _______________New way by chaning Method_______________________
+{
+  const calcAverageHumanAge = (ages) => {
+    let a;
+    const calc = ages
+      .map((age) => (age <= 2 ? age * 2 : 16 + age * 4))
+      .filter((age) => age >= 18)
+      .reduce((acc, age, index, arr) => {
+        if (index === arr.length - 1) {
+          return (acc + age) / arr.length;
+        } else {
+          return acc + age;
+        }
+      }, 0);
+
+    return calc;
+  };
+
+  const ages = [5, 2, 4, 1, 15, 8, 3];
+  console.log(`Human Avg Ages: ${calcAverageHumanAge(ages)}`);
+}
 */
 
-//Topic 🤖
+// <_____________ Summary _____________>
+// forEach(): When you need to iterate over an array to perform side effects (e.g., logging, modifying variables outside the array). Does not return a value.
+// filter():  When you need to select elements based on a condition and return a new array with those elements.
+// map():     When you need to transform each element in the array and return a new array of transformed elements.
+// reduce():  When you need to reduce the array to a single value (e.g., sum, product, object) by accumulating results across elements.
+
+//Topic 🤖 find
+/* */
+//find method loop over the array and return first value that meet the our condition
+//EX 📢
+
+// const firstValue = values.find((val) => val < 0);
+// console.log(firstValue);  //-400

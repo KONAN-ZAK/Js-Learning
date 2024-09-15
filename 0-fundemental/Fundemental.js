@@ -4,7 +4,7 @@
 
 //Note💎 2.  Dynamic Property Names: If the property name is stored in a variable,
 //you MUST use bracket notation to access the property.
-//EX 📢
+//EX 📢  
 // const user = {
 //   name: "John",
 //   age: 30,
@@ -15,7 +15,7 @@
 
 //Note💎 Invalid Identifiers or Special Characters:
 //If the property name contains spaces, dashes, or special characters, you MUST use bracket notation.
-//EX 📢
+//EX 📢  
 // const team = {
 //   "team-name": "Bayern Munich",
 //   "total players": 11
@@ -27,7 +27,7 @@
 //////////////////COULD USE [] OR . ////////////////////////////
 
 //Note💎 1. Accessing Object Properties Using Brackets or . :
-//EX 📢
+//EX 📢  
 // const user = {
 //   name: "John",
 //   age: 30,
@@ -37,7 +37,7 @@
 
 //Note💎 3. Modifying Object Properties Using Brackets OR . :
 // You can also modify the value of a property using bracket notation OR .
-//EX 📢
+//EX 📢  
 // const user = {
 //   name: "John",
 //   age: 30

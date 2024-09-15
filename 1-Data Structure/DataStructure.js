@@ -557,7 +557,7 @@ console.log([...menu.entries()]); // Converts the entries iterator into an array
 //   },
 // };
 
-//Note💎 WAY2: no longer need to do properities and add to functoin in es6, by removing the function and : keyword
+//Note💎 WAY2: no longer need to do properities and add to function in es6, by removing the function and : keyword
 //  instead of this :
 // order: function (index1, index2) { return [this.starterMenu[index1], this.mainMenu[index2]];
 // we can use :
@@ -820,7 +820,7 @@ console.log(staffPositionArray);
 // Output: [ "waiter", "chef", "manager" ]
  */
 
-//Topic 🤖 Map – Returns array with two elements (key, value) (:
+//Topic 🤖 Map – Returns New array it has two elements (key, value) (:
 /* 
 //Note💎 Keys or values can be strings, numbers, or any data type.
 //    Note: In objects, keys are always strings.
