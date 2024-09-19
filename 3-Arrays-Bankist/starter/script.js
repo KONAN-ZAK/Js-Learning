@@ -86,9 +86,9 @@ const displayMovments = function (movements) {
 // <---- Calcualte The Balance Value ---->
 //______________________________________________
 
-const balanceCalc = function (movments) {
-  const balance = movments.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance} £`;
+const balanceCalc = (account) => {
+  account.balance = account.movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${account.balance} £`;
 };
 
 //______________________________________________
@@ -101,22 +101,35 @@ const calcSummary = (account) => {
     .filter((mov) => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${InSummary} £`;
-  console.log(`IN summary: ${InSummary}`);
+  // console.log(`IN summary: ${InSummary}`);
 
   // <---- Calcualte the Out Summary ---->
   const OutSummary = account.movements
     .filter((mov) => mov < 0)
     .reduce((acc, mov) => mov + acc, 0);
   labelSumOut.textContent = `${Math.abs(OutSummary)} £`;
-  console.log(`OUT summary: ${OutSummary}`);
+  // console.log(`OUT summary: ${OutSummary}`);
 
   // <---- Calcualte the Interset Summary ---->
   const InterstSummary = account.movements
     .filter((mov) => mov > 0)
     .map((mov) => (mov * account.interestRate) / 100)
     .reduce((acc, mov) => acc + mov, 0);
-  console.log(`Interst: ${InterstSummary} from ${account.interestRate}`);
+  // console.log(`Interst: ${InterstSummary} from ${account.interestRate}`);
   labelSumInterest.textContent = `${InterstSummary} £`;
+};
+
+//______________________________________________
+// <---- Dispaly UI Func ---->
+//______________________________________________
+
+const UpdateUI = (currentAccount) => {
+  //<---- Display account Movments --->
+  displayMovments(currentAccount.movements);
+  //<---- Display account balance ---->
+  balanceCalc(currentAccount);
+  //<---- Display account Summary ---->
+  calcSummary(currentAccount);
 };
 
 //______________________________________________
@@ -135,21 +148,6 @@ const createUserName = function (accs) {
 createUserName(accounts);
 
 //______________________________________________
-// <---- find the max value in the account movments ---->
-//______________________________________________
-
-// const maxMov = account1.movements.reduce((acc, mov) => {
-//   if (acc > mov) {
-//     return acc;
-//   } else {
-//     return mov;
-//   }
-// }, account1.movements[0]);
-
-// console.log(`MaxValue: ${maxMov}`); // 3000
-
-
-//______________________________________________
 // <---- Login Func ---->
 //______________________________________________
 let currentAccount;
@@ -158,29 +156,110 @@ btnLogin.addEventListener('click', (e) => {
   // to stop it we use this function
   e.preventDefault();
 
-  //____________find the Login User Data___________
+  //<------- find the Login User Data -------->
 
   currentAccount = accounts.find(
     (acc) => acc.userName === inputLoginUsername.value
   );
-  console.log(currentAccount);
 
-  //____________checking the Pin___________________
-
+  //<------- checking the Pin --------->
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
     console.log('logged in');
-    //______Display UI & Message____
+
+    //<---- Display UI & Message ------>
     labelWelcome.textContent = `🟢Welcome Back, ${
       currentAccount.owner.split(' ')[0]
     } `;
     containerApp.style.opacity = '100';
-    //______Display Movments________
-    displayMovments(currentAccount.movements);
-    //______Display Balance_________
-    balanceCalc(currentAccount.movements);
-    //______Display Summary_________
-    calcSummary(currentAccount);
-    //______Clear the Inputs________
+
+    //<---- Update UI --->
+    UpdateUI(currentAccount);
+
+    //<--- Clear the Inputs ---->
     inputLoginPin.value = inputLoginUsername.value = '';
+  }
+});
+
+//______________________________________________
+// <---- Transfer Money Func ---->
+//______________________________________________
+
+btnTransfer.addEventListener('click', (e) => {
+  e.preventDefault();
+  const transferedAmount = Number(inputTransferAmount.value);
+  const transferedToAccount = accounts.find((acc) => {
+    return acc.userName === inputTransferTo.value;
+  });
+  //<----If account is meet the spisific rules of sending money ---->
+  if (
+    transferedAmount > 0 &&
+    transferedAmount <= currentAccount.balance &&
+    transferedToAccount.userName !== currentAccount.userName
+  ) {
+    //<----Update the movments---->
+    currentAccount.movements.push(-transferedAmount);
+    transferedToAccount.movements.push(transferedAmount);
+
+    //<---- Display UI --->
+    UpdateUI(currentAccount);
+
+    console.log(`The reciever Info:`, transferedAmount, transferedToAccount);
+    //<---- Clear the Inputs --->
+    inputTransferAmount.value = inputTransferTo.value = ' ';
+  } else {
+    console.log('un-valid!');
+  }
+});
+
+//______________________________________________
+// <---- Loan Func ---->
+//______________________________________________
+
+btnLoan.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  //<----Get Loan from User---->
+  const loan = Number(inputLoanAmount.value);
+
+  //<----condition loan >= 10% of the movments---->
+  const loanCondition = currentAccount.movements
+    .filter((mov) => mov > 0)
+    .some((mov) => mov >= mov / 10);
+
+  if (loan && loan > 0 && loanCondition) {
+    //<----Push New movment---->
+    currentAccount.movements.push(loan);
+
+    //<----Update the movments---->
+    UpdateUI(currentAccount);
+
+    //<----Clear the Input---->
+    inputLoanAmount.value = '';
+  }
+});
+
+//______________________________________________
+// <---- Delete User Func ---->
+//______________________________________________
+
+btnClose.addEventListener('click', (e) => {
+  e.preventDefault();
+  if (
+    inputCloseUsername.value === currentAccount.userName &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    //<---- Get the Delete Account Index --->
+    const indexDeletedAccount = accounts.findIndex(
+      (account) => account.userName === currentAccount.userName
+    );
+    // console.log(`Closed account Index: ${indexDeletedAccount}`);
+
+    //<---- Delete the Account from the Accounts array --->
+    accounts.splice(indexDeletedAccount, indexDeletedAccount + 1);
+
+    //<---- Hide the Deleted Account  --->
+    containerApp.style.opacity = 0;
+    labelWelcome.textContent = `Log in to get started `;
+    // console.log(accounts);
   }
 });

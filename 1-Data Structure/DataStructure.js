@@ -1073,11 +1073,11 @@ console.log('Directly from console'.length); //21
 
 
 //Note💎 Methods:
-//1: the first index :::  indexOf()
+//indexOf() ::: the first index
 console.log(plane.indexOf('B')); //index is: 0
 
 
-//2: the last index :::  indexOf()
+//lastIndexOf() ::: the last index 
 console.log(plane.lastIndexOf('B')); //index is: 6
 
 

@@ -34,7 +34,7 @@ const newArr1 = arr.slice();
 
 //Topic 🤖 splice()
 /*
-it will give same resutl as slice but it will effect the orginal one..
+it will give same result as slice but it will effect the orginal one...
 let arr = ['a', 'b', 'c', 'd', 'f'];
 console.log(arr.splice(3));                  //[ "d", "f" ]
 console.log(arr);                            //[ "a", "b", "c" ] the left from the splice cutting
@@ -93,11 +93,11 @@ console.log(nam?.at(0));  //k
 
  */
 
-//Topic 🤖 forEach
+//Topic 🤖 forEach()
 /*
 // forEach(callBack Func) higher order func tell it each iter what to do
 // 1 (continue and break doesnt work with it )
-// 2 when every foreachcall array , it get 3 arguments avaialable in order: value index arrayItSelf
+// 2 when every foreach call array , it get 3 arguments avaialable in order: value index arrayItSelf
 // 3 Pros: Clear and simple for looping over elements.
 // 4 Cons: Does not create or return a new array. It's just for iterating.
 
@@ -162,7 +162,7 @@ Object.entries(obj).forEach(function ([key, value]) {
 // directly into the callback function.
 */
 
-//Topic 🤖 forEach works on map and set as well:
+//Topic 🤖 forEach() works on map and set as well:
 /*
 const map = new Map([
   ['usd', 'America'],
@@ -348,7 +348,7 @@ checkDogs(JuliaData1, KateData1);
 // console.log(moenyFromUsdToGbp);
 */
 
-//Topic 🤖 Chalenge #2 on map , reduce , filter method
+//EX 📢 Chalenge #2 on map , reduce , filter method
 /* 
 const calcAverageHumanAge = (ages) => {
   // ______________________________________
@@ -402,16 +402,49 @@ console.log(`Human Avg Ages: ${calcAverageHumanAge(ages)}`);
 }
 */
 
-// <_____________ Summary _____________>
-// forEach(): When you need to iterate over an array to perform side effects (e.g., logging, modifying variables outside the array). Does not return a value.
-// filter():  When you need to select elements based on a condition and return a new array with those elements.
-// map():     When you need to transform each element in the array and return a new array of transformed elements.
-// reduce():  When you need to reduce the array to a single value (e.g., sum, product, object) by accumulating results across elements.
-
-//Topic 🤖 find
-/* */
+//Topic 🤖 find() - findIndex()
+/* 
+//______________________________________________
+// <---- Find() ---->
+//______________________________________________
 //find method loop over the array and return first value that meet the our condition
 //EX 📢
-
 // const firstValue = values.find((val) => val < 0);
 // console.log(firstValue);  //-400
+
+//______________________________________________
+// <---- FindIndex() ---->
+//______________________________________________
+//find method loop over the array and return first index that meet the our condition.
+*/
+
+//Topic 🤖 some - every
+/* 
+//Note💎 <---- some ---->
+//as same as arr.include(value) which return TRUE , FALSE : one at least meet the condition
+console.log(values.includes(1300)); // true
+
+//WHAT if we want to add an conditons ? we use some ....
+
+{
+  const val = values.some((v) => v > 1000);
+  console.log(val); //true
+}
+
+//Note💎 <---- every ---->
+// it return TRUE , FALSE : all values should meet the condition
+{
+  const val = values.every((v) => v > -1000); //all are above the -1000
+  console.log(val); //true
+}
+*/
+
+// <_____________ Summary _____________>
+// forEach():   When you need to iterate over an array (e.g., logging, modifying variables outside the array). Does not return a value.
+// filter():    When you need to select elements based on a condition and return a new array with those elements.
+// map():       When you need to transform each element in the array and return a new array of transformed elements.
+// reduce():    When you need to reduce the array to a single value (e.g., sum, product, object) by accumulating results across elements.
+// find():      method loop over the array and return first value that meet the our condition
+// findIndex(): method loop over the array and return first index that meet the our condition
+//some():       method loop over the array and return true, false that (one) value meet the our condition at least
+//every():      method loop over the array and return true, false that (all) values should meet the our condition
