@@ -439,6 +439,113 @@ console.log(values.includes(1300)); // true
 }
 */
 
+//Topic 🤖 flat(deepLevel) - flatMap(func)
+/* 
+// flat(): goes one level deep in flat array by default.
+
+//<--- Before we could do --->
+//EX 📢
+{
+  const arr = [1, 2, [3, 4], 5, [6, 7], 8];
+  let arr1 = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (typeof arr[i] === 'object') {
+      arr1 = [...arr1, ...arr[i]];
+    } else {
+      arr1.push(arr[i]);
+    }
+  }
+  console.log(arr1); //[ 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
+
+//<--- flat() --->
+//EX 📢
+{
+  const arr = [1, 2, [3, 4], 5, [6, 7], 8];
+  const newArr = arr.flat();
+  console.log(newArr); //[ 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
+//EX 📢
+//complex array;
+
+const arr = [1, 2, [3, 4], 5, [6, [7, [8, 10]], 11], 12, 13];
+console.log(arr.flat()); //[ 1, 2, 3, 4, 5, 6, (2) […], 11, 12, 13 ]
+console.log(arr.flat(2)); //[ 1, 2, 3, 4, 5, 6, 7, (2) […], 11, 12, … ]
+console.log(arr.flat(3)); //[ 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13  ]
+
+//EX 📢 in the BankSystem, if we want to know all the money in my bank ?
+//<--- way1 without flat --->
+{
+  const balances = accounts
+    .map((account) => {
+      const a = account.movements
+        .filter((v) => v > 0)
+        .reduce((acc, v) => acc + v, 0);
+      return a;
+    })
+    .reduce((acc, v) => acc + v, 0);
+  console.log(balances);
+}
+//<--- way2 with flat() --->
+{
+  const balances = accounts
+    .map((acc) => acc.movements)
+    .flat()
+    .filter((val) => val > 0)
+    .reduce((acc, val) => acc + val, 0);
+  console.log(balances);
+}
+//<--- way3 flatMap() ---> 
+//notice that flatMap cant use with it more than one level deeper.
+{
+  const balances = accounts
+    .flatMap((acc) => acc.movements)
+    .filter((val) => val > 0)
+    .reduce((acc, val) => acc + val, 0);
+  console.log(balances);
+}
+*/
+
+//Topic 🤖 sort()
+/* 
+//it does change the orginal array
+
+// <------ sort the strings ------->
+const arr = ['ward', 'ahmad', 'zain', 'kenan'];
+console.log(arr.sort()); //[ "ahmad", "kenan", "ward", "zain" ]
+
+// <------ sort the numbers ------->
+//[ -130, -400, -650, 1300, 200, 3000, 450, 70 ]becasue it sort based on stings
+console.log(values.sort());
+
+// ___________________________
+// RULES :
+// values.sort((a,b)=>{});
+//if we  return something < 0  so A => B
+//if we  return something > 0  so B => A
+// ___________________________
+
+//EX 📢 sorting upWard
+values.sort((a, b) => {
+  if (a > b) {
+    return 1;
+  }
+  if (b > a) {
+    return -1;
+  }
+});
+console.log(values); //[ -650, -400, -130, 70, 200, 450, 1300, 3000 ]
+
+//EX 📢 sorting downWord
+values.sort((a, b) => {
+  if (b > a) {
+    return 1;
+  }
+  retrun - 1;
+});
+console.log(values); //[ 3000, 1300, 450, 200, 70, -130, -400, -650 ] 
+*/
+
 // <_____________ Summary _____________>
 // forEach():   When you need to iterate over an array (e.g., logging, modifying variables outside the array). Does not return a value.
 // filter():    When you need to select elements based on a condition and return a new array with those elements.
@@ -446,5 +553,8 @@ console.log(values.includes(1300)); // true
 // reduce():    When you need to reduce the array to a single value (e.g., sum, product, object) by accumulating results across elements.
 // find():      method loop over the array and return first value that meet the our condition
 // findIndex(): method loop over the array and return first index that meet the our condition
-//some():       method loop over the array and return true, false that (one) value meet the our condition at least
-//every():      method loop over the array and return true, false that (all) values should meet the our condition
+// some():      method loop over the array and return true, false that (one) value meet the our condition at least
+// every():     method loop over the array and return true, false that (all) values should meet the our condition
+// flat(num):   goes on array levels deep to flat array, on level deep by default arr.flat();
+// flatMap():   goes on array levels deep to flat array, on level deep by default arr.flat();
+// sort():      sort strings array by default(), on numbers we need a function to return from a to b or reverse

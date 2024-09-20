@@ -181,6 +181,24 @@ btnLogin.addEventListener('click', (e) => {
 });
 
 //______________________________________________
+// <---- Sort Func ---->
+//______________________________________________
+//we want to display the default and the sort on each click
+let toggle = true;
+btnSort.addEventListener('click', (e) => {
+  e.preventDefault();
+  if (toggle) {
+    const sortMovements = currentAccount.movements
+      .slice()
+      .sort((a, b) => a - b);
+    displayMovments(sortMovements);
+  } else {
+    displayMovments(currentAccount.movements);
+  }
+  toggle = !toggle;
+});
+
+//______________________________________________
 // <---- Transfer Money Func ---->
 //______________________________________________
 
