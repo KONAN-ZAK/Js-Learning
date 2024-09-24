@@ -23,7 +23,7 @@ const values = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // sort():      sort strings array by default(), on numbers we need a function to return from a to b or reverse
 /////////////////////////////////////////////////
 
-//Topic 🤖 slice()
+//Topic🤖 slice()
 /* 
 // method : it return new array without effecting on the orgin one !
 // it work in string butttt the strings are array at the end !
@@ -35,7 +35,7 @@ arr.slice(-3);                          //[ "c", "d", "f" ]  start counting frfo
 arr.slice(-1);                          //[ "f" ]
 arr;                                    //[ "a", "b", "c", "d" , "f"] still the orginal one same
 
-//Note💎 a full copy : using spread operator OR slice method
+//💎 a full copy : using spread operator OR slice method
 
 const newArr = [...arr];
 const newArr1 = arr.slice();
@@ -43,7 +43,7 @@ const newArr1 = arr.slice();
 
 // ----> which one to use ? all are same and its up to you..
 */
-//Topic 🤖 splice()
+//Topic🤖 splice()
 /*
 it will give same result as slice but it will effect the orginal one...
 let arr = ['a', 'b', 'c', 'd', 'f'];
@@ -53,7 +53,7 @@ console.log(arr);                            //[ "a", "b", "c" ] the left from t
 console.log(arr.splice(1, 1));               //[ "b" ]
 console.log(arr);                            //[ "a", "c" ] the left from the splice cutting
  */
-//Topic 🤖 reverse()
+//Topic🤖 reverse()
 /* 
 and effect on the orginal one
 let arr = ['a', 'b', 'c', 'd'];
@@ -61,7 +61,7 @@ const arr2 = ['j', 'i', 'h', 'j', 'f'];
 
 console.log(arr2.reverse()); //[ "f", "j", "h", "i", "j" ]
 */
-//Topic 🤖 concat() -----> same as [...arr1, ...arr2];
+//Topic🤖 concat() -----> same as [...arr1, ...arr2];
 /*
 // doesnt effect the orgianl one
 // FirstArr.concat(SecondInOrderArr);
@@ -75,14 +75,14 @@ console.log(arr.concat(arr2)); //[ "a", "b", "c", "d", "j", "i", "h", "j", "f" ]
 console.log([...arr, ...arr2]); //[ "a", "b", "c", "d", "j", "i", "h", "j", "f" ]
 
 */
-//Topic 🤖 join()
+//Topic🤖 join()
 /* 
 let arr = ['a', 'b', 'c', 'd'];
 console.log(arr.join('-')); //a-b-c-d
 */
 //___________________________________________________________________
 
-//Topic 🤖 arr.at(0)  similar to arr[0]   perfect for chaining ?.
+//Topic🤖 arr.at(0)  similar to arr[0]   perfect for chaining ?.
 /*
 const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 console.log(arr[0] + ` similar to ` + arr.at(0));
@@ -100,14 +100,14 @@ console.log(nam.at(0));  //k
 console.log(nam?.at(0));  //k
 
  */
-//Topic 🤖 forEach()
+//Topic🤖 forEach()
 /*
 // forEach(callBack Func) higher-order-func tell it each iter what to do
 // 1 (continue and break doesnt work with it )
 // 2 when every foreach call array , it get 3 arguments parameters in order: value index arrayItSelf
 // 4 Cons: Does not create or return a new array. It's just for iterating.
 
-//Note💎 normal for loop:
+//💎 normal for loop:
 {
   const values = [200, 450, undefined, 3000, -650, -130, 70, 1300];
   for (let i = 0; i < values.length; i++) {
@@ -117,7 +117,7 @@ console.log(nam?.at(0));  //k
   }
 }
 
-//Note💎 for of method
+//💎 for of method
 
 {
 
@@ -128,14 +128,14 @@ console.log(nam?.at(0));  //k
   }
 }
 
-//Note💎 going back to for of loop when we need the index we used .Entires() or .keys()
+//💎 going back to for of loop when we need the index we used .Entires() or .keys()
 {
   const values = [200, 450, -400, 3000, -650, -130, 70, 1300];
   for (const [i, val] of values.entries()) {
   }
 }
 
-//Note💎 forEach:  
+//💎 forEach:  
 // keep the order of parameters value --> index --> arrayItSelf
 {
   const values = [200, 450, -400, 3000, -650, -130, 70, 1300];
@@ -150,7 +150,7 @@ console.log(nam?.at(0));  //k
   });
 }
 
-//Note💎 what if i have an object and i want to loop it
+//💎 what if i have an object and i want to loop it
 
 const obj = { name: 'Kenan', age: 26, friends: 'ahmad' };
 console.log(Object.entries(obj)); //[['name', 'Kenan'], ['age', 26], ['friends', 'ahmad']]
@@ -168,7 +168,7 @@ Object.entries(obj).forEach(function ([key, value]) {
 // forEach(([key, value]) => {  }) destructures each pair and passes the key and value
 // directly into the callback function.
 */
-//Topic 🤖 forEach() Application on map , set
+//Topic🤖 forEach() Application on map , set
 /*
 const map = new Map([
   ['usd', 'America'],
@@ -210,7 +210,7 @@ sett.forEach((value) => {
   console.log(value);
 });
 */
-//Topic 🤖 Document.insertAdjacentHTML(position, text);
+//Topic🤖 Document.insertAdjacentHTML(position, text);
 /*  
 it does take two strings:
 beforebegin, afterbegin, afterend , beforeend
@@ -229,7 +229,7 @@ beforebegin, afterbegin, afterend , beforeend
 // textContent : return only the text
 
 */
-//Topic 🤖 Chalenge #1: (page 23)
+//Topic🤖 Chalenge #1: (page 23)
 /* 
 const JuliaData1 = [9, 16, 6, 8, 3];
 const KateData1 = [10, 5, 6, 1, 4];
@@ -259,7 +259,7 @@ checkDogs(JuliaData1, KateData1);
 
 //_____(((if we want to return new array we use (Map) ..... if we jsut want to modifiy the orginal one use (forEach) one..)))_______
 
-//Topic 🤖 Map , filter , reduce
+//Topic🤖 Map , filter , reduce
 /* 
 //______________________________________________
 // <---- Map ---->
@@ -333,9 +333,9 @@ checkDogs(JuliaData1, KateData1);
 //   console.log(`accumilator: ${accumilator} value: ${value}`);
 //   return accumilator + value;
 // }, 0);
-//Note💎 why 0 becuase i want to start counting from 0 ..
+//💎 why 0 becuase i want to start counting from 0 ..
 
-//Note💎 arrow function version
+//💎 arrow function version
 // const newAr = arr.reduce((accumilator, value) => accumilator + value, 0);
 // console.log(newAr)
 
@@ -351,7 +351,7 @@ checkDogs(JuliaData1, KateData1);
 //   .map((mov) => mov * usdToGbp);
 // console.log(moenyFromUsdToGbp);
 */
-//Topic 🤖 Chalenge #2 on map, reduce, filter
+//Topic🤖 Chalenge #2 on map, reduce, filter
 /* 
 const calcAverageHumanAge = (ages) => {
   // ______________________________________
@@ -404,7 +404,7 @@ console.log(`Human Avg Ages: ${calcAverageHumanAge(ages)}`);
   console.log(`Human Avg Ages: ${calcAverageHumanAge(ages)}`);
 }
 */
-//Topic 🤖 find() - findIndex()
+//Topic🤖 find() - findIndex()
 /* 
 //______________________________________________
 // <---- Find() ---->
@@ -419,9 +419,9 @@ console.log(`Human Avg Ages: ${calcAverageHumanAge(ages)}`);
 //______________________________________________
 //find method loop over the array and return first index that meet the our condition.
 */
-//Topic 🤖 some - every
+//Topic🤖 some - every
 /* 
-//Note💎 <---- some ---->
+//💎 <---- some ---->
 //as same as arr.include(value) which return TRUE , FALSE : one at least meet the condition
 console.log(values.includes(1300)); // true
 
@@ -432,14 +432,14 @@ console.log(values.includes(1300)); // true
   console.log(val); //true
 }
 
-//Note💎 <---- every ---->
+//💎 <---- every ---->
 // it return TRUE , FALSE : all values should meet the condition
 {
   const val = values.every((v) => v > -1000); //all are above the -1000
   console.log(val); //true
 }
 */
-//Topic 🤖 sort()
+//Topic🤖 sort()
 /* 
 //it does change the orginal array
 
@@ -458,7 +458,7 @@ console.log(values.sort());
 //if we  return something > 0  so B => A
 // ___________________________
 
-//EX 📢 sorting upWard
+//EX  sorting upWard
 values.sort((a, b) => {
   if (a > b) {
     return 1;
@@ -469,7 +469,7 @@ values.sort((a, b) => {
 });
 console.log(values); //[ -650, -400, -130, 70, 200, 450, 1300, 3000 ]
 
-//EX 📢 sorting downWord
+//EX  sorting downWord
 values.sort((a, b) => {
   if (b > a) {
     return 1;
@@ -478,7 +478,7 @@ values.sort((a, b) => {
 });
 console.log(values); //[ 3000, 1300, 450, 200, 70, -130, -400, -650 ] 
 */
-//Topic 🤖 flat(deepLevel) - flatMap(func)
+//Topic🤖 flat(deepLevel) - flatMap(func)
 function hideComments() {
   /*
 // flat(): goes one level deep in flat array by default.
@@ -547,7 +547,7 @@ console.log(balances2);
 }
 //_______________________________________________________________________
 //_____________________________practice__________________________________
-//EX 📢 1) how much in total money in the bank?the deposits did the users done?
+//EX  1) how much in total money in the bank?the deposits did the users done?
 /* 
   //   const res = accounts
   //   .map((acc) => acc.movements)
@@ -555,14 +555,14 @@ console.log(balances2);
   //   .filter((val) => val > 0 );
   // console.log(res);
 */
-//EX 📢 2) how many deposit did the users done in the bank aat least 1000?
+//EX  2) how many deposit did the users done in the bank aat least 1000?
 /* 
   // const res = accounts
   //   .flatMap((acc) => acc.movements)
   //   .filter((val) => val > 0 && val >= 1000).length;
   // console.log(res);
 */
-//EX 📢 3) create on-each account an object; has 2 properities: deposite , withdrawls?
+//EX  3) create on-each account an object; has 2 properities: deposite , withdrawls?
 /* 
   accounts.forEach((acc) => {
     acc.details = {
@@ -576,7 +576,7 @@ console.log(balances2);
   });
   console.log(accounts);
 */
-//Topic 🤖 Chalenge #3
+//Topic🤖 Chalenge #3
 /*
 
 const dogs = [
@@ -585,13 +585,13 @@ const dogs = [
   { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
   { weight: 32, curFood: 340, owners: ['Michael'] },
 ];
-//Note💎<______1______>
+//💎<______1______>
 
 dogs.forEach((dog) => {
   dog['recommendedFood'] = dog.weight ** 0.75 * 28;
 });
 
-//Note💎<______2______>
+//💎<______2______>
 // current > (recommended * 0.90) && current < (recommended * 1.10)
 // weight ** 0.75 * 28
 // 2. Find Sarah's dog and log to the console whether it's eating too much or too
@@ -621,7 +621,7 @@ dogs.forEach((dog) => {
 //   console.log(`the Dog is eating Well!`);
 // }
 
-//Note💎<______3______>
+//💎<______3______>
 //<___3.1___>
 // const ownersEatTooMuch = dogs
 //   .filter((dog) => dog.curFood >= dog.recommendedFood * 1.1)
@@ -636,7 +636,7 @@ dogs.forEach((dog) => {
 
 // console.log(ownersEatTooLittle);
 
-//Note💎<______4______>
+//💎<______4______>
 // Log a string to the console for each array created in 3., like this:
 
 //"Matilda and  Alice and Bob's dogs eat too much!"
@@ -658,7 +658,7 @@ const ownersEatTooLittle = dogs
 
 console.log(`${ownersEatTooLittle}'s Eat too Little`);
 
-//Note💎<______5______>
+//💎<______5______>
 
 // Log to the console whether there is any dog eating exactly the amount of food
 // that is recommended (just true or false)
@@ -666,7 +666,7 @@ console.log(`${ownersEatTooLittle}'s Eat too Little`);
 const res = dogs.some((dog) => dog.curFood === dog.recommendedFood);
 console.log(res);
 
-//Note💎<______6______>
+//💎<______6______>
 
 // Log to the console whether there is any dog eating an okay amount of food (just true or false)
 
@@ -677,7 +677,7 @@ const res1 = dogs.some(
 );
 console.log(res1);
 
-//Note💎<______7______>
+//💎<______7______>
 
 // Create an array containing the dogs that are eating an okay amount of food (try to reuse the condition used in 6.)
 
@@ -688,7 +688,7 @@ const res2 = dogs.filter(
 );
 console.log(...res2);
 
-//Note💎<______8______>
+//💎<______8______>
 // Create a shallow copy of the 'dogs' array and sort it by recommended food
 // portion in an ascending order (keep in mind that the portions are inside the
 // array's objects )

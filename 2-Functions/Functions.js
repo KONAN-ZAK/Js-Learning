@@ -19,9 +19,9 @@ console.log(calc(1998));
 // there are (null and undefine) in js ONLY!!!!!
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//Topic 🤖 default Parameters:
+//Topic🤖 default Parameters:
 
-//Note💎 notice here we add the parameters and by default if not assigned any value it will be undefined
+//💎 notice here we add the parameters and by default if not assigned any value it will be undefined
 /**
 const totBooking = [];
 const creatFightBook = function (flightNo, passangerNo, price) {
@@ -35,7 +35,7 @@ const creatFightBook = function (flightNo, passangerNo, price) {
 // becuse i send one argument, it will assigned to first parameter flightNo
 console.log(creatFightBook('Ar235'));
  */
-//Note💎before ES6 we were using || to avoid the undefine..
+//💎before ES6 we were using || to avoid the undefine..
 /** 
 const totBooking = [];
 const creatFightBook = function (flightNo, passangerNo, price) {
@@ -51,7 +51,7 @@ const creatFightBook = function (flightNo, passangerNo, price) {
 };
 console.log(creatFightBook('Ar235'));//Object { flightNo: "Ar235", passangerNo: 1, price: 1 }
 */
-//Note💎 in ES6 we can assign in paramters the default values
+//💎 in ES6 we can assign in paramters the default values
 /** 
 const totBooking = [];
 const creatFightBook = function (flightNo = 'UnKnown',passangerNo = 'UnKonwn',price = 0) {
@@ -65,7 +65,7 @@ const creatFightBook = function (flightNo = 'UnKnown',passangerNo = 'UnKonwn',pr
 console.log(creatFightBook('Ar235')); //Object { flightNo: "Ar235", passangerNo: "UnKonwn", price: 0 }
 console.log(creatFightBook('Ar235',58 , "223$")); //Object { flightNo: "Ar235", passangerNo: 58, price: "223$" }
 */
-//Note💎 the parameters can hold expression , can use the previous declared parameters in order:
+//💎 the parameters can hold expression , can use the previous declared parameters in order:
 /** 
 const totBooking = [];
 const creatFightBook = function (flightNo = 'UnKnown',passangerNo = 'UnKonwn',price = passangerNo * 2) {
@@ -78,7 +78,7 @@ const creatFightBook = function (flightNo = 'UnKnown',passangerNo = 'UnKonwn',pr
 };
 console.log(creatFightBook('Ar235', 50)); //{ flightNo: "Ar235", passangerNo: 50, price: 100 }
 */
-//Note💎 if i want to call the function and jump one parameters
+//💎 if i want to call the function and jump one parameters
 /** 
 const totBooking = [];
 const creatFightBook = function (
@@ -97,7 +97,7 @@ const creatFightBook = function (
 console.log(creatFightBook('Ar235', undefined, 50)); //{ flightNo: "Ar235", passangerNo: "UnKonwn", price: 50 }
 */
 
-//Topic 🤖 passing the argument as an value or object..
+//Topic🤖 passing the argument as an value or object..
 //passing an object to function as Ref.
 //passing a value to function as a value.
 //Final NOTE: there is no passing by ref in JS all pass by value, BUT exeption for Object
@@ -130,10 +130,10 @@ console.log(flight); //1//'AR145'
 console.log(details);//2//{ passportNo: "N01450045", name: "Mr Kenan" }
 */
 
-//Topic 🤖 Higher order function JS use callback all the time
+//Topic🤖 Higher order function JS use callback all the time
 // helpful especially if we want to hide some function we will talk about it in OOP
 /*
-//Note💎
+//💎
 //func1: lower level of obstruction func
 const oneWord = function (str) {
   return str.replaceAll(' ', '').toLowerCase();
@@ -155,7 +155,7 @@ const transformer = function (str, fn) {
 transformer('Kenan Alzakout', upperFirstWord);
 transformer('Kenan Alzakout', oneWord);
 
-//Note💎
+//💎
 // that when we call the function here ('Kenan Alzakout', upperFirstWord)
 // it is as same as
 const high5 = function () {
@@ -166,7 +166,7 @@ document.addEventListener('click', high5); //notice it is without ()
 ['ward', 'kenan', 'ahmad'].forEach(high5);
 */
 
-//Topic 🤖 Function returning Function (good in arrow functions)
+//Topic🤖 Function returning Function (good in arrow functions)
 /* 
 // really useful if we wanna use functional Programming
 
@@ -179,15 +179,15 @@ const greeterHey = greet('Hey'); // store the return value in variable
 greeterHey('Kenan');
 greeterHey('Ahmad');
 
-//Note💎 using arrow fucntion: same as the above but more confusing i think 
+//💎 using arrow fucntion: same as the above but more confusing i think 
 const greets = greetings => names => console.log(`${greetings} ${names}`);
 greets('Hey')('Ken');
 greets('Hey')('Vicky');
 */
 
-//Topic 🤖 using This keyword in functions
+//Topic🤖 using This keyword in functions
 /*
-//Note💎 what have we learnt before :
+//💎 what have we learnt before :
 
 const AirCanada = {
   airline: 'AirCanada',
@@ -203,7 +203,7 @@ const AirCanada = {
 };
 AirCanada.bookTicket('kenan', 278);
 
-//Note💎lets build a new airline system  but i donot want to repeat the book function..
+//💎lets build a new airline system  but i donot want to repeat the book function..
 
 // if we did the follow :
 // const book = AirCanada.bookTicket;
@@ -213,7 +213,7 @@ AirCanada.bookTicket('kenan', 278);
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-//Note💎 1) method function.call(whatThisShouldPointTo , arg1, arg2, ...)
+//💎 1) method function.call(whatThisShouldPointTo , arg1, arg2, ...)
 //usage: It allows you to specify what this should point to when the function is executed.
 //it does call the function directly !!!!
 const AirSwiss = {
@@ -223,18 +223,18 @@ const AirSwiss = {
 };
 AirCanada.bookTicket.call(AirSwiss, 'ahmad', 211);
 
-//Note💎 2) apply method: function.apply(whatThisShouldPointTo , arg1, arg2, ...)
+//💎 2) apply method: function.apply(whatThisShouldPointTo , arg1, arg2, ...)
 // not used anymore in modren ES6
 // the diffrances that apply takes array of data..!!
 
 const flightData = ['zahit', 455];
 AirCanada.bookTicket.apply(AirSwiss, flightData);
 
-//Note💎 what we are using in modren ES6
+//💎 what we are using in modren ES6
 const flightData1 = ['Zaza', 455];
 AirCanada.bookTicket.call(AirSwiss, ...flightData1);
 
-//Note💎 bind method: it doesnt immedietly call the function instead it will return new function
+//💎 bind method: it doesnt immedietly call the function instead it will return new function
 //where this keyword bind......
 
 // we can define all function for bind and use them later on...
@@ -246,7 +246,7 @@ swissBook1('zain', 222);
 swissBook2(878);  
 */
 
-//Topic 🤖 bind the function with event Listeners
+//Topic🤖 bind the function with event Listeners
 /* 
 
 // let say we need to add another porperity
@@ -276,7 +276,7 @@ AirCanada.buyPlane = function () {  //add function that this poin to AirCanada
 document.querySelector('.buy').addEventListener('click', AirCanada.buyPlane.bind(AirCanada));
 */
 
-//Topic 🤖 partical application: we can pre set parameter
+//Topic🤖 partical application: we can pre set parameter
 /* 
 
 const addTax = (rate, value) => value + value * rate;
@@ -289,7 +289,7 @@ const addTaxSy = addTax.bind(null, 0.23);
 // same as addTaxSy = value => value + value*0.23 ;
 console.log(addTaxSy(100)); //123
 
-//Note💎 change it to return function:
+//💎 change it to return function:
 
 const addTaxSy1 = function (rate) {
   return function (value) {
@@ -304,7 +304,7 @@ const test2 = addTaxSy2(0.23)(100);
 console.log(test2);
 */
 
-//Topic 🤖 exercise :
+//Topic🤖 exercise :
 /*
 const poll = {
   question: 'What is your favourite programming language?',
@@ -341,20 +341,20 @@ poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
 poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
 */
 
-//Topic 🤖 IIFE Imediately invoke function expressions
+//Topic🤖 IIFE Imediately invoke function expressions
 /*
 // when we need a function to execute once right after the run
 // we will use it sync and wait later on !!
 
 // notice there is no name for the function
 // to do it : wrap the function by () and at the end we call it by ()
-//Note💎 in normal function
+//💎 in normal function
 (function () {
   console.log('this will run once !!');
   const isPrivate = 10;
 })();
 
-//Note💎 in arrow function: no func name , wrap it by ()and call it by ()
+//💎 in arrow function: no func name , wrap it by ()and call it by ()
 (() => console.log('this will ALSO run once !!'))();
 
 
@@ -362,7 +362,7 @@ poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
 //so now cl(isPrivate)  is not accessable by other function even in global scope..
 */
 
-//Topic 🤖 Clousers: is a properity of functions created automatically as backbag hold the vatiables even when the fucntion is poped from stack
+//Topic🤖 Clousers: is a properity of functions created automatically as backbag hold the vatiables even when the fucntion is poped from stack
 // we dont create it, it happened automatically in certain situation, what is the situations? follow the examples...
 /* 
 //EX 📢
@@ -471,7 +471,7 @@ boardPassengerss(180, 3);
 
 */
 
-//Topic 🤖 #Chalenge :
+//Topic🤖 #Chalenge :
 /* 
 1. Take the IIFE below and at the end of the function, attach an event listener that 
 changes the color of the selected h1 element ('header') to blue, each time 
