@@ -9,6 +9,18 @@ const currencies = new Map([
 const values = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+// <_____________ Summary _____________>
+// forEach():   When you need to iterate over an array (e.g., logging, modifying variables outside the array). Does not return a value.
+// filter():    When you need to select elements based on a condition and return a new array[] with those elements.
+// map():       When you need to transform each element in the array and return a new array[] of transformed elements.
+// reduce():    When you need to reduce the array to a single value (e.g., sum, product, object) by accumulating results across elements.
+// find():      method loop over the array and return first value that meet the our condition
+// findIndex(): method loop over the array and return first index that meet the our condition
+// some():      method loop over the array and return true, false that (one) value meet the our condition at least
+// every():     method loop over the array and return true, false that (all) values should meet the our condition
+// flat(num):   goes on array levels deep to flat array, on level deep by default arr.flat();
+// flatMap():   goes on array levels deep to flat array, on level deep by default arr.flat();
+// sort():      sort strings array by default(), on numbers we need a function to return from a to b or reverse
 /////////////////////////////////////////////////
 
 //Topic 🤖 slice()
@@ -95,10 +107,9 @@ console.log(nam?.at(0));  //k
 
 //Topic 🤖 forEach()
 /*
-// forEach(callBack Func) higher order func tell it each iter what to do
+// forEach(callBack Func) higher-order-func tell it each iter what to do
 // 1 (continue and break doesnt work with it )
-// 2 when every foreach call array , it get 3 arguments avaialable in order: value index arrayItSelf
-// 3 Pros: Clear and simple for looping over elements.
+// 2 when every foreach call array , it get 3 arguments parameters in order: value index arrayItSelf
 // 4 Cons: Does not create or return a new array. It's just for iterating.
 
 //Note💎 normal for loop:
@@ -114,6 +125,7 @@ console.log(nam?.at(0));  //k
 //Note💎 for of method
 
 {
+
   const values = [200, 450, -400, 3000, -650, -130, 70, 1300];
   for (let i of values) {
     i < 0 && console.log(`account withdrew ${Math.abs(i)}`);
@@ -348,7 +360,7 @@ checkDogs(JuliaData1, KateData1);
 // console.log(moenyFromUsdToGbp);
 */
 
-//EX 📢 Chalenge #2 on map , reduce , filter method
+//Topic 🤖 Chalenge #2 on map , reduce , filter method
 /* 
 const calcAverageHumanAge = (ages) => {
   // ______________________________________
@@ -439,73 +451,6 @@ console.log(values.includes(1300)); // true
 }
 */
 
-//Topic 🤖 flat(deepLevel) - flatMap(func)
-/* 
-// flat(): goes one level deep in flat array by default.
-
-//<--- Before we could do --->
-//EX 📢
-{
-  const arr = [1, 2, [3, 4], 5, [6, 7], 8];
-  let arr1 = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (typeof arr[i] === 'object') {
-      arr1 = [...arr1, ...arr[i]];
-    } else {
-      arr1.push(arr[i]);
-    }
-  }
-  console.log(arr1); //[ 1, 2, 3, 4, 5, 6, 7, 8 ]
-}
-
-//<--- flat() --->
-//EX 📢
-{
-  const arr = [1, 2, [3, 4], 5, [6, 7], 8];
-  const newArr = arr.flat();
-  console.log(newArr); //[ 1, 2, 3, 4, 5, 6, 7, 8 ]
-}
-//EX 📢
-//complex array;
-
-const arr = [1, 2, [3, 4], 5, [6, [7, [8, 10]], 11], 12, 13];
-console.log(arr.flat()); //[ 1, 2, 3, 4, 5, 6, (2) […], 11, 12, 13 ]
-console.log(arr.flat(2)); //[ 1, 2, 3, 4, 5, 6, 7, (2) […], 11, 12, … ]
-console.log(arr.flat(3)); //[ 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13  ]
-
-//EX 📢 in the BankSystem, if we want to know all the money in my bank ?
-//<--- way1 without flat --->
-{
-  const balances = accounts
-    .map((account) => {
-      const a = account.movements
-        .filter((v) => v > 0)
-        .reduce((acc, v) => acc + v, 0);
-      return a;
-    })
-    .reduce((acc, v) => acc + v, 0);
-  console.log(balances);
-}
-//<--- way2 with flat() --->
-{
-  const balances = accounts
-    .map((acc) => acc.movements)
-    .flat()
-    .filter((val) => val > 0)
-    .reduce((acc, val) => acc + val, 0);
-  console.log(balances);
-}
-//<--- way3 flatMap() ---> 
-//notice that flatMap cant use with it more than one level deeper.
-{
-  const balances = accounts
-    .flatMap((acc) => acc.movements)
-    .filter((val) => val > 0)
-    .reduce((acc, val) => acc + val, 0);
-  console.log(balances);
-}
-*/
-
 //Topic 🤖 sort()
 /* 
 //it does change the orginal array
@@ -546,15 +491,225 @@ values.sort((a, b) => {
 console.log(values); //[ 3000, 1300, 450, 200, 70, -130, -400, -650 ] 
 */
 
-// <_____________ Summary _____________>
-// forEach():   When you need to iterate over an array (e.g., logging, modifying variables outside the array). Does not return a value.
-// filter():    When you need to select elements based on a condition and return a new array with those elements.
-// map():       When you need to transform each element in the array and return a new array of transformed elements.
-// reduce():    When you need to reduce the array to a single value (e.g., sum, product, object) by accumulating results across elements.
-// find():      method loop over the array and return first value that meet the our condition
-// findIndex(): method loop over the array and return first index that meet the our condition
-// some():      method loop over the array and return true, false that (one) value meet the our condition at least
-// every():     method loop over the array and return true, false that (all) values should meet the our condition
-// flat(num):   goes on array levels deep to flat array, on level deep by default arr.flat();
-// flatMap():   goes on array levels deep to flat array, on level deep by default arr.flat();
-// sort():      sort strings array by default(), on numbers we need a function to return from a to b or reverse
+//Topic 🤖 flat(deepLevel) - flatMap(func)
+function hideComments() {
+  /*
+// flat(): goes one level deep in flat array by default.
+
+//<--- Before we could do --->
+ 
+//EX 📢
+
+const arr = [1, 2, [3, 4], 5, [6, 7], 8];
+let arr1 = [];
+for (let i = 0; i < arr.length; i++) {
+  if (typeof arr[i] === 'object') {
+    arr1 = [...arr1, ...arr[i]];
+  } else {
+    arr1.push(arr[i]);
+  }
+}
+console.log(arr1); //[ 1, 2, 3, 4, 5, 6, 7, 8 ]
+
+// <--- flat() --->
+//EX 📢
+
+const arr2 = [1, 2, [3, 4], 5, [6, 7], 8];
+const newArr = arr2.flat();
+console.log(newArr); //[ 1, 2, 3, 4, 5, 6, 7, 8 ]
+
+//EX 📢
+// complex array;
+
+const arr3 = [1, 2, [3, 4], 5, [6, [7, [8, 10]], 11], 12, 13];
+console.log(arr3.flat()); //[ 1, 2, 3, 4, 5, 6, (2) […], 11, 12, 13 ]
+console.log(arr3.flat(2)); //[ 1, 2, 3, 4, 5, 6, 7, (2) […], 11, 12, … ]
+console.log(arr3.flat(3)); //[ 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13  ]
+
+//EX 📢 in the BankSystem, if we want to know all the money in my bank ?
+// <--- way1 without flat --->
+
+const balances = accounts
+  .map((account) => {
+    const a = account.movements
+      .filter((v) => v > 0)
+      .reduce((acc, v) => acc + v, 0);
+    return a;
+  })
+  .reduce((acc, v) => acc + v, 0);
+console.log(balances);
+
+// <--- way2 with flat() --->
+
+const balances1 = accounts
+  .map((acc) => acc.movements)
+  .flat()
+  .filter((val) => val > 0)
+  .reduce((acc, val) => acc + val, 0);
+console.log(balances1);
+
+// <--- way3 flatMap() --->
+// notice that flatMap cant use with it more than one level deeper.
+
+const balances2 = accounts
+  .flatMap((acc) => acc.movements)
+  .filter((val) => val > 0)
+  .reduce((acc, val) => acc + val, 0);
+console.log(balances2);
+*/
+}
+
+//_______________ practice_______________________________________________
+//EX 📢 1) how much in total money in the bank?the deposits did the users done?
+{
+  //   const res = accounts
+  //   .map((acc) => acc.movements)
+  //   .flat()
+  //   .filter((val) => val > 0 );
+  // console.log(res);
+}
+//EX 📢 2) how many deposit did the users done in the bank aat least 1000?
+{
+  // const res = accounts
+  //   .flatMap((acc) => acc.movements)
+  //   .filter((val) => val > 0 && val >= 1000).length;
+  // console.log(res);
+}
+//EX 📢 3) create on-each account an object; has 2 properities: deposite , withdrawls?
+{
+  // accounts.forEach((acc) => {
+  //   acc.details = {
+  //     desposit: acc.movements
+  //       .filter((val) => val > 0)
+  //       .reduce((acc, val) => acc + val, 0),
+  //     withdrawl: acc.movements
+  //       .filter((val) => val < 0)
+  //       .reduce((acc, val) => acc + val, 0),
+  //   };
+  // });
+  // console.log(accounts);
+}
+
+//Topic 🤖 Chalenge #3
+/*
+
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
+  { weight: 8, curFood: 200, owners: ['Matilda'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
+  { weight: 32, curFood: 340, owners: ['Michael'] },
+];
+//Note💎<______1______>
+
+dogs.forEach((dog) => {
+  dog['recommendedFood'] = dog.weight ** 0.75 * 28;
+});
+
+//Note💎<______2______>
+// current > (recommended * 0.90) && current < (recommended * 1.10)
+// weight ** 0.75 * 28
+// 2. Find Sarah's dog and log to the console whether it's eating too much or too
+// little. Hint: Some dogs have multiple owners, so you first need to find Sarah in
+// the owners array/
+
+//////////////////easy way in for loops//////////////////
+// for (let x = 0; x < dogs.length; x++) {
+//   for (let y = 0; y < dogs.at(x).owners.length; y++) {
+//     if (dogs[x].owners[y] === 'Sarah') {
+//       console.log('yes');
+//       console.log(dogs[x]);
+//     }
+//   }
+// }
+// ______
+
+// const sarahDog = dogs.find((dog) =>
+//   dog.owners.some((name) => name === 'Sarah')
+// );
+
+// if (sarahDog.curFood <= sarahDog.recommendedFood * 0.9) {
+//   console.log(`the Dog is eating Less!`);
+// } else if (sarahDog.curFood >= sarahDog.recommendedFood * 1.1) {
+//   console.log(`the Dog is eating Much!`);
+// } else {
+//   console.log(`the Dog is eating Well!`);
+// }
+
+//Note💎<______3______>
+//<___3.1___>
+// const ownersEatTooMuch = dogs
+//   .filter((dog) => dog.curFood >= dog.recommendedFood * 1.1)
+//   .map((val) => val.owners);
+
+// console.log(ownersEatTooMuch);
+
+//<___3.2___>
+// const ownersEatTooLittle = dogs
+//   .filter((dog) => dog.curFood <= dog.recommendedFood * 0.9)
+//   .map((val) => val.owners);
+
+// console.log(ownersEatTooLittle);
+
+//Note💎<______4______>
+// Log a string to the console for each array created in 3., like this:
+
+//"Matilda and  Alice and Bob's dogs eat too much!"
+//"Sarah and John and Michael's dogs eat too little!"
+
+const ownersEatTooMuch = dogs
+  .filter((dog) => dog.curFood >= dog.recommendedFood * 1.1)
+  .map((val) => val.owners)
+  .flat()
+  .join(' and ');
+
+console.log(`${ownersEatTooMuch}'s Eat too Much`);
+//________________________________________________________
+const ownersEatTooLittle = dogs
+  .filter((dog) => dog.curFood <= dog.recommendedFood * 0.9)
+  .map((val) => val.owners)
+  .flat()
+  .join(' and ');
+
+console.log(`${ownersEatTooLittle}'s Eat too Little`);
+
+//Note💎<______5______>
+
+// Log to the console whether there is any dog eating exactly the amount of food
+// that is recommended (just true or false)
+
+const res = dogs.some((dog) => dog.curFood === dog.recommendedFood);
+console.log(res);
+
+//Note💎<______6______>
+
+// Log to the console whether there is any dog eating an okay amount of food (just true or false)
+
+const res1 = dogs.some(
+  (dog) =>
+    dog.curFood > dog.recommendedFood * 0.9 &&
+    dog.curFood < dog.recommendedFood * 1.1
+);
+console.log(res1);
+
+//Note💎<______7______>
+
+// Create an array containing the dogs that are eating an okay amount of food (try to reuse the condition used in 6.)
+
+const res2 = dogs.filter(
+  (dog) =>
+    dog.curFood > dog.recommendedFood * 0.9 &&
+    dog.curFood < dog.recommendedFood * 1.1
+);
+console.log(...res2);
+
+//Note💎<______8______>
+// Create a shallow copy of the 'dogs' array and sort it by recommended food
+// portion in an ascending order (keep in mind that the portions are inside the
+// array's objects )
+
+const CopyDogSorted = dogs
+  .slice()
+  .map((dog) => dog.recommendedFood)
+  .sort((a, b) => a > b);
+console.log(CopyDogSorted);
+*/

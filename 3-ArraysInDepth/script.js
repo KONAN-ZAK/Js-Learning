@@ -61,10 +61,10 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 //_____________________________________________________________________________
 
+
 //______________________________________________
 // <----- Display The Movment ---->
 //______________________________________________
-
 const displayMovments = function (movements) {
   containerMovements.innerHTML = '';
   movements.forEach((mov, i) => {
@@ -85,7 +85,6 @@ const displayMovments = function (movements) {
 //______________________________________________
 // <---- Calcualte The Balance Value ---->
 //______________________________________________
-
 const balanceCalc = (account) => {
   account.balance = account.movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${account.balance} £`;
@@ -94,7 +93,6 @@ const balanceCalc = (account) => {
 //______________________________________________
 // <---- Calcualte the (In-Out-Intrest) Summary ---->
 //______________________________________________
-
 const calcSummary = (account) => {
   // <---- Calcualte the In Summary ---->
   const InSummary = account.movements
@@ -120,9 +118,26 @@ const calcSummary = (account) => {
 };
 
 //______________________________________________
+// <---- update the accountDetails info(deposites,withdrawls) ---->
+//not nessaccary! we can go to each account add the properity better.
+//______________________________________________
+{
+  // const accountDetails = (currentAccount) => {
+  //   currentAccount.accountDetails = {
+  //     deposite: currentAccount.movements
+  //       .filter((val) => val > 0)
+  //       .reduce((acc, val) => acc + val, 0),
+  //     withdrawl: currentAccount.movements
+  //       .filter((val) => val < 0)
+  //       .reduce((acc, val) => acc + val, 0),
+  //   };
+  // console.log(currentAccount);
+  // };
+}
+
+//______________________________________________
 // <---- Dispaly UI Func ---->
 //______________________________________________
-
 const UpdateUI = (currentAccount) => {
   //<---- Display account Movments --->
   displayMovments(currentAccount.movements);
@@ -130,12 +145,13 @@ const UpdateUI = (currentAccount) => {
   balanceCalc(currentAccount);
   //<---- Display account Summary ---->
   calcSummary(currentAccount);
+  //<---- update the accountDetails info(deposites,withdrawls) --->
+  // accountDetails(currentAccount);
 };
 
 //______________________________________________
 // <---- Create the UserName Shortcut ---->
 //______________________________________________
-
 const createUserName = function (accs) {
   accs.forEach(function (acc) {
     acc.userName = acc.owner
@@ -201,7 +217,6 @@ btnSort.addEventListener('click', (e) => {
 //______________________________________________
 // <---- Transfer Money Func ---->
 //______________________________________________
-
 btnTransfer.addEventListener('click', (e) => {
   e.preventDefault();
   const transferedAmount = Number(inputTransferAmount.value);
@@ -232,7 +247,6 @@ btnTransfer.addEventListener('click', (e) => {
 //______________________________________________
 // <---- Loan Func ---->
 //______________________________________________
-
 btnLoan.addEventListener('click', (e) => {
   e.preventDefault();
 
@@ -259,7 +273,6 @@ btnLoan.addEventListener('click', (e) => {
 //______________________________________________
 // <---- Delete User Func ---->
 //______________________________________________
-
 btnClose.addEventListener('click', (e) => {
   e.preventDefault();
   if (

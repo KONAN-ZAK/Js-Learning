@@ -33,8 +33,7 @@ const restaurant = {
   },
 };
 
-///////////////////////////////////////////////////////
-// main idea we look what we want to de-struct and start with it {} or []...
+//____________________________________________________________________
 
 //Topic 🤖  Destructuring Arrays – Extracting elements into variables
 /* 
@@ -1055,9 +1054,11 @@ gameEvents.delete(64);
 // console.log(`[${res}] ${key}: ${value}`);
 // }
 */
-/////////////////////////////////////////////////////////////////////
-//Topic 🤖 Strings part1....
+// _______________________________________________________________________
+
+//Topic 🤖 Strings part1.... indexOf()  lastIndexOf()  slice()
 /*
+// __________________________________________
 //Note💎  string works as array
 const airline = 'fly syria';
 const plane = 'B37B33B';
@@ -1066,46 +1067,41 @@ const plane = 'B37B33B';
 console.log(plane[0]); //B
 console.log('Directly from console'[2]); //r
 
-
-//Note💎 read the length:
+//read the length:
 console.log(plane.length); //7
 console.log('Directly from console'.length); //21
-
-
-//Note💎 Methods:
-//indexOf() ::: the first index
+//___________________________________________
+//Note💎 indexOf() - lastIndexOf()
+// ::: the first index
 console.log(plane.indexOf('B')); //index is: 0
 
-
-//lastIndexOf() ::: the last index 
+//lastIndexOf()
+// ::: the last index
 console.log(plane.lastIndexOf('B')); //index is: 6
 
+//index of starting the word: (cse sensitive)
+console.log(airline.lastIndexOf('syria')); //index start at: 4
 
-//3: index of starting the word: (cse sensitive)
-console.log( airline.lastIndexOf('syria')); //index start at: 4
-
-
-//4: slice method: slice(where sliceing will start included , End od sliceing not included  )
+//___________________________________________
+//Note💎 slice()
+//slice(where sliceing will start included , End od sliceing not included  )
 const newStr1 = airline.slice(4);
 console.log(newStr1); //syria
 const newStr2 = airline.slice(4, 6);
 console.log(newStr2); //sy
 
-
-//5: what if i want the first word?
+//what if i want the first word?
 console.log(airline.slice(0, airline.indexOf(' '))); // Output: 'fly' , notice we added space in (' ')
 
-
-//6: what if i want the last word?
+//what if i want the last word?
 console.log(airline.slice(airline.lastIndexOf(' '))); // Output: ' syria'  , notice that it gave an space begining og the word... to fix it:
-console.log(airline.slice(airline.lastIndexOf(' ')+1)); // Output: 'syria'
+console.log(airline.slice(airline.lastIndexOf(' ') + 1)); // Output: 'syria'
 
+//using the Negative values in slice?
+console.log(airline.slice(-1)); //a start counting from the END..
+console.log(airline.slice(0, -1)); //fly syri ....start from index 0 and end in counting from back index -1
 
-//7: using the Negative values in slice:
-console.log( airline.slice(-1)); //a start counting from the END..
-console.log( airline.slice(0 ,-1));  //fly syri ....start from index 0 and end in counting from back index -1
-
-
+//___________________________________________
 //EX 📢1: practice:
 //write a function to check if the Seat in the Middle of the plane:
 const middleSeat = function (seat) {
@@ -1121,111 +1117,118 @@ middleSeat('28C');
 middleSeat('05E');
 */
 
-//Topic 🤖 Strings part2....
+//Topic 🤖 Strings part2.... toUpperCase() toowerCase()  trim()  replace(,)  replaceAll(,)  include()  startstWith()  endWith()
 /*
-// const plane = 'Turkish Air Line';
-//Note💎 methods
-
+//______________________________________________
+//Note💎 toUpperCase() - toowerCase()
+const plane = 'Turkish Air Line';
 //8:  tranform to toUpperCase() or toowerCase():
-// console.log(plane.toUpperCase()); //TURKISH AIR LINE
-// console.log(plane.toLowerCase()); //turkish air line
+console.log(plane.toUpperCase()); //TURKISH AIR LINE
+console.log(plane.toLowerCase()); //turkish air line
 
 //EX 📢  fix the customer name. lets say user Entered: kEnAn we should shange it to Kenan
-// const Name = 'kEnAn';
-// const toLower = Name.toLowerCase(); //kenan
-// const correct = toLower[0].toUpperCase() + toLower.slice(1);
-// console.log(correct);
+const Name = 'kEnAn';
+const toLower = Name.toLowerCase(); //kenan
+const correct = toLower[0].toUpperCase() + toLower.slice(1);
+console.log(correct);
 
-//Note💎 trim(): to remove the white space from both sides..
+//______________________________________________
+//Note💎 trim()
+// to remove the white space from both sides..
+
 //EX 📢  comperaing Emails:
 
-// const registeredEmail = 'kenanalzakout@gmail.com';
-// const logedInEmail = '  KenanAlzakout@gmail.com \n';
-// const correction = logedInEmail => {
-//   const fixed = logedInEmail.toLowerCase().trim();
-//   if (fixed === registeredEmail) {
-//     return `correct , ${fixed}`;
-//   }
-// };
-// console.log(correction(logedInEmail));
+const registeredEmail = 'kenanalzakout@gmail.com';
+const logedInEmail = '  KenanAlzakout@gmail.com \n';
+const correction = logedInEmail => {
+  const fixed = logedInEmail.toLowerCase().trim();
+  if (fixed === registeredEmail) {
+    return `correct , ${fixed}`;
+  }
+};
+console.log(correction(logedInEmail));
 
-
+//______________________________________________
 //Note💎 replace(,) replaceAll(,) :
 
-// const annocument = 'all pasenger hed to door 21, door 21 immedietly!';
-// console.log(annocument.replace('door', 'Gate')); //all pasenger hed to Gate 21, door 21 immedietly!
-// console.log(annocument.replaceAll('door', 'Gate')); //all pasenger hed to Gate 21, Gate 21 immedietly!
-
+const annocument = 'all pasenger hed to door 21, door 21 immedietly!';
+console.log(annocument.replace('door', 'Gate')); //all pasenger hed to Gate 21, door 21 immedietly!
+console.log(annocument.replaceAll('door', 'Gate')); //all pasenger hed to Gate 21, Gate 21 immedietly!
 
 //EX 📢 change the currance payment:
-// const paymentDollar = '20,5 $';
-// const paymentTL =paymentDollar.replace("$","TL").replace(",",".");
-// console.log(paymentTL); //20.5 TL
 
+const paymentDollar = '20,5 $';
+const paymentTL = paymentDollar.replace('$', 'TL').replace(',', '.');
+console.log(paymentTL); //20.5 TL
 
-//Note💎: 3 methods can return Booleans:include() startstWith()   endWith()
+//______________________________________________
+//Note💎: include() startstWith()  endWith()
+//<----(3 methods return Booleans)--------->
+
+// _______________________
 //1: include
-// console.log(plane.includes('Turkish')); //true
-// console.log(plane.includes('Tur')); //true , it doesnt matter the whole word
-
+console.log(plane.includes('Turkish')); //true
+console.log(plane.includes('Tur')); //true , it doesnt matter the whole word
+// _______________________
 //2: startsWith()
-// console.log(plane.startsWith('Air')); //false
-// console.log(plane.startsWith('Tur')); //true
-
+console.log(plane.startsWith('Air')); //false
+console.log(plane.startsWith('Tur')); //true
+// _______________________
 //3: endWith()
-// console.log(plane.endsWith('Line')); //false
-// console.log(plane.endsWith('ne')); //true
- 
+console.log(plane.endsWith('Line')); //false
+console.log(plane.endsWith('ne')); //true
 
 //EX 📢
-// const checkBaggage = function (items) {
-//   //FIRST convert everything to small latters
-//   items = items.toLowerCase();
-//   console.log(items);
-//   if (items.includes('gun') || items.includes('knief')) {
-//     console.log('you are not allowed abroad !');
-//   } else {
-//     console.log('welcome abroad ');
-//   }
-// };
+const checkBaggage = function (items) {
+  //FIRST convert everything to small latters
+  items = items.toLowerCase();
+  console.log(items);
+  if (items.includes('gun') || items.includes('knief')) {
+    console.log('you are not allowed abroad !');
+  } else {
+    console.log('welcome abroad ');
+  }
+};
 
-// checkBaggage('I have Gun , Water , 2 baggages');
-// checkBaggage('we Have Camera and socks');
-// checkBaggage('knief and belts');
+checkBaggage('I have Gun , Water , 2 baggages');
+checkBaggage('we Have Camera and socks');
+checkBaggage('knief and belts');
 */
 
-//Topic 🤖 Strings part3....
+//Topic 🤖 Strings part3.... split()  join()  padStart( , )  padEnd( , )  repeat()
 /* 
+//____________________________________________
+//Note💎 split()
+//gives array....inside the (" ") we can use space or ---- or anything to split it
 
-//Note💎 split() :gives array....inside the (" ") we can use space or ---- or anything to split it
+console.log('welcome+new+life+here'.split('+')); //Array(4) [ "welcome", "new", "life", "here" ]
+console.log('kenan alazkout'.split(' ')); //Array [ "kenan", "alzakout" ]
 
-// console.log('welcome+new+life+here'.split('+')); //Array(4) [ "welcome", "new", "life", "here" ]
-// console.log('kenan alazkout'.split(' ')); //Array [ "kenan", "alzakout" ]
+// _______so we can use it in this way:____________
+const [name, lastName] = 'kenan alzakout'.split(' ');
 
-///////so we can use it in this way:////////////////
-// const [name, lastName] = 'kenan alzakout'.split(' ');
+//____________________________________________
+//Note💎 join()
+//from array to string again...inside the(" ") we can use space OR ---- or anything to join it
 
-
-//Note💎 join() :from array to string again...inside the(" ") we can use space OR ---- or anything to join it
-// const newName = ['Mr.', name, lastName.toUpperCase()].join(' ');
-// console.log(newName); //Mr. kenan ALZKOUT
-
+const newName = ['Mr.', name, lastName.toUpperCase()].join(' ');
+console.log(newName); //Mr. kenan ALZKOUT
 
 //EX 📢WAY1: now how to capitilize the first letter of ech word:
-// const capitil = function (string) {
-//   const modify = string.split(" ");
-//   console.log(modify);   // [ "my", "name", "is", "kenan", "alzakout" ]
-//   const newString =[];
-// for (const X of modify) {
-//   newString.push(X[0].toUpperCase()+X.slice(1));
-// }
-// console.log(newString.join(" "));  //My Name Is Kenan Alzakout
-// };
-// capitil('my name is kenan alzakout');
 
+const capitil1 = function (string) {
+  const modify = string.split(' ');
+  console.log(modify); // [ "my", "name", "is", "kenan", "alzakout" ]
+  const newString = [];
+  for (const X of modify) {
+    newString.push(X[0].toUpperCase() + X.slice(1));
+  }
+  console.log(newString.join(' ')); //My Name Is Kenan Alzakout
+};
+capitil1('my name is kenan alzakout');
 
 //EX 📢WAY2:
-const capitil = function (string) {
+const capitil2 = function (string) {
   const strArr = string.split(' '); //Array(5) [ "my", "name", "is", "kenan", "alzakout" ]
   let newstr = '';
   for (const word of strArr) {
@@ -1233,31 +1236,33 @@ const capitil = function (string) {
   }
   console.log(newstr);
 };
-capitil('my name is kenan alzakout');
+capitil2('my name is kenan alzakout');
 
-
-
+//____________________________________________
 //Note💎 padding : padStart( , )  padEnd( , )
 
-//padStart(TotalNumberOfCharecter,theCharecter) .......padEnd(TotalNumberOfCharecter , theCharecter)
+//padStart(TotalNumberOfCharecter,theCharecter)
+//padEnd(TotalNumberOfCharecter , theCharecter)
 
-// const message = 'Hello Love';
-// console.log(message.padStart(20, '+')); //++++++++++Hello Love  = total 20 char
-// console.log('kenanSex'.padStart(20, '+').padEnd(30, '!')); //++++++++++++kenanSex!!!!!!!!!!
+const message = 'Hello Love';
+console.log(message.padStart(20, '+')); //++++++++++Hello Love  = total 20 char
+console.log('kenanSex'.padStart(20, '+').padEnd(30, '!')); //++++++++++++kenanSex!!!!!!!!!!
 
 //EX 📢 if you add your creditCard info to a website you can see last 4 Digit and rest are *****
 //how to do it ??
 
-// const maskCreditNumnber = function (number) {
-//   const str = String(number);
-//   const lastFourLetters = str.slice(-4);
-//   return lastFourLetters.padStart(str.length, '*');
-// };
+const maskCreditNumnber = function (number) {
+  const str = String(number);
+  const lastFourLetters = str.slice(-4);
+  return lastFourLetters.padStart(str.length, '*');
+};
 
-// console.log(maskCreditNumnber(4887881245568100)); //************8100
-// console.log(maskCreditNumnber(48878812)); //****8812
+console.log(maskCreditNumnber(4887881245568100)); //************8100
+console.log(maskCreditNumnber(48878812)); //****8812
 
-//Note💎 repeat ();
+//____________________________________________
+//Note💎 repeat()
+
 // const message2 ="all departures delayed!";
 // console.log(`${message2.repeat(5) }`);
 */
