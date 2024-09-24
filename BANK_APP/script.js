@@ -6,7 +6,7 @@
 // DATA:
 const account1 = {
   owner: 'Jonas Schmedtmann',
-  movements: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
+  movements: [200, 455.23, -306.5, 200, -642.21, -133.9, 79.97, 1300],
   interestRate: 1.2, // %
   pin: 1111,
   movementsDates: [
@@ -99,7 +99,7 @@ const displayMovments = function (movements) {
       i + 1
     } ${type}</div>
           <div class="movements__date">3 days ago</div>
-          <div class="movements__value">${mov}€</div>
+          <div class="movements__value">${mov.toFixed(2)}€</div>
         </div>`;
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
@@ -110,7 +110,7 @@ const displayMovments = function (movements) {
 //______________________________________________
 const balanceCalc = (account) => {
   account.balance = account.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${account.balance} £`;
+  labelBalance.textContent = `${account.balance.toFixed(2)} £`;
 };
 
 //______________________________________________
@@ -121,14 +121,14 @@ const calcSummary = (account) => {
   const InSummary = account.movements
     .filter((mov) => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${InSummary} £`;
+  labelSumIn.textContent = `${InSummary.toFixed(2)} £`;
   // console.log(`IN summary: ${InSummary}`);
 
   // <---- Calcualte the Out Summary ---->
   const OutSummary = account.movements
     .filter((mov) => mov < 0)
     .reduce((acc, mov) => mov + acc, 0);
-  labelSumOut.textContent = `${Math.abs(OutSummary)} £`;
+  labelSumOut.textContent = `${Math.abs(OutSummary.toFixed(2))} £`;
   // console.log(`OUT summary: ${OutSummary}`);
 
   // <---- Calcualte the Interset Summary ---->
@@ -137,7 +137,7 @@ const calcSummary = (account) => {
     .map((mov) => (mov * account.interestRate) / 100)
     .reduce((acc, mov) => acc + mov, 0);
   // console.log(`Interst: ${InterstSummary} from ${account.interestRate}`);
-  labelSumInterest.textContent = `${InterstSummary} £`;
+  labelSumInterest.textContent = `${InterstSummary.toFixed(2)} £`;
 };
 
 //______________________________________________
@@ -242,7 +242,7 @@ btnSort.addEventListener('click', (e) => {
 //______________________________________________
 btnTransfer.addEventListener('click', (e) => {
   e.preventDefault();
-  const transferedAmount = Number(inputTransferAmount.value);
+  const transferedAmount = Number(Number(inputTransferAmount.value).toFixed(2));
   const transferedToAccount = accounts.find((acc) => {
     return acc.userName === inputTransferTo.value;
   });
@@ -274,7 +274,7 @@ btnLoan.addEventListener('click', (e) => {
   e.preventDefault();
 
   //<----Get Loan from User---->
-  const loan = Number(inputLoanAmount.value);
+  const loan = Math.floor(Number(inputLoanAmount.value));
 
   //<----condition loan >= 10% of the movments---->
   const loanCondition = currentAccount.movements

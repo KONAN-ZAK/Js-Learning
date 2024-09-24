@@ -35,6 +35,7 @@ console.log(Number.isFinite("hello")); //false
 
 //______________________________________________
 //Topic🤖: sqrt, max, min, trunc, random, floor, ceil, round
+/* 
 //______________________________________________
 //1 Math.sqrt():
 console.log(Math.sqrt(100)); //10
@@ -54,11 +55,10 @@ console.log(Math.trunc(19910135.2)); //19910135
 //______________________________________________
 //4 Math.random()
 console.log(Math.floor(Math.random() * 10) + 1);
-console.log(Math.trunc(Math.random() * 10) + 1);
 
 //EX  get Numbers between 10 and 20 ?
 const intNumber = (max, min) =>
-  Math.trunc(Math.random() * (max - min) + 1) + min;
+  Math.floor(Math.random() * (max - min) + 1) + min;
 console.log(intNumber(10, 20));
 
 //______________________________________________
@@ -76,13 +76,35 @@ console.log(Math.ceil(2.6)); //3
 //______________________________________________
 //7 Math.floor
 //rounding down always.
-console.log(Math.round(2.3)); //2
-console.log(Math.round(2.6)); //2
+console.log(Math.floor(2.3)); //2
+console.log(Math.floor(2.6)); //2
 
 //______________________________________________
+// 8 Value.toFixed(number) Rounding Decimals
+//   (it return a string) 
+console.log((2.789).toFixed(2)); //2.79 string
+console.log(+(2.789).toFixed(2)); //2.79 number
+console.log(+(2.789).toFixed(1)); //2.8 number
+console.log(+(2.789).toFixed(3)); //2.789 number
+*/
 //______________________________________________
+//Topic🤖: BigInt()
+/** 
+console.log(Number.MAX_SAFE_INTEGER); //9007199254740991
+console.log(45454548774478n); //45454548774478n
+console.log(BigInt(45454548774478)); //45454548774478n
+
+//💎 Operation:
+
+//1 we can do operation between bigInt Number and normal one
+const a = 145454554544n;
+const b = 23;
+
+// console.log(a*b); //ERROR : can't convert BigInt to number
+console.log(a * BigInt(b)); //3345454754512n
+*/
 //______________________________________________
-//______________________________________________
+//Topic🤖
 //______________________________________________
 //______________________________________________
 //______________________________________________
