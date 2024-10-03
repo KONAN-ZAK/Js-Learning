@@ -33,84 +33,96 @@ const restaurant = {
   },
 };
 
-//____________________________________________________________________
-
 //Topic🤖  Destructuring Arrays – Extracting elements into variables
+
 /* 
 // Destructuring arrays allows you to unpack values into separate variables.
-
+// ______________________________________________
  //💎 1: Extract the first and second values from an array
 // Example:
+
 let [first, second] = restaurant.categories;
 console.log(first, second); // Logs the first and second categories
 
-
+// ______________________________________________
 //💎 2: Skip values in the array by leaving commas
 // If you want to skip the second value and get the first and third:
 // Example:
+
 let [first, , third] = restaurant.categories;
 console.log(first, third); // Logs the first and third categories
 
-
+// ______________________________________________
 //💎 3: Swap two values using destructuring
 // Traditional swapping would use a temporary variable; destructuring is cleaner:
 // Example:
+
 [first, second] = [second, first];
 console.log(first, second); // Swapped values
 
-
+// ______________________________________________
 //💎 4: Destructuring nested arrays
 // When you have arrays within arrays, you can destructure them as well:
 // Example:
+
 const [one, [two, three]] = restaurant.mainMenu;
 console.log(one, two, three); // Logs values from nested arrays
 
-
+// ______________________________________________
 //💎 5: Initialize variables with default values
 // This avoids undefined values if the array has fewer elements than expected:
 // Example:
+
 const [a = 1, b = 1, c = 1] = [10, 11];
 console.log(a, b, c); // Logs 10, 11, 1 (default value for c)
 
-
+// ______________________________________________
 //💎 6: Returning multiple values from a function and destructuring
 // You can return an array from a function and destructure it upon receiving:
 // Example:
+
 const [starter, mainMeal] = restaurant.order(0, 1);
 console.log(`The starter: ${starter}, and main meal: ${mainMeal}`);
 
-
+// ______________________________________________
 //💎 7: Destructuring nested objects within arrays
 // If you have an array of objects, you can destructure the objects and their properties:
 // Example:
+
 const [{ name: name1, age: age1 }, { name: name2, age: age2 }] = restaurant.testNested;
 console.log(name1, age1, name2, age2); // Logs properties from the nested objects
 */
 
 //Topic🤖 Destructuring Objects – Extracting properties into variables
+
 /* 
 // Destructuring objects allows you to unpack values into separate variables.
 
+// ______________________________________________
 //💎 0: Basic object destructuring
 // Extract properties directly by using the object keys:
+
 const { name, categories, openingHours: { thu, fri, sat } } = restaurant;
 console.log(name, categories, thu, fri, sat); // Logs values from the object
 
-
+// ______________________________________________
 //💎 1: Destructuring with a single property
+
 // Example:
 const { Name } = restaurant;
 console.log(Name); // Logs the value of 'Name' property
 
-
+// ______________________________________________
 //💎 2: Renaming properties during destructuring
 // You can assign new variable names to properties:
+
 const { name: restaurantName, categories: food, openingHours: hour } = restaurant;
 console.log(restaurantName, food, hour); // Logs with new variable names
 
-
+// ______________________________________________
 //💎 3: Setting default values
 // Set default values if a property is not present in the object:
+
 const {
   name: restaurantName = [],
   categories: food = [],
@@ -119,43 +131,49 @@ const {
 } = restaurant;
 console.log(restaurantName, food, hour, menufood); // Logs values with defaults
 
-
+// ______________________________________________
 //💎 4: Destructuring nested objects
 // Access nested properties directly:
+
 const { fri } = restaurant.openingHours;
 console.log(fri); // Shows the 'fri' object
 
-
+// ______________________________________________
 //💎 5: Renaming nested properties
 // Assign new variable names to nested properties:
+
 const { fri: { open: o, close: c } } = restaurant.openingHours;
 console.log(o, c); // Logs open and close times with new variable names
 
-
+// ______________________________________________
 //💎 6: Destructuring arrays within objects
 // Access array elements nested within an object:
+
 const { name, categories: [one, two] } = restaurant;
 console.log(name, one, two); // Logs values from the array within the object
 
-
+// ______________________________________________
 //💎 7: Destructuring arrays of objects
 // When you have an array of objects, you can destructure both arrays and objects:
+
 const [{ name: firstName, age: firstAge }, { name: secondName, age: secondAge }] = restaurant.testNested;
 console.log(firstName, firstAge, secondName, secondAge); // Logs values from nested array of objects
 
-
+// ______________________________________________
 //💎 8: Passing an object to a function and destructuring it within the function
 // You can destructure an object directly within a function's parameters:
+
 function printRestaurantInfo({ name, categories }) {
   console.log(name, categories);
 }
 printRestaurantInfo(restaurant); // Calls function with destructured object
+
 */
 
 //Topic🤖 Spread Operator in Arrays and (not completely works for Objects)
 /* 
 // The spread operator (...) is used to unpack elements from arrays, sets, maps, and strings into individual elements, or to copy and merge arrays. It does not work directly with objects, but you can use a similar syntax to create shallow copies of objects.
-
+// ______________________________________________
 //💎 1: Copying an Array with Spread Operator
 // Instead of manually copying elements, use the spread operator to create a new array:
 const arr = [7, 8, 9];
@@ -231,7 +249,7 @@ console.table(restaurant); // Original 'restaurant' remains unchanged
 /* 
 // The rest operator (...) is used to gather the remaining elements or properties into an array or object.
 // It is the opposite of the spread operator, which is used to unpack elements from arrays or objects.
-
+// ______________________________________________
 //💎 1: Rest Operator in Array Destructuring
 // Gather remaining elements into an array:
 const nestedArr = [1, [2, 3, 4], 5];
@@ -241,21 +259,21 @@ console.log(b); // 2
 console.log(rest); // [3, 4]
 console.log(d); // 5
 
-
+// ______________________________________________
 //EX 📢 with a flat array:
 const [a, b, ...others] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 console.log(a); // 1
 console.log(b); // 2
 console.log(others); // [3, 4, 5, 6, 7, 8, 9]
 
-
+// ______________________________________________
 //EX 📢 with combined arrays:
 const [pizza, , risotto, ...otherFood] = [...restaurant.mainMenu, ...restaurant.starterMenu];
 console.log(pizza); // Pizza
 console.log(risotto); // Risotto
 console.log(otherFood); // ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"]
 
-
+// ______________________________________________
 //💎 2: Rest Operator in Object Destructuring
 // Gather remaining properties into a new object:
 const { Name, ...rest } = restaurant;
@@ -265,7 +283,7 @@ console.log(rest); // Object containing remaining properties
 const { sat, ...weekdays } = restaurant.openingHours;
 console.log(weekdays); // Object with all weekdays except Saturday
 
-
+// ______________________________________________
 //💎 3: Rest Operator in Functions
 // Gather function arguments into an array:
 const add = function (...numbers) {
@@ -275,7 +293,7 @@ add(2, 3); // [2, 3]
 add(5, 3, 7, 2); // [5, 3, 7, 2]
 add(8, 2, 5, 3, 2, 1, 4); // [8, 2, 5, 3, 2, 1, 4]
 
-
+// ______________________________________________
 //EX 📢 of summing the arguments:
 const add = function (...numbers) {
   let sum = 0;
@@ -290,7 +308,7 @@ add(8, 2, 5, 3, 2, 1, 4); // 25
 const x = [23, 5, 7];
 add(...x); // Equivalent to add(23, 5, 7)
 
-
+// ______________________________________________
 //EX 📢 with function calls:
 restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
 restaurant.orderPizza('mushrooms');
@@ -300,7 +318,7 @@ restaurant.orderPizza('mushrooms');
 /*
 // Short-circuiting refers to the behavior of logical operators where the second operand is not evaluated if the result can be determined from the first operand alone.
 
-
+// ______________________________________________
 //💎 || (OR) Operator
 // (Returns the first truthy value or the last value if none are truthy.)
 
@@ -321,7 +339,7 @@ console.log(guests1); // Output depends on restaurant.numGuests
 const guests2 = restaurant.numGuests || 10;
 console.log(guests2); // Output depends on restaurant.numGuests
 
-
+// ______________________________________________
 //💎 && (AND) Operator
 // (Returns the first falsy value or the last value if none are falsy.)
 
@@ -336,6 +354,7 @@ if (restaurant.orderPizza) {
 // Shorter way using AND operator:
 restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
 
+// ______________________________________________
 // Usage Summary:
 // - OR operator (||) is useful for setting default values or returning the first truthy value.
 // - AND operator (&&) is useful for executing code conditionally based on the truthiness of the first operand:
@@ -404,7 +423,7 @@ restaurant.numtest;         // numtest is undefined
 // Output for restaurant object:
 console.table(restaurant);
 
-// Using the Nullish Coalescing Operator to handle null or undefined values:
+// Using the Nullish Operator to handle null or undefined values:
 const guests2 = restaurant.numGuests ?? 10;
 console.log(guests2); // Output: "" (Empty string is not null or undefined, so it's used)
 
@@ -546,6 +565,7 @@ console.log([...menu.entries()]); // Converts the entries iterator into an array
 
 //   //💎 1 we can just add it names and the jsvascript will automatically add it
 //   openingHours,
+
 //   //note2 removing the function and : keyword
 //   order(index1, index2) {
 //     return [this.starterMenu[index1], this.mainMenu[index2]];
@@ -589,83 +609,107 @@ console.log(openingHours);
 */
 
 //Topic🤖 Optional Chaining (?.)
-/* 
+/*
 //if a certain optional doesnt exist return undefine immediately
 //💎 let explain before start by saying if we want to know if the resturant open on monday ? we'll do the following:
-// if (restaurant.openingHours.mon) {   // if the mon exisit then show on screen the hour
-//   console.log(restaurant.openingHours.mon.open);
-// }
 
+if (restaurant.openingHours.mon) {
+  // if the mon exisit then show on screen the hour
+  console.log(restaurant.openingHours.mon.open);
+}
+
+//_______________________________________________
 //💎 we could do it in diffrent way as well:
-//  restaurant.openingHours.thu && console.log(restaurant.openingHours.thu.open);
 
+restaurant.openingHours.thu && console.log(restaurant.openingHours.thu.open);
+
+//______________________________________________
 //💎 now by using the chaining  ?.
-// console.log(restaurant.openingHours.mon?.open); //if the mon properitie exist then continue to .open or send undefined
+console.log(restaurant.openingHours.mon?.open); //if the mon properitie exist then continue to .open or send undefined
 
 //EX 📢
-// const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-// for(const day of days){
-//  const open = restaurant.openingHours[day]?.open || "closed" ;
-//  console.log(`the resturant on ${day}  ${open}`);
-// }
-
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+for (const day of days) {
+  const open = restaurant.openingHours[day]?.open || 'closed';
+  console.log(`the resturant on ${day}  ${open}`);
+}
+//______________________________________________
 //💎 works with methods:
 
-//EX 📢 console.log(restaurant.order?.(0,0) ?? "exist");
-//EX 📢 console.log(restaurant.OrderLOL?.(0,0) ?? "not exist");
+console.log(restaurant.order?.(0, 0) ?? 'exist');
+console.log(restaurant.OrderLOL?.(0, 0) ?? 'not exist');
 
+//______________________________________________
 //💎 works with array:
-//EX 📢
-// const kenan = [{ name: 'kenan', age: 26, work: false }];
-// const check1 = kenan[0]?.name ?? 'user array empty';
-// console.log(check1);
-*/
+
+const kenan = [{ name: 'kenan', age: 26, work: false }];
+const check1 = kenan[0]?.name ?? 'user array empty';
+console.log(check1);
+
+ */
 
 //Topic🤖 how to iterable in infromal way in object using for : Object.keys() Object.values() Object.entires()
-/*
+/* 
+//_________________________________________________________________
 //💎 to get property Names ONLY of object: we use Object.keys() ;
-// console.log(Object.keys(restaurant));
-//Array(8)["Name","location","categories","starterMenu","mainMenu","openingHours","order","orderPizza" ]
-//it gives back an array❗
+
+console.log(Object.keys(restaurant));
+
+// Array(8)[('Name',  'location', 'categories', 'starterMenu','mainMenu','openingHours','order','orderPizza')];
+// it gives back New array❗
 
 //EX 📢
-// const prop = Object.keys(restaurant.openingHours);
-// let openStr = `we have ${prop.length} : `;
-// for (const i of prop) {
-//   openStr += `${i}, `;
-// }
-// console.log(openStr);
 
+const prop = Object.keys(restaurant.openingHours);
+let openStr = `we have ${prop.length} : `;
+for (const i of prop) {
+  openStr += `${i}, `;
+}
+console.log(openStr);
+
+//_________________________________________________________________
 //💎 to get property values ONLY of object we use Object.values() ;
-//it gives back an array❗
+//it gives back New array❗
 //EX 📢
-// const values = Object.values(restaurant.openingHours);
-// console.log(values);
+
+{
+  const values = Object.values(restaurant.openingHours);
+  console.log(values);
+}
 // outPut: [ {…}, {…}, {…} ]
 // 0: Object { open: 7, close: 22 }
 // 1: Object { open: 8, close: 23 }
 // 2: Object { open: 9, close: 24 }
 // LOOP it :
-// const values = Object.values(restaurant.openingHours);
-// // Loop through the values array
-// for (let i = 0; i < values.length; i++) {
-//   const { open, close } = values[i]; // Destructure open and close
-//   console.log(`Day ${i + 1}: Open at ${open}, Close at ${close}`);
-
+{
+  const values = Object.values(restaurant.openingHours);
+  // Loop through the values array
+  for (let i = 0; i < values.length; i++) {
+    const { open, close } = values[i]; // Destructure open and close
+    console.log(`Day ${i + 1}: Open at ${open}, Close at ${close}`);
+  }
+}
+//_________________________________________________________________
 //💎 to get property Names AND values of object, we use :Object.entires();
-//it gives back an array❗
+//it gives back New array❗
 //normally there is no iteration in object we deal with it in this way: it change every {} to []
+
 //EX 📢
-// const entire = Object.entries(restaurant);
-// console.log(entire);
+
+{
+  const entire = Object.entries(restaurant);
+  console.log(entire);
+}
 // output for each property will give me the following: array and has it info nd name.
 // [[ "Name", "Classico Italiano" ],
 //  [ 'location', 'Via Angelo Tavanti 23, Firenze, Italy' ], etc...
-//] 
+//]
 
 //EX 📢
-// const entire = Object.entries(restaurant.openingHours);
-// console.log(entire);
+
+const entire = Object.entries(restaurant.openingHours);
+console.log(entire);
+
 // Output:
 // Array(3) [ (2) […], (2) […], (2) […] ]
 // 0: Array [ "thu", {…} ]
@@ -673,21 +717,21 @@ console.log(openingHours);
 // 2: Array [ "sat", {…} ]
 
 //it will give array remember
-// for (const x of entire) {
-//   console.log(x);
-// }
+for (const x of entire) {
+  console.log(x);
+}
 // //let de-Construct it 😊
-// for (const [name, { open, close }] of entire) {
-//   console.log(`day:${name} openAt:${open} closeAt:${close}`);
-// }
+for (const [name, { open, close }] of entire) {
+  console.log(`day:${name} openAt:${open} closeAt:${close}`);
+}
 
 //EX 📢
-// const  a  = [restaurant.mainMenu[0] , ...restaurant.mainMenu[1] ];
-// console.log(a);
-// for (const [name,value] of Object.entries(a)) {
-//   console.log(name, value);
-// }
-   */
+const a = [restaurant.mainMenu[0], ...restaurant.mainMenu[1]];
+console.log(a);
+for (const [name, value] of Object.entries(a)) {
+  console.log(name, value);
+}
+*/
 
 //Topic🤖 Challenge#2:
 /*
@@ -766,61 +810,72 @@ console.log(openingHours);
 //💎 Sets are collections of unique values, which means no duplicate values are allowed.
 //    Sets also have no index, so you cannot access elements like arrays (e.g., set[0] doesn’t work).
 
-
+//____________________________________________
 //💎 1: Initialize a Set with unique values
-const orderSet = new Set(['pasta', 'pizza', 'rezota', 'makrone', 'pizza', 'pizza']);
-console.log(orderSet); 
+const orderSet = new Set([
+  'pasta',
+  'pizza',
+  'rezota',
+  'makrone',
+  'pizza',
+  'pizza',
+]);
+console.log(orderSet);
 // Output: Set(4) [ "pasta", "pizza", "rezota", "makrone" ]
 
-
+//____________________________________________
 //💎 2: Create a Set from a string
-console.log(new Set('kenan')); 
+console.log(new Set('kenan'));
 // Output: Set(4) [ "k", "e", "n", "a" ]
 
-
+//____________________________________________
 //💎 3: Use Set.size to get the number of unique values (similar to array.length)
-console.log(orderSet.size); 
+console.log(orderSet.size);
 // Output: 4
 
-
+//____________________________________________
 //💎 4: Use Set.has(value) to check if a value exists (similar to array.includes())
-console.log(orderSet.has('pizza')); 
+console.log(orderSet.has('pizza'));
 // Output: true
 
+//____________________________________________
 //💎 5: Use Set.add(value) to add new values (similar to array.push())
-console.log(orderSet.add('garlic')); 
+console.log(orderSet.add('garlic'));
 // Output: Set(5) [ "pasta", "pizza", "rezota", "makrone", "garlic" ]
 
-
+//____________________________________________
 //💎 6: Use Set.delete(value) to remove a value (like array.pop() but you specify the value)
 console.log(orderSet.delete('rezota'));
-console.log(orderSet); 
+console.log(orderSet);
 // Output: Set(4) [ "pasta", "pizza", "makrone", "garlic" ]
 
-
+//____________________________________________
 //💎 7: Use Set.clear() to delete all values from the Set
 orderSet.clear();
-console.log(orderSet); 
+console.log(orderSet);
 // Output: Set []
 
-//💎 8: Set has no index, so orderSet[0] doesn't work, but you can still iterate through it:
+//____________________________________________
+//❗Set has no index, so orderSet[0] doesn't work, but you can still iterate through it❗
 for (const x of orderSet) {
   console.log(x);
 }
 
-
+//____________________________________________
 //💎 9: Example: Dealing with duplicate entries in an array
 // Let's say we have a restaurant staff list:
 const arr = ['waiter', 'waiter', 'chef', 'manager'];
 // We want to know the unique staff positions, so:
-const staffPosition = new Set(arr); // Refers to the original Set
+const staffPosition = new Set(arr); // Refers to the original Set and modify the orginal one!
 const staffPositionArray = [...new Set(arr)]; // Creates a whole new array with unique values
-console.log(staffPositionArray); 
-// Output: [ "waiter", "chef", "manager" ]
- */
+
+console.log(staffPosition, staffPositionArray);
+// Output: [ "waiter", "chef", "manager" ], [ "waiter", "chef", "manager" ]
+*/
 
 //Topic🤖 Map – Returns New array it has two elements (key, value) (:
-/* 
+/*
+
 //💎 Keys or values can be strings, numbers, or any data type.
 //    Note: In objects, keys are always strings.
 
@@ -831,8 +886,8 @@ const resta = new Map();
 
 //💎 2: Use Map.set() to add key-value pairs:
 // Example:
-// resta.set('name', 'kenan');
-// resta.set('age', 1998);
+resta.set('name', 'kenan');
+resta.set('age', 1998);
 
 //💎 Note: Map.set() returns the entire Map, so you can chain multiple .set() calls.
 // Example:
@@ -840,8 +895,8 @@ console.log(resta.set("sd", 878)); // Map(3) { "name" → "kenan", "age" → 199
 
 
 //💎 You can also store arrays as values:
-// resta.set('love', ['dogs', 'vicky', 'cats']);
-// console.log(resta);
+resta.set('love', ['dogs', 'vicky', 'cats']);
+console.log(resta);
 // OUTPUT:
 // 0: "name" → "kenan"
 // 1: "age" → 1998
@@ -852,7 +907,7 @@ console.log(resta.set("sd", 878)); // Map(3) { "name" → "kenan", "age" → 199
 //💎 You can chain multiple sets in a single call:
 resta
   .set('love', ['dogs', 'vicky', 'cats'])
-  .set('sex', 12)
+  .set('sex', 14)
   .set(1, 2)
   .set(true, "we're open")
   .set(false, "we're closed");
@@ -896,7 +951,6 @@ console.log(resta);       // Outputs Map(0)
 //💎 mapArr.keys()   .......  mapArr.values()
 // console.log(question.keys());
 // console.log(question.values());
-
 */
 
 //Topic🤖 Map with (array or object.entires):
@@ -1070,6 +1124,7 @@ console.log('Directly from console'[2]); //r
 //read the length:
 console.log(plane.length); //7
 console.log('Directly from console'.length); //21
+
 //___________________________________________
 //💎 indexOf() - lastIndexOf()
 // ::: the first index
@@ -1090,13 +1145,16 @@ console.log(newStr1); //syria
 const newStr2 = airline.slice(4, 6);
 console.log(newStr2); //sy
 
+//___________________________
 //what if i want the first word?
 console.log(airline.slice(0, airline.indexOf(' '))); // Output: 'fly' , notice we added space in (' ')
 
+//___________________________
 //what if i want the last word?
 console.log(airline.slice(airline.lastIndexOf(' '))); // Output: ' syria'  , notice that it gave an space begining og the word... to fix it:
 console.log(airline.slice(airline.lastIndexOf(' ') + 1)); // Output: 'syria'
 
+//___________________________
 //using the Negative values in slice?
 console.log(airline.slice(-1)); //a start counting from the END..
 console.log(airline.slice(0, -1)); //fly syri ....start from index 0 and end in counting from back index -1
@@ -1162,11 +1220,11 @@ const paymentTL = paymentDollar.replace('$', 'TL').replace(',', '.');
 console.log(paymentTL); //20.5 TL
 
 //______________________________________________
-//💎: include() startstWith()  endWith()
+//💎: includes() startstWith()  endWith()
 //<----(3 methods return Booleans)--------->
 
 // _______________________
-//1: include
+//1: includes
 console.log(plane.includes('Turkish')); //true
 console.log(plane.includes('Tur')); //true , it doesnt matter the whole word
 // _______________________
@@ -1312,4 +1370,4 @@ for (const flight of flights.split('+_')) {
 }
   */
 
-////////////////////////////END///////////////////////////////////
+//////////////////////////// END ///////////////////////////////////

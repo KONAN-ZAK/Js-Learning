@@ -162,4 +162,3 @@ console.log(future);  // Mon Feb 13 2040 22:00:10
 // floor         : imp!
 // round         : imp!
 // toFixed       : imp!
-

@@ -6,9 +6,21 @@
 // DATA:
 const account1 = {
   owner: 'Jonas Schmedtmann',
-  movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
+  movements: [200, 455.23, -306.5, 200, -642.21, -133.9, 79.97, 1300],
   interestRate: 1.2, // %
   pin: 1111,
+  movementsDates: [
+    '2019-11-18T21:31:17.178Z',
+    '2019-12-23T07:42:02.383Z',
+    '2020-01-28T09:15:04.904Z',
+    '2020-04-01T10:17:24.185Z',
+    '2020-05-08T14:11:59.604Z',
+    '2020-05-27T17:01:17.194Z',
+    '2020-07-11T23:36:17.929Z',
+    '2020-07-12T10:51:36.790Z',
+  ],
+  currency: 'EUR',
+  locale: 'pt-PT', // de-DE
 };
 
 const account2 = {
@@ -16,6 +28,18 @@ const account2 = {
   movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
   interestRate: 1.5,
   pin: 2222,
+  movementsDates: [
+    '2019-11-01T13:15:33.035Z',
+    '2019-11-30T09:48:16.867Z',
+    '2019-12-25T06:04:23.907Z',
+    '2020-01-25T14:18:46.235Z',
+    '2020-02-05T16:33:06.386Z',
+    '2020-04-10T14:43:26.374Z',
+    '2020-06-25T18:49:59.371Z',
+    '2020-07-26T12:01:20.894Z',
+  ],
+  currency: 'USD',
+  locale: 'en-US',
 };
 
 const account3 = {
@@ -61,13 +85,21 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 //_____________________________________________________________________________
 
-
 //______________________________________________
 // <----- Display The Movment ---->
 //______________________________________________
-const displayMovments = function (movements) {
+
+const displayMovments = function (account) {
+  let Movs ; 
+  if (toggle) {
+    const sortMovements = account.movements.slice().sort((a, b) => a - b);
+    Movs = [...sortMovements];
+  }else{
+    Movs = account.movements ;
+  }
+
   containerMovements.innerHTML = '';
-  movements.forEach((mov, i) => {
+  Movs.forEach((mov, i) => {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `
         <div class="movements__row">
@@ -76,7 +108,7 @@ const displayMovments = function (movements) {
       i + 1
     } ${type}</div>
           <div class="movements__date">3 days ago</div>
-          <div class="movements__value">${mov}€</div>
+          <div class="movements__value">${mov.toFixed(2)}€</div>
         </div>`;
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
@@ -87,7 +119,7 @@ const displayMovments = function (movements) {
 //______________________________________________
 const balanceCalc = (account) => {
   account.balance = account.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${account.balance} £`;
+  labelBalance.textContent = `${account.balance.toFixed(2)} £`;
 };
 
 //______________________________________________
@@ -98,14 +130,14 @@ const calcSummary = (account) => {
   const InSummary = account.movements
     .filter((mov) => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${InSummary} £`;
+  labelSumIn.textContent = `${InSummary.toFixed(2)} £`;
   // console.log(`IN summary: ${InSummary}`);
 
   // <---- Calcualte the Out Summary ---->
   const OutSummary = account.movements
     .filter((mov) => mov < 0)
     .reduce((acc, mov) => mov + acc, 0);
-  labelSumOut.textContent = `${Math.abs(OutSummary)} £`;
+  labelSumOut.textContent = `${Math.abs(OutSummary.toFixed(2))} £`;
   // console.log(`OUT summary: ${OutSummary}`);
 
   // <---- Calcualte the Interset Summary ---->
@@ -114,7 +146,7 @@ const calcSummary = (account) => {
     .map((mov) => (mov * account.interestRate) / 100)
     .reduce((acc, mov) => acc + mov, 0);
   // console.log(`Interst: ${InterstSummary} from ${account.interestRate}`);
-  labelSumInterest.textContent = `${InterstSummary} £`;
+  labelSumInterest.textContent = `${InterstSummary.toFixed(2)} £`;
 };
 
 //______________________________________________
@@ -140,7 +172,7 @@ const calcSummary = (account) => {
 //______________________________________________
 const UpdateUI = (currentAccount) => {
   //<---- Display account Movments --->
-  displayMovments(currentAccount.movements);
+  displayMovments(currentAccount);
   //<---- Display account balance ---->
   balanceCalc(currentAccount);
   //<---- Display account Summary ---->
@@ -167,6 +199,14 @@ createUserName(accounts);
 // <---- Login Func ---->
 //______________________________________________
 let currentAccount;
+const timeNow = new Date();
+const yearNow = `${timeNow.getFullYear()}`.padStart(2, 0);
+const monthNow = `${timeNow.getMonth() + 1}`.padStart(2, 0);
+const dayNow = timeNow.getDate();
+const hoursNow = timeNow.getHours();
+const minutesNow = timeNow.getMinutes();
+const secondsNow = timeNow.getSeconds();
+
 btnLogin.addEventListener('click', (e) => {
   // prevent default : usualy when click in button it submit the form therefore it will load the page again
   // to stop it we use this function
@@ -188,6 +228,9 @@ btnLogin.addEventListener('click', (e) => {
     } `;
     containerApp.style.opacity = '100';
 
+    //<---- Update Time --->
+    labelDate.textContent = `${dayNow}/${monthNow}/${yearNow}, ${hoursNow}:${minutesNow}`;
+
     //<---- Update UI --->
     UpdateUI(currentAccount);
 
@@ -200,18 +243,11 @@ btnLogin.addEventListener('click', (e) => {
 // <---- Sort Func ---->
 //______________________________________________
 //we want to display the default and the sort on each click
-let toggle = true;
+let toggle = false;
 btnSort.addEventListener('click', (e) => {
   e.preventDefault();
-  if (toggle) {
-    const sortMovements = currentAccount.movements
-      .slice()
-      .sort((a, b) => a - b);
-    displayMovments(sortMovements);
-  } else {
-    displayMovments(currentAccount.movements);
-  }
   toggle = !toggle;
+  displayMovments(currentAccount);
 });
 
 //______________________________________________
@@ -219,7 +255,7 @@ btnSort.addEventListener('click', (e) => {
 //______________________________________________
 btnTransfer.addEventListener('click', (e) => {
   e.preventDefault();
-  const transferedAmount = Number(inputTransferAmount.value);
+  const transferedAmount = Number(Number(inputTransferAmount.value).toFixed(2));
   const transferedToAccount = accounts.find((acc) => {
     return acc.userName === inputTransferTo.value;
   });
@@ -251,7 +287,7 @@ btnLoan.addEventListener('click', (e) => {
   e.preventDefault();
 
   //<----Get Loan from User---->
-  const loan = Number(inputLoanAmount.value);
+  const loan = Math.floor(Number(inputLoanAmount.value));
 
   //<----condition loan >= 10% of the movments---->
   const loanCondition = currentAccount.movements

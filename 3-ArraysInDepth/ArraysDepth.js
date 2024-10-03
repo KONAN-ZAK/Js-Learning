@@ -11,8 +11,8 @@ const values = [200, 450, -400, 3000, -650, -130, 70, 1300];
 /////////////////////////////////////////////////
 // <_____________ Summary _____________>
 // forEach():   When you need to iterate over an array (e.g., logging, modifying variables outside the array). Does not return a value.
-// filter():    When you need to select elements based on a condition and return a new array[] with those elements.
 // map():       When you need to transform each element in the array and return a new array[] of transformed elements.
+// filter():    When you need to select elements based on a condition and return a new array[] with those elements.
 // reduce():    When you need to reduce the array to a single value (e.g., sum, product, object) by accumulating results across elements.
 // find():      method loop over the array and return first value that meet the our condition
 // findIndex(): method loop over the array and return first index that meet the our condition
@@ -22,6 +22,9 @@ const values = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // flatMap():   goes on array levels deep to flat array, on level deep by default arr.flat();
 // sort():      sort strings array by default(), on numbers we need a function to return from a to b or reverse
 /////////////////////////////////////////////////
+
+// before :   toUpperCase() toowerCase()  trim()  replace(,)  replaceAll(,)  includes()  startstWith()  endWith()
+//            split()  join()  padStart( , )  padEnd( , )  repeat()  slice()
 
 //Topic🤖 slice()
 /* 
@@ -256,7 +259,7 @@ const checkDogs = function (dogsJulia, dogsKate) {
 };
 checkDogs(JuliaData1, KateData1);
 */
-
+//___________________________________________________________________
 //_____(((if we want to return new array we use (Map) ..... if we jsut want to modifiy the orginal one use (forEach) one..)))_______
 
 //Topic🤖 Map , filter , reduce
@@ -351,6 +354,7 @@ checkDogs(JuliaData1, KateData1);
 //   .map((mov) => mov * usdToGbp);
 // console.log(moenyFromUsdToGbp);
 */
+
 //Topic🤖 Chalenge #2 on map, reduce, filter
 /* 
 const calcAverageHumanAge = (ages) => {
@@ -404,6 +408,7 @@ console.log(`Human Avg Ages: ${calcAverageHumanAge(ages)}`);
   console.log(`Human Avg Ages: ${calcAverageHumanAge(ages)}`);
 }
 */
+
 //Topic🤖 find() - findIndex()
 /* 
 //______________________________________________
@@ -419,6 +424,7 @@ console.log(`Human Avg Ages: ${calcAverageHumanAge(ages)}`);
 //______________________________________________
 //find method loop over the array and return first index that meet the our condition.
 */
+
 //Topic🤖 some - every
 /* 
 //💎 <---- some ---->
@@ -439,6 +445,7 @@ console.log(values.includes(1300)); // true
   console.log(val); //true
 }
 */
+
 //Topic🤖 sort()
 /* 
 //it does change the orginal array
@@ -478,6 +485,7 @@ values.sort((a, b) => {
 });
 console.log(values); //[ 3000, 1300, 450, 200, 70, -130, -400, -650 ] 
 */
+
 //Topic🤖 flat(deepLevel) - flatMap(func)
 function hideComments() {
   /*
