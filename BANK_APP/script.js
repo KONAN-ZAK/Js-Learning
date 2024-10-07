@@ -14,10 +14,10 @@ const account1 = {
     '2023-12-23T07:42:02.383Z',
     '2024-01-28T09:15:04.904Z',
     '2024-04-01T10:17:24.185Z',
-    '2024-05-08T14:11:59.604Z',
-    '2024-05-27T17:01:17.194Z',
-    '2024-07-11T23:36:17.929Z',
-    '2024-07-12T10:51:36.790Z',
+    '2024-09-30T14:10:59.604Z',
+    '2024-10-02T14:10:59.604Z',
+    '2024-10-05T14:10:59.604Z',
+    '2024-10-06T10:51:36.790Z',
   ],
   currency: 'EUR',
   locale: 'pt-PT', // de-DE
@@ -112,7 +112,7 @@ const inputClosePin = document.querySelector('.form__input--pin');
 //______________________________________________
 // <---- Create the UserName Shortcut ---->
 //______________________________________________
-const createUserName = function (accs) {
+(function (accs) {
   accs.forEach(function (acc) {
     acc.userName = acc.owner
       .toLowerCase()
@@ -120,13 +120,46 @@ const createUserName = function (accs) {
       .map((value) => value[0])
       .join('');
   });
+})(accounts);
+
+//______________________________________________
+// <---- formate the Money ---->
+//______________________________________________
+const MoneyFormatting = (money, account) => {
+  return new Intl.NumberFormat(account.locale, {
+    style: 'currency',
+    currency: account.currency,
+  }).format(money);
 };
-createUserName(accounts);
 
 //______________________________________________
 // <----- Display The Movment ---->
 //______________________________________________
 
+// <----- calc the date func ---->
+const calcDate = (MovDate, locale) => {
+  const dateNow = new Date();
+  const calcDatePassed = Math.floor(
+    (dateNow - MovDate) / (1000 * 24 * 60 * 60)
+  );
+  // console.log(calcDatePassed);
+
+  if (calcDatePassed === 0) {
+    return `today`;
+  } else if (calcDatePassed === 1) {
+    return `yesterday`;
+  } else if (calcDatePassed <= 7) {
+    return `${calcDatePassed} day ago`;
+  } else {
+    // const yearMov = `${MovDate.getFullYear()}`.padStart(2, 0);
+    // const monthMov = `${MovDate.getMonth() + 1}`.padStart(2, 0);
+    // const dayMov = MovDate.getDate();
+    // return `${yearMov}/${monthMov}/${dayMov}`;
+    return new Intl.DateTimeFormat(locale).format(MovDate);
+  }
+};
+
+// <----- Main Func for Display Mov ---->
 const displayMovments = function (account) {
   containerMovements.innerHTML = '';
 
@@ -142,11 +175,11 @@ const displayMovments = function (account) {
   // <----- loop over the Movments ---->
   Movs.forEach((mov, i) => {
     // <----- Dates for the Movments ---->
-    const timeNow = new Date(account.movementsDates.at(i));
-    const yearNow = `${timeNow.getFullYear()}`.padStart(2, 0);
-    const monthNow = `${timeNow.getMonth() + 1}`.padStart(2, 0);
-    const dayNow = timeNow.getDate();
-    const displayDate = `${yearNow}/${monthNow}/${dayNow}`;
+    const MovDate = new Date(account.movementsDates.at(i));
+    const displayDate = calcDate(MovDate, account.locale);
+
+    // <----- Adding Numbers Formatting ---->
+    const MoenyFormatting = MoneyFormatting(mov, account);
 
     const type = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `
@@ -156,7 +189,7 @@ const displayMovments = function (account) {
       i + 1
     } ${type}</div>
           <div class="movements__date">${displayDate}</div>
-          <div class="movements__value">${mov.toFixed(2)}€</div>
+          <div class="movements__value">${MoenyFormatting}</div>
         </div>`;
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
@@ -167,7 +200,9 @@ const displayMovments = function (account) {
 //______________________________________________
 const balanceCalc = (account) => {
   account.balance = account.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${account.balance.toFixed(2)} £`;
+
+  // <----- formate the Balance ----->
+  labelBalance.textContent = MoneyFormatting(account.balance, account);
 };
 
 //______________________________________________
@@ -178,15 +213,15 @@ const calcSummary = (account) => {
   const InSummary = account.movements
     .filter((mov) => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${InSummary.toFixed(2)} £`;
+  labelSumIn.textContent = MoneyFormatting(InSummary, account);
   // console.log(`IN summary: ${InSummary}`);
 
   // <---- Calcualte the Out Summary ---->
   const OutSummary = account.movements
     .filter((mov) => mov < 0)
     .reduce((acc, mov) => mov + acc, 0);
-  labelSumOut.textContent = `${Math.abs(OutSummary.toFixed(2))} £`;
-  // console.log(`OUT summary: ${OutSummary}`);
+  labelSumOut.textContent = MoneyFormatting(Math.abs(OutSummary), account);
+  console.log(`OUT summary: ${OutSummary}`);
 
   // <---- Calcualte the Interset Summary ---->
   const InterstSummary = account.movements
@@ -194,26 +229,8 @@ const calcSummary = (account) => {
     .map((mov) => (mov * account.interestRate) / 100)
     .reduce((acc, mov) => acc + mov, 0);
   // console.log(`Interst: ${InterstSummary} from ${account.interestRate}`);
-  labelSumInterest.textContent = `${InterstSummary.toFixed(2)} £`;
+  labelSumInterest.textContent = MoneyFormatting(InterstSummary, account);
 };
-
-//______________________________________________
-// <---- update the accountDetails info(deposites,withdrawls) ---->
-//not nessaccary! we can go to each account add the properity better.
-//______________________________________________
-{
-  // const accountDetails = (currentAccount) => {
-  //   currentAccount.accountDetails = {
-  //     deposite: currentAccount.movements
-  //       .filter((val) => val > 0)
-  //       .reduce((acc, val) => acc + val, 0),
-  //     withdrawl: currentAccount.movements
-  //       .filter((val) => val < 0)
-  //       .reduce((acc, val) => acc + val, 0),
-  //   };
-  // console.log(currentAccount);
-  // };
-}
 
 //______________________________________________
 // <---- Dispaly UI Func ---->
@@ -233,13 +250,22 @@ const UpdateUI = (currentAccount) => {
 // <---- Login Func ---->
 //______________________________________________
 let currentAccount;
+// const timeNow = new Date();
+// const yearNow = `${timeNow.getFullYear()}`.padStart(2, 0);
+// const monthNow = `${timeNow.getMonth() + 1}`.padStart(2, 0);
+// const dayNow = timeNow.getDate();
+// const hoursNow = timeNow.getHours();
+// const minutesNow = timeNow.getMinutes();
+// const secondsNow = timeNow.getSeconds();
+//<-----------------Diffrent way-------------------->
 const timeNow = new Date();
-const yearNow = `${timeNow.getFullYear()}`.padStart(2, 0);
-const monthNow = `${timeNow.getMonth() + 1}`.padStart(2, 0);
-const dayNow = timeNow.getDate();
-const hoursNow = timeNow.getHours();
-const minutesNow = timeNow.getMinutes();
-const secondsNow = timeNow.getSeconds();
+const option = {
+  hour: 'numeric',
+  minute: 'numeric',
+  day: 'numeric',
+  month: 'numeric',
+  year: 'numeric',
+};
 
 btnLogin.addEventListener('click', (e) => {
   // prevent default : usualy when click in button it submit the form therefore it will load the page again
@@ -249,7 +275,7 @@ btnLogin.addEventListener('click', (e) => {
   //<------- find the Login User Data -------->
 
   currentAccount = accounts.find(
-    (acc) => acc.userName === inputLoginUsername.value
+    (acc) => acc.userName === inputLoginUsername.value.trim()
   );
 
   //<------- checking the Pin --------->
@@ -263,7 +289,11 @@ btnLogin.addEventListener('click', (e) => {
     containerApp.style.opacity = '100';
 
     //<---- Update Time --->
-    labelDate.textContent = `${dayNow}/${monthNow}/${yearNow}, ${hoursNow}:${minutesNow}`;
+    // labelDate.textContent = `${dayNow}/${monthNow}/${yearNow}, ${hoursNow}:${minutesNow}`;
+    labelDate.textContent = new Intl.DateTimeFormat(
+      currentAccount.locale,
+      option
+    ).format(timeNow);
 
     //<---- Update UI --->
     UpdateUI(currentAccount);

@@ -3,6 +3,7 @@
 *::before,
 *::after {
   margin: 0;
+  padding: 0;
   box-sizing: inherit;
 }
 
@@ -16,7 +17,7 @@ body {
   color: #444;
   background-color: #f3f3f3;
   height: 100vh;
-  padding: 2rem 5rem;
+  padding: 2rem;
 }
 /* <!--- End General setting ---> */
 
@@ -25,23 +26,24 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem 0 0 ;
+  padding: 0 2rem;
 }
 
-nav .welcome {
+.welcome {
   font-size: 1.9rem;
   font-weight: 500;
 }
 
-nav .logo {
+.logo {
   height: 5.25rem;
 }
 
-nav .login {
+.login {
   display: flex;
 }
 
 .login__input {
+  border: none;
   padding: 0.5rem 2rem;
   font-size: 1.6rem;
   font-family: inherit;
@@ -84,10 +86,10 @@ nav .login {
 /* <!--- start Main ---> */
 .app {
   position: relative;
-  width: 100%;
+  max-width: 100rem;
   margin: 4rem auto;
   display: grid;
-  grid-template-columns: 5fr 3fr;
+  grid-template-columns: 4fr 3fr;
   grid-template-rows: auto repeat(3, 15rem) auto;
   gap: 2rem;
   /* creating the fade in/out anumation */
@@ -98,10 +100,9 @@ nav .login {
 .balance {
   grid-column: 1 / span 2;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 2rem;
-  height: 100%;
 }
 
 .balance__label {
@@ -153,11 +154,6 @@ nav .login {
   color: #666;
 }
 
-.movements__value {
-  font-size: 1.7rem;
-  margin-left: auto;
-}
-
 .movements__type--deposit {
   background-image: linear-gradient(to top left, #39b385, #9be15d);
 }
@@ -165,7 +161,11 @@ nav .login {
 .movements__type--withdrawal {
   background-image: linear-gradient(to top left, #e52a5a, #ff585f);
 }
-/* <!--- End Movments ---> */
+
+.movements__value {
+  font-size: 1.7rem;
+  margin-left: auto;
+}
 
 /* <!--- start SUMMARY ---> */
 .summary {
