@@ -258,14 +258,6 @@ let currentAccount;
 // const minutesNow = timeNow.getMinutes();
 // const secondsNow = timeNow.getSeconds();
 //<-----------------Diffrent way-------------------->
-const timeNow = new Date();
-const option = {
-  hour: 'numeric',
-  minute: 'numeric',
-  day: 'numeric',
-  month: 'numeric',
-  year: 'numeric',
-};
 
 btnLogin.addEventListener('click', (e) => {
   // prevent default : usualy when click in button it submit the form therefore it will load the page again
