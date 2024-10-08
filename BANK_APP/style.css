@@ -96,6 +96,9 @@ nav {
   opacity: 0;
   transition: all 1s;
 }
+
+
+
 /* <!--- start balance ---> */
 .balance {
   grid-column: 1 / span 2;

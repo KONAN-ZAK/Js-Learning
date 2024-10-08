@@ -107,6 +107,7 @@ const inputTransferAmount = document.querySelector('.form__input--amount');
 const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
+
 //_____________________________________________________________________________
 
 //______________________________________________
@@ -236,6 +237,9 @@ const calcSummary = (account) => {
 // <---- Dispaly UI Func ---->
 //______________________________________________
 const UpdateUI = (currentAccount) => {
+  //<---- Reset Timer --->
+  clearInterval(TimerInterval);
+  LogOutTimer();
   //<---- Display account Movments --->
   displayMovments(currentAccount);
   //<---- Display account balance ---->
@@ -247,18 +251,40 @@ const UpdateUI = (currentAccount) => {
 };
 
 //______________________________________________
+// <---- LogOut Timer Func ---->
+//______________________________________________
+//Todo
+
+let TimerInterval;
+
+const LogOutTimer = () => {
+  //<------timer Duration -------->
+  let timer = 60 * 5;
+
+  //<----- timer calculation ----->
+  const updateTimer = () => {
+    const min = Math.trunc(timer / 60);
+    const sec = `${timer % 60}`.padStart(2, 0);
+    labelTimer.textContent = `${min}:${sec}`;
+  };
+
+  //<----- timer ----------------->
+  TimerInterval = setInterval(() => {
+    if (timer < 0) {
+      clearInterval(TimerInterval);
+      containerApp.style.opacity = 0;
+      labelWelcome.textContent = `Log in to get started `;
+    } else {
+      updateTimer();
+      timer--;
+    }
+  }, 1000);
+};
+
+//______________________________________________
 // <---- Login Func ---->
 //______________________________________________
 let currentAccount;
-// const timeNow = new Date();
-// const yearNow = `${timeNow.getFullYear()}`.padStart(2, 0);
-// const monthNow = `${timeNow.getMonth() + 1}`.padStart(2, 0);
-// const dayNow = timeNow.getDate();
-// const hoursNow = timeNow.getHours();
-// const minutesNow = timeNow.getMinutes();
-// const secondsNow = timeNow.getSeconds();
-//<-----------------Diffrent way-------------------->
-
 btnLogin.addEventListener('click', (e) => {
   // prevent default : usualy when click in button it submit the form therefore it will load the page again
   // to stop it we use this function
@@ -281,11 +307,20 @@ btnLogin.addEventListener('click', (e) => {
     containerApp.style.opacity = '100';
 
     //<---- Update Time --->
-    // labelDate.textContent = `${dayNow}/${monthNow}/${yearNow}, ${hoursNow}:${minutesNow}`;
-    labelDate.textContent = new Intl.DateTimeFormat(
-      currentAccount.locale,
-      option
-    ).format(timeNow);
+    const option = {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+    };
+    setInterval(() => {
+      labelDate.textContent = new Intl.DateTimeFormat(
+        currentAccount.locale,
+        option
+      ).format(new Date());
+    }, 1000);
 
     //<---- Update UI --->
     UpdateUI(currentAccount);
@@ -361,7 +396,7 @@ btnLoan.addEventListener('click', (e) => {
 
   if (loan && loan > 0 && loanCondition) {
     //<----calc the New Date movment---->
-    currentAccount.movementsDates.push(timeNow);
+    currentAccount.movementsDates.push(new Date().toISOString());
 
     //<----Push New movment---->
     currentAccount.movements.push(loan);

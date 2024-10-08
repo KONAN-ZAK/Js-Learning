@@ -1,6 +1,6 @@
 //<__________________________NUMBERS____________________________>>
 
-//Topic🤖: interger / float
+//Topic🤖: interger / float : parseInt  Number.isFinite()
 /*
 console.log(Number('25')); //25
 //or add + in the beginning (type coertion):
@@ -32,7 +32,7 @@ console.log(Number.isFinite(x)); //true
 console.log(Number.isFinite("hello")); //false
 */
 
-//Topic🤖: sqrt, max, min, trunc, random, floor, ceil, round, toFixed
+//Topic🤖: sqrt, max, min, trunc, random, floor, ceil, round, toFixed: gives string
 /* 
 //______________________________________________
 //1 Math.sqrt():
@@ -81,7 +81,7 @@ console.log(Math.floor(2.6)); //2
 // 8 Value.toFixed(number) Rounding Decimals
 //   (it return a string) 
 console.log((2.789).toFixed(2)); //2.79 string
-console.log(+(2.789).toFixed(2)); //2.79 number
+console.log(Number((2.789).toFixed(2))); //2.79 number
 console.log(+(2.789).toFixed(1)); //2.8 number
 console.log(+(2.789).toFixed(3)); //2.789 number
 */
@@ -114,7 +114,6 @@ console.log(a * BigInt(b)); //3345454754512n
 // console.log(new Date('December,24,2024'));
 // console.log(new Date('1998/02/13 22:20:10'));
 // console.log(new Date(3*24*60*60*1000));
-
 
 // <----------- operations ------------>
 //💎
@@ -168,7 +167,7 @@ const res = dayCalc(new Date(2024, 10, 1), new Date(2024, 10, 6));
 console.log(res);
 */
 
-//Topic🤖  INTERNATIONALIZATION FOR Dates --- Numbers
+//Topic🤖: INTERNATIONALIZATION FOR
 // _______________ Dates _________________
 /*
 // Date has a special api; becuse asia or Europe has diffrent time format, so :
@@ -176,7 +175,7 @@ console.log(res);
 // <---- step 1 ---->
 {
   const now = new Date();
-  newDate = new Intl.DateTimeFormat('en-US').format(now);
+  newDate = new Intl.DateTimeFormat('en-GB').format(now);
   console.log(newDate); //10/6/2024
 }
 
@@ -260,6 +259,61 @@ console.log(res);
 }
 */
 
+//Topic🤖: timers 
+//<_____________ setTimeout____________>
+/* 
+
+//<------ first ------>
+{
+  // to let the timer stop in the future.....
+  // in ms
+  //❗( be aware that when we reach to the timer we register the output and we contuine
+  //   so it wont stop on timerLine until it execute!!)
+
+  setTimeout(() => console.log(' Test 1: Here your Pizza !'), 3000); // it will print to cl after 2 sec.
+}
+
+//<------ second ------>
+//what if we want to pass an arguments??
+
+{
+  setTimeout(
+    (one, two) => console.log(` Test 2: Here your Pizza ! ${one} , ${two}`),
+    3000,
+    'olives ',
+    'spanish'
+  ); //Here your Pizza ! olives  , spanish
+}
+
+//<------ third ------>
+//what if we want to cancel before 3 sec??
+
+{
+  const ingredents = ['olives ', 'spanish', 'sucuge'];
+  const pizza = setTimeout(
+    (one, two) => console.log(` Test 3: Here your Pizza ! ${one} , ${two}`),
+    3000,
+    ...ingredents
+  );
+
+  // to stop it...
+  if (ingredents.includes('spanish')) {
+    console.log(`Test 3: Timer STOPPED we have spanish`);
+    clearTimeout(pizza);
+  }
+}
+
+*/
+
+//<_____________ setInterval __________>
+/* 
+// waht if we want to run function over and over every amount of times❓
+
+setInterval(() => {
+  const time = new Date();
+  console.log(time);
+}, 1000);
+clearInterval(name) //for stop it
+*/
 
 
-//____________ Summary _________________________
