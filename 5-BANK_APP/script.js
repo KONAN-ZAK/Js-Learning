@@ -376,7 +376,6 @@ btnTransfer.addEventListener('click', (e) => {
     console.log('Invalid transfer!');
   }
 });
-
 //______________________________________________
 // <---- Loan Func ---->
 //______________________________________________
@@ -430,3 +429,5 @@ btnClose.addEventListener('click', (e) => {
     // console.log(accounts);
   }
 });
+
+console.log(`Test again!`);
