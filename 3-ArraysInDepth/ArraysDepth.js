@@ -46,6 +46,7 @@ const newArr1 = arr.slice();
 
 // ----> which one to use ? all are same and its up to you..
 */
+
 //Topic🤖 splice()
 /*
 it will give same result as slice but it will effect the orginal one...
@@ -56,6 +57,7 @@ console.log(arr);                            //[ "a", "b", "c" ] the left from t
 console.log(arr.splice(1, 1));               //[ "b" ]
 console.log(arr);                            //[ "a", "c" ] the left from the splice cutting
  */
+
 //Topic🤖 reverse()
 /* 
 and effect on the orginal one
@@ -64,6 +66,7 @@ const arr2 = ['j', 'i', 'h', 'j', 'f'];
 
 console.log(arr2.reverse()); //[ "f", "j", "h", "i", "j" ]
 */
+
 //Topic🤖 concat() -----> same as [...arr1, ...arr2];
 /*
 // doesnt effect the orgianl one
@@ -78,6 +81,7 @@ console.log(arr.concat(arr2)); //[ "a", "b", "c", "d", "j", "i", "h", "j", "f" ]
 console.log([...arr, ...arr2]); //[ "a", "b", "c", "d", "j", "i", "h", "j", "f" ]
 
 */
+
 //Topic🤖 join()
 /* 
 let arr = ['a', 'b', 'c', 'd'];
@@ -103,6 +107,7 @@ console.log(nam.at(0));  //k
 console.log(nam?.at(0));  //k
 
  */
+
 //Topic🤖 forEach()
 /*
 // forEach(callBack Func) higher-order-func tell it each iter what to do
@@ -171,6 +176,7 @@ Object.entries(obj).forEach(function ([key, value]) {
 // forEach(([key, value]) => {  }) destructures each pair and passes the key and value
 // directly into the callback function.
 */
+
 //Topic🤖 forEach() Application on map , set
 /*
 const map = new Map([
@@ -213,6 +219,7 @@ sett.forEach((value) => {
   console.log(value);
 });
 */
+
 //Topic🤖 Document.insertAdjacentHTML(position, text);
 /*  
 it does take two strings:
@@ -259,6 +266,7 @@ const checkDogs = function (dogsJulia, dogsKate) {
 };
 checkDogs(JuliaData1, KateData1);
 */
+
 //___________________________________________________________________
 //_____(((if we want to return new array we use (Map) ..... if we jsut want to modifiy the orginal one use (forEach) one..)))_______
 
